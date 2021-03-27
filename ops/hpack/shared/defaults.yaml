@@ -17,7 +17,3 @@ ghc-options:
   - -fspecialise-aggressively
   - -Wall
   - -Wredundant-constraints
-
-when:
-  - condition: 'impl(ghc < 8.10)'
-    ghc-options: -O2

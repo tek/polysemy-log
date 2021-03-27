@@ -1,5 +1,5 @@
 {-# language NoImplicitPrelude #-}
-{-# OPTIONS_HADDOCK prune #-}
+{-# options_haddock prune #-}
 -- |Description: Polysemy Effects for Logging
 
 module Polysemy.Log (
@@ -44,10 +44,10 @@ import Polysemy.Log.Data.DataLog (DataLog(DataLog), dataLog)
 import Polysemy.Log.Data.Log (Log(Log), crit, debug, error, info, log, trace, warn)
 import Polysemy.Log.Data.LogEntry (LogEntry(LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
+import Polysemy.Log.Data.Severity (Severity(..))
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog')
 import Polysemy.Log.Pure (interpretLogNull, interpretLogOutput)
-import Polysemy.Log.Data.Severity (Severity(..))
 
 -- $intro
 -- There are at least two libraries that wrap a logging backend with polysemy interpreters.

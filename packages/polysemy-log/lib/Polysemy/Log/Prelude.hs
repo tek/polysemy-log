@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+{-# options_haddock hide #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
 module Polysemy.Log.Prelude (

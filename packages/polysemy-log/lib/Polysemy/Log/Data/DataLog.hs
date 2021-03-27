@@ -1,4 +1,6 @@
-{-# OPTIONS_HADDOCK hide #-}
+{-# options_haddock prune #-}
+-- |Description: Internal
+
 module Polysemy.Log.Data.DataLog where
 
 -- |Adapter for a logging backend.

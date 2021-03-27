@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Data.Severity where
 
 -- |A log message's severity, or log level.

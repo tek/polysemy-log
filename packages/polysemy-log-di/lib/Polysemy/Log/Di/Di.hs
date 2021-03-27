@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Di.Di where
 
 import qualified DiPolysemy as Di

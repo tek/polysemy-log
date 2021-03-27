@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Data.Log where
 
 import Polysemy.Internal (send)

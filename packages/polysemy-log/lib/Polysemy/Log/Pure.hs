@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Pure where
 
 import Polysemy.Output (Output, output)

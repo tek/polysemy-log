@@ -1,6 +1,6 @@
 > Log thrice, debug once.
 >
-> –– Любенов Г.
+> –– Г. Любенов
 
 # About
 

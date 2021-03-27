@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Data.LogMessage where
 
 import Polysemy.Log.Data.Severity (Severity)

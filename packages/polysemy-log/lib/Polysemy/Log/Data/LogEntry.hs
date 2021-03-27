@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Data.LogEntry where
 
 import Data.Time (UTCTime)
@@ -17,6 +17,7 @@ data LogEntry a =
   }
   deriving (Show)
 
+-- |Add call stack and timestamp to a message and wrap it with 'LogEntry'.
 annotate ::
   HasCallStack =>
   Member GhcTime r =>

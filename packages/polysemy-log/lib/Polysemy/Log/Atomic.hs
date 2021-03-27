@@ -1,4 +1,4 @@
-{-# OPTIONS_HADDOCK hide #-}
+-- |Description: Internal
 module Polysemy.Log.Atomic where
 
 import Polysemy.Internal (InterpretersFor)

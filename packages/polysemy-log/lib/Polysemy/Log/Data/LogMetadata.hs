@@ -1,5 +1,5 @@
-{-# OPTIONS_HADDOCK prune #-}
 -- |Description: Internal
+{-# options_haddock prune #-}
 module Polysemy.Log.Data.LogMetadata where
 
 -- |Internal effect used as an intermediate stage between 'Polysemy.Log.Log' and 'Polysemy.Log.DataLog', for the purpose
