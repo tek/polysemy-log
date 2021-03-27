@@ -1,0 +1,44 @@
+name: polysemy-log-di
+synopsis: polysemy-log interpreter for di
+<<: !include shared/meta.yaml
+defaults:
+  local: shared/defaults.yaml
+
+extra-source-files:
+  - readme.md
+  - Changelog.md
+
+library:
+  source-dirs: lib
+  generated-exposed-modules:
+    - Paths_polysemy_log_di
+
+dependencies:
+  - name: base
+    version: ">= 4 && < 5"
+    mixin:
+      - hiding (Prelude)
+  - di-polysemy ^>= 0.2.0.0
+  - name: polysemy-log
+    mixin:
+      - hiding (Polysemy.Log.Prelude)
+      - (Polysemy.Log.Prelude as Prelude)
+
+tests:
+  polysemy-log-di-unit:
+    main: Main.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - hedgehog
+      - name: polysemy-log
+        mixin:
+          - hiding (Polysemy.Log.Prelude)
+          - (Polysemy.Log.Prelude as Prelude)
+      - polysemy-log-di
+      - polysemy-test
+      - tasty
+      - tasty-hedgehog

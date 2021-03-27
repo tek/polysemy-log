@@ -1,0 +1,10 @@
+version: 0.1.0.0
+github: tek/polysemy-log
+description: Please see the readme on Github at <https://github.com/tek/polysemy-log>
+license: BSD-2-Clause-Patent
+license-file: LICENSE
+author: "Torsten Schmits"
+maintainer: "tek@tryp.io"
+copyright: "2021 Torsten Schmits"
+category: Logging
+build-type: Simple

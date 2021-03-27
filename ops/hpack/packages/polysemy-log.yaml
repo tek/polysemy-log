@@ -1,0 +1,42 @@
+name: polysemy-log
+synopsis: Polysemy effects for logging
+<<: !include shared/meta.yaml
+defaults:
+  local: shared/defaults.yaml
+
+extra-source-files:
+  - readme.md
+  - Changelog.md
+
+library:
+  source-dirs: lib
+  other-modules:
+    - Prelude
+  generated-exposed-modules:
+    - Paths_polysemy_log
+
+dependencies:
+  - ansi-terminal ^>= 0.10.0
+  - name: base
+    version: ">= 4 && < 5"
+    mixin:
+      - hiding (Prelude)
+  - template-haskell
+
+tests:
+  polysemy-log-unit:
+    main: Main.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - hedgehog
+      - name: polysemy-log
+        mixin:
+          - hiding (Prelude)
+          - (Polysemy.Log.Prelude as Prelude)
+      - polysemy-test
+      - tasty
+      - tasty-hedgehog
