@@ -1,3 +1,4 @@
+{-# OPTIONS_HADDOCK hide #-}
 module Polysemy.Log.Data.LogEntry where
 
 import Data.Time (UTCTime)
@@ -5,10 +6,13 @@ import Data.Time.Calendar (Day)
 import qualified Polysemy.Time as Time
 import Polysemy.Time (GhcTime)
 
+-- |Metadata wrapper for a log message.
 data LogEntry a =
   LogEntry {
     message :: !a,
+    -- |The time at which the log entry was created.
     time :: !UTCTime,
+    -- |The call stack of the function in which the entry was created.
     source :: !CallStack
   }
   deriving (Show)

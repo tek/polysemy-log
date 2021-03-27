@@ -7,7 +7,7 @@ cabal-version: 2.2
 name:           polysemy-log-di
 version:        0.1.0.0
 synopsis:       polysemy-log interpreter for di
-description:    Please see the readme on Github at <https://github.com/tek/polysemy-log>
+description:    See <https://hackage.haskell.org/package/polysemy-log/Polysemy-Log>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme
 bug-reports:    https://github.com/tek/polysemy-log/issues
@@ -27,8 +27,10 @@ source-repository head
 
 library
   exposed-modules:
+      Polysemy.Log.Di
       Polysemy.Log.Di.Atomic
       Polysemy.Log.Di.Di
+  other-modules:
       Paths_polysemy_log_di
   autogen-modules:
       Paths_polysemy_log_di

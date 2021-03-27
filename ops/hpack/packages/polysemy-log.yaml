@@ -12,7 +12,7 @@ library:
   source-dirs: lib
   other-modules:
     - Prelude
-  generated-exposed-modules:
+  generated-other-modules:
     - Paths_polysemy_log
 
 dependencies:

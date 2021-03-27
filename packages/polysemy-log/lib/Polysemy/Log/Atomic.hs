@@ -1,3 +1,4 @@
+{-# OPTIONS_HADDOCK hide #-}
 module Polysemy.Log.Atomic where
 
 import Polysemy.Internal (InterpretersFor)
@@ -6,6 +7,7 @@ import Polysemy.Log.Data.DataLog (DataLog(DataLog))
 import Polysemy.Log.Data.Log (Log(Log))
 import Polysemy.Log.Data.LogMessage (LogMessage)
 
+-- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState'.
 interpretDataLogAtomic' ::
   ∀ a r .
   Member (AtomicState [a]) r =>
@@ -15,6 +17,8 @@ interpretDataLogAtomic' =
     DataLog msg -> atomicModify' (msg :)
 {-# INLINE interpretDataLogAtomic' #-}
 
+-- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
+-- 'TVar'.
 interpretDataLogAtomic ::
   ∀ a r .
   Member (Embed IO) r =>
@@ -24,6 +28,7 @@ interpretDataLogAtomic sem = do
   runAtomicStateTVar tv (interpretDataLogAtomic' sem)
 {-# INLINE interpretDataLogAtomic #-}
 
+-- |Interpret 'Log' by prepending each message to a list in an 'AtomicState'.
 interpretLogAtomic' ::
   Member (AtomicState [LogMessage]) r =>
   InterpreterFor Log r
@@ -32,6 +37,8 @@ interpretLogAtomic' =
     Log msg -> atomicModify' (msg :)
 {-# INLINE interpretLogAtomic' #-}
 
+-- |Interpret 'Log' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
+-- 'TVar'.
 interpretLogAtomic ::
   Member (Embed IO) r =>
   InterpretersFor [Log, AtomicState [LogMessage]] r

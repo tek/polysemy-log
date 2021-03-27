@@ -7,7 +7,7 @@ cabal-version: 2.2
 name:           polysemy-log
 version:        0.1.0.0
 synopsis:       Polysemy effects for logging
-description:    Please see the readme on Github at <https://github.com/tek/polysemy-log>
+description:    See <https://hackage.haskell.org/package/polysemy-log/Polysemy-Log>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme
 bug-reports:    https://github.com/tek/polysemy-log/issues
@@ -38,9 +38,10 @@ library
       Polysemy.Log.Format
       Polysemy.Log.Log
       Polysemy.Log.Prelude
-      Paths_polysemy_log
+      Polysemy.Log.Pure
   other-modules:
       Prelude
+      Paths_polysemy_log
   autogen-modules:
       Paths_polysemy_log
   hs-source-dirs:

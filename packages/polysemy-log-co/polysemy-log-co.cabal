@@ -7,7 +7,7 @@ cabal-version: 2.2
 name:           polysemy-log-co
 version:        0.1.0.0
 synopsis:       polysemy-log interpreter for co-log
-description:    Please see the readme on Github at <https://github.com/tek/polysemy-log>
+description:    See <https://hackage.haskell.org/package/polysemy-log/Polysemy-Log>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme
 bug-reports:    https://github.com/tek/polysemy-log/issues
@@ -27,9 +27,11 @@ source-repository head
 
 library
   exposed-modules:
+      Polysemy.Log.Colog
       Polysemy.Log.Colog.Atomic
       Polysemy.Log.Colog.Colog
       Polysemy.Log.Colog.Conc
+  other-modules:
       Paths_polysemy_log_co
   autogen-modules:
       Paths_polysemy_log_co

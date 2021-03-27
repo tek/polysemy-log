@@ -1,3 +1,4 @@
+{-# OPTIONS_HADDOCK hide #-}
 module Polysemy.Log.Di.Di where
 
 import qualified DiPolysemy as Di
@@ -13,6 +14,7 @@ import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog')
 
+-- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
 interpretDataLogDi ::
   ∀ level path msg r .
   Member (Di.Di level path msg) r =>
@@ -24,6 +26,10 @@ interpretDataLogDi extractLevel =
       Di.log @_ @path (extractLevel msg) msg
 {-# INLINE interpretDataLogDi #-}
 
+-- |Reinterpret 'Log' as 'Di.Di', using the /polysemy-log/ default message.
+--
+-- Since this adds a timestamp, it has a dependency on 'GhcTime'.
+-- Use 'interpretLogDi'' for a variant that interprets 'GhcTime' in-place.
 interpretLogDi ::
   ∀ path r .
   Members [Di.Di Severity path (LogEntry LogMessage), GhcTime] r =>
@@ -34,6 +40,7 @@ interpretLogDi =
   raiseUnder
 {-# INLINE interpretLogDi #-}
 
+-- |Reinterpret 'Log' as 'Di.Di', also interpreting 'GhcTime'.
 interpretLogDi' ::
   ∀ path r .
   Members [Di.Di Severity path (LogEntry LogMessage), Embed IO] r =>

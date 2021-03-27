@@ -1,3 +1,4 @@
+-- |Description: Interpreters
 module Polysemy.Log.Colog.Colog where
 
 import qualified Colog (Message, Msg(Msg), Severity(..), logTextStdout, richMessageAction)
@@ -15,6 +16,8 @@ import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Log (interpretLogDataLog)
 
+-- |Convert 'Severity' into the /co-log/ variant, 'Colog.Severity'.
+-- 'Severity.Trace' is conflated with 'Colog.Debug', and 'Severity.Crit' into 'Colog.Error'.
 severityToColog ::
   Severity ->
   Colog.Severity
@@ -27,11 +30,13 @@ severityToColog = \case
   Severity.Crit -> Colog.Error
 {-# INLINE severityToColog #-}
 
+-- |Convert a default log message into the /co-log/-native 'Colog.Message'.
 toColog :: LogEntry LogMessage -> Colog.Message
 toColog (LogEntry LogMessage {..} _ source) =
   Colog.Msg (severityToColog severity) source message
 {-# INLINE toColog #-}
 
+-- |Reinterpret 'DataLog' as 'Colog.Log'.
 interpretDataLogColog ::
   ∀ a r .
   Member (Colog.Log a) r =>
@@ -41,6 +46,7 @@ interpretDataLogColog =
     DataLog msg -> Colog.log msg
 {-# INLINE interpretDataLogColog #-}
 
+-- |Reinterpret 'DataLog', specialized to the default message, as 'Colog.Log'.
 interpretDataLogNative ::
   Member (Colog.Log Colog.Message) r =>
   InterpreterFor (DataLog (LogEntry LogMessage)) r
@@ -49,6 +55,10 @@ interpretDataLogNative =
     DataLog msg -> Colog.log (toColog msg)
 {-# INLINE interpretDataLogNative #-}
 
+-- |Reinterpret 'Log' as 'Colog.Log', using the /polysemy-log/ default message.
+--
+-- Since this adds a timestamp, it has a dependency on 'GhcTime'.
+-- Use 'interpretLogColog'' for a variant that interprets 'GhcTime' in-place.
 interpretLogColog ::
   Members [Colog.Log (LogEntry LogMessage), GhcTime] r =>
   InterpreterFor Log r
@@ -58,6 +68,7 @@ interpretLogColog =
   raiseUnder
 {-# INLINE interpretLogColog #-}
 
+-- |Reinterpret 'Log' as 'Colog.Log', also interpreting 'GhcTime'.
 interpretLogColog' ::
   Members [Colog.Log (LogEntry LogMessage), Embed IO] r =>
   InterpretersFor [Log, GhcTime] r
@@ -65,60 +76,67 @@ interpretLogColog' =
   interpretTimeGhc . interpretLogColog
 {-# INLINE interpretLogColog' #-}
 
-interpretLogSimpleCologNative ::
-  Members [Colog.Log Colog.Message, GhcTime] r =>
-  InterpreterFor Log r
-interpretLogSimpleCologNative =
-  interpretDataLogNative .
-  interpretLogDataLog .
-  raiseUnder
-{-# INLINE interpretLogSimpleCologNative #-}
-
-runLogActionStdoutNative ::
-  ∀ m r .
-  MonadIO m =>
-  Member (Embed m) r =>
-  InterpreterFor (Colog.Log Colog.Message) r
-runLogActionStdoutNative =
-  runLogAction @m Colog.richMessageAction
-{-# INLINE runLogActionStdoutNative #-}
-
-runLogActionStdoutFormat ::
+-- |Interpret 'Colog.Log' by printing to stdout, using the provided message formatter.
+interpretCologStdoutFormat ::
   ∀ msg m r .
   MonadIO m =>
   Member (Embed m) r =>
   (msg -> Text) ->
   InterpreterFor (Colog.Log msg) r
-runLogActionStdoutFormat format =
+interpretCologStdoutFormat format =
   runLogAction @m (contramap format Colog.logTextStdout)
-{-# INLINE runLogActionStdoutFormat #-}
+{-# INLINE interpretCologStdoutFormat #-}
 
-runLogActionStdout ::
+-- |Interpret 'Colog.Log' with the default message by printing to stdout, using the default message formatter.
+interpretCologStdout ::
   ∀ m r .
   MonadIO m =>
   Member (Embed m) r =>
   InterpreterFor (Colog.Log (LogEntry LogMessage)) r
-runLogActionStdout =
-  runLogActionStdoutFormat @_ @m formatLogEntry
-{-# INLINE runLogActionStdout #-}
+interpretCologStdout =
+  interpretCologStdoutFormat @_ @m formatLogEntry
+{-# INLINE interpretCologStdout #-}
 
+-- |Interpret 'Log' fully in terms of 'Colog.Log', using the default message and stdout.
 interpretLogStdout ::
   Member (Embed IO) r =>
   InterpreterFor Log r
 interpretLogStdout =
-  runLogActionStdout @IO .
+  interpretCologStdout @IO .
   interpretTimeGhc .
   interpretDataLogColog @(LogEntry LogMessage) .
   interpretLogDataLog .
   raiseUnder3
 {-# INLINE interpretLogStdout #-}
 
+-- |Interpret 'Colog.Log' with the /co-log/ message protocol by printing to stdout, using /co-log/'s rich message
+-- formatter.
+interpretCologStdoutNative ::
+  ∀ m r .
+  MonadIO m =>
+  Member (Embed m) r =>
+  InterpreterFor (Colog.Log Colog.Message) r
+interpretCologStdoutNative =
+  runLogAction @m Colog.richMessageAction
+{-# INLINE interpretCologStdoutNative #-}
+
+-- |Reinterpret 'Log' as 'Colog.Log', using the /co-log/ message protocol.
+interpretLogCologAsNative ::
+  Members [Colog.Log Colog.Message, GhcTime] r =>
+  InterpreterFor Log r
+interpretLogCologAsNative =
+  interpretDataLogNative .
+  interpretLogDataLog .
+  raiseUnder
+{-# INLINE interpretLogCologAsNative #-}
+
+-- |Interpret 'Log' fully in terms of 'Colog.Log', using /co-log/'s message protocol and stdout.
 interpretLogStdoutAsNative ::
   Member (Embed IO) r =>
   InterpretersFor [Log, Colog.Log Colog.Message] r
 interpretLogStdoutAsNative =
-  runLogActionStdoutNative @IO .
+  interpretCologStdoutNative @IO .
   interpretTimeGhc .
-  interpretLogSimpleCologNative .
+  interpretLogCologAsNative .
   raiseUnder
 {-# INLINE interpretLogStdoutAsNative #-}

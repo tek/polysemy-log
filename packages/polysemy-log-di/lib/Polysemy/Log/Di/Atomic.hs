@@ -1,3 +1,4 @@
+{-# OPTIONS_HADDOCK hide #-}
 module Polysemy.Log.Di.Atomic where
 
 import qualified DiPolysemy as Di
@@ -5,6 +6,7 @@ import Polysemy (interpretH, runTSimple)
 import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
 
+-- |Interpret 'Di.Di' by prepending each message to a list in an 'AtomicState'.
 interpretDiAtomic' ::
   ∀ level path msg r .
   Member (AtomicState [msg]) r =>
@@ -17,6 +19,8 @@ interpretDiAtomic' =
     Di.Fetch -> pureT Nothing
 {-# INLINE interpretDiAtomic' #-}
 
+-- |Interpret 'Di.Di' by prepending each message to a list in an 'AtomicState', then interpret the
+-- 'AtomicState' in a 'TVar'.
 interpretDiAtomic ::
   ∀ level path msg r .
   Member (Embed IO) r =>

@@ -1,3 +1,4 @@
+-- |Description: Internal
 module Polysemy.Log.Colog.Conc where
 
 import qualified Colog
@@ -11,6 +12,7 @@ import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Format (formatLogEntry)
 
+-- |Interpret 'Colog.Log' using /co-log/'s concurrent logger with the provided 'LogAction'.
 interpretCologConcWith ::
   ∀ msg r .
   Members [Resource, Embed IO] r =>
@@ -23,6 +25,7 @@ interpretCologConcWith capacity action sem = do
     run worker =
       runLogAction (convertToLogAction @IO worker) sem
 
+-- |Interpret 'Colog.Log' using /co-log/'s concurrent logger with the default message and formatting.
 interpretCologConc ::
   Members [Resource, Embed IO] r =>
   InterpreterFor (Colog.Log (LogEntry LogMessage)) r

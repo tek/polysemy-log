@@ -1,7 +1,10 @@
+{-# OPTIONS_HADDOCK hide #-}
 module Polysemy.Log.Data.LogMessage where
 
 import Polysemy.Log.Data.Severity (Severity)
 
+-- |User-specified part of the default logging data, consisting of a severity level like /warning/, /error/, /debug/,
+-- and a plain text message.
 data LogMessage =
   LogMessage {
     severity :: !Severity,
