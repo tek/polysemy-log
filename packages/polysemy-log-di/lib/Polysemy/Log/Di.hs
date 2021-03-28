@@ -6,13 +6,14 @@ module Polysemy.Log.Di (
   -- * Interpreters
   interpretLogDi,
   interpretLogDi',
+  interpretLogDiConc,
   interpretDataLogDi,
   interpretDiAtomic,
   interpretDiAtomic'
 ) where
 
-import Polysemy.Log.Di.Di (interpretLogDi, interpretLogDi', interpretDataLogDi)
-import Polysemy.Log.Di.Atomic (interpretDiAtomic', interpretDiAtomic)
+import Polysemy.Log.Di.Atomic (interpretDiAtomic, interpretDiAtomic')
+import Polysemy.Log.Di.Di (interpretDataLogDi, interpretLogDi, interpretLogDi', interpretLogDiConc)
 -- $intro
 -- This package is a [di](https://hackage.haskell.org/package/di-polysemy) adapter for
 -- [polysemy-log](https://hackage.haskell.org/package/polysemy-log), providing interpreters that convert

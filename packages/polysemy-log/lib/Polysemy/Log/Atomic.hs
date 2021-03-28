@@ -19,8 +19,10 @@ interpretDataLogAtomicLocal ::
   InterpreterFor (DataLog a) r
 interpretDataLogAtomicLocal context =
   interpretH \case
-    DataLog msg -> liftT (atomicModify' (context msg :))
-    Local f ma -> raise . interpretDataLogAtomicLocal (f . context) =<< runT ma
+    DataLog msg ->
+      liftT (atomicModify' (context msg :))
+    Local f ma ->
+      raise . interpretDataLogAtomicLocal (f . context) =<< runT ma
 {-# INLINE interpretDataLogAtomicLocal #-}
 
 -- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState'.

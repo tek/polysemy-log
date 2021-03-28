@@ -63,6 +63,11 @@
         polysemy-log-co = project.ghc.polysemy-log-co;
         polysemy-log-di = project.ghc.polysemy-log-di;
       };
+      checks = {
+        polysemy-log = project.ghc.polysemy-log;
+        polysemy-log-co = project.ghc.polysemy-log-co;
+        polysemy-log-di = project.ghc.polysemy-log-di;
+      };
     }
   );
 }

@@ -1,13 +1,16 @@
 -- |Description: Internal
 module Polysemy.Log.Log where
 
+import Polysemy.Async (Async)
 import Polysemy.Internal (InterpretersFor)
+import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
 
+import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog, dataLog)
 import Polysemy.Log.Data.Log (Log(Log))
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
-import Polysemy.Log.Data.LogMessage (LogMessage)
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
 import Polysemy.Log.Data.LogMetadata (LogMetadata(Annotated), annotated)
 
 -- |Interpret 'Log' into the intermediate internal effect 'LogMetadata'.
@@ -53,9 +56,21 @@ interpretLogDataLog =
 
 -- |Interpret 'Log' into 'DataLog', adding metadata information and wrapping with 'LogEntry'.
 interpretLogDataLog' ::
-  Member (Embed IO) r =>
-  Member (DataLog (LogEntry LogMessage)) r =>
+  Members [DataLog (LogEntry LogMessage), Embed IO] r =>
   InterpretersFor [Log, LogMetadata LogMessage, GhcTime] r
 interpretLogDataLog' =
   interpretLogMetadataDataLog' . interpretLogLogMetadata
 {-# INLINE interpretLogDataLog' #-}
+
+-- |Interpret 'Log' into 'DataLog' concurrently, adding metadata information and wrapping with 'LogEntry'.
+interpretLogDataLogConc ::
+  Members [DataLog (LogEntry LogMessage), Resource, Async, Embed IO] r =>
+  Int ->
+  InterpreterFor Log r
+interpretLogDataLogConc maxQueued =
+  interceptDataLogConc @(LogEntry LogMessage) maxQueued .
+  interpretTimeGhc .
+  interpretLogMetadataDataLog @LogMessage .
+  interpretLogLogMetadata .
+  raiseUnder2
+{-# INLINE interpretLogDataLogConc #-}

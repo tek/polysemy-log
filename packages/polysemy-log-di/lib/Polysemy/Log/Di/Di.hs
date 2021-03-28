@@ -3,8 +3,10 @@ module Polysemy.Log.Di.Di where
 
 import qualified DiPolysemy as Di
 import Polysemy (interpretH, runT)
+import Polysemy.Async (Async)
 import Polysemy.Internal (InterpretersFor, raise2Under)
 import Polysemy.Internal.Tactics (liftT)
+import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime)
 
 import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
@@ -14,7 +16,7 @@ import Polysemy.Log.Data.LogEntry (LogEntry)
 import qualified Polysemy.Log.Data.LogMessage as LogMessage
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Data.Severity (Severity)
-import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog')
+import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog', interpretLogDataLogConc)
 
 -- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
 -- Maintains a context function as state that is applied to each logged message, allowing the context of a block to be
@@ -68,3 +70,15 @@ interpretLogDi' =
   raiseUnder .
   raise2Under
 {-# INLINE interpretLogDi' #-}
+
+-- |Reinterpret 'Log' as 'Di.Di' concurrently.
+interpretLogDiConc ::
+  ∀ path r .
+  Members [Di.Di Severity path (LogEntry LogMessage), Resource, Async, Embed IO] r =>
+  Int ->
+  InterpreterFor Log r
+interpretLogDiConc maxQueued =
+  interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
+  interpretLogDataLogConc maxQueued .
+  raiseUnder
+{-# INLINE interpretLogDiConc #-}

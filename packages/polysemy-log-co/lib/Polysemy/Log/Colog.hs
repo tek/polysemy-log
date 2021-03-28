@@ -5,24 +5,26 @@ module Polysemy.Log.Colog (
 
   -- * Interpreters
   interpretLogStdout,
+  interpretLogStdoutConc,
   interpretLogStdoutAsNative,
   interpretLogColog,
   interpretLogColog',
   interpretDataLogColog,
-  interpretCologConc,
-  interpretCologConcWith,
+  interpretCologConcNative,
+  interpretCologConcNativeWith,
   interpretCologAtomic,
   interpretCologAtomic'
 ) where
 
 import Polysemy.Log.Colog.Colog (
   interpretLogStdout,
+  interpretLogStdoutConc,
   interpretLogColog,
   interpretLogStdoutAsNative,
   interpretLogColog',
   interpretDataLogColog,
   )
-import Polysemy.Log.Colog.Conc (interpretCologConc, interpretCologConcWith)
+import Polysemy.Log.Colog.Conc (interpretCologConcNative, interpretCologConcNativeWith)
 import Polysemy.Log.Colog.Atomic (interpretCologAtomic, interpretCologAtomic')
 
 -- $intro

@@ -13,21 +13,23 @@ import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Format (formatLogEntry)
 
 -- |Interpret 'Colog.Log' using /co-log/'s concurrent logger with the provided 'LogAction'.
-interpretCologConcWith ::
+interpretCologConcNativeWith ::
   ∀ msg r .
   Members [Resource, Embed IO] r =>
   Capacity ->
   LogAction IO msg ->
   InterpreterFor (Colog.Log msg) r
-interpretCologConcWith capacity action sem = do
+interpretCologConcNativeWith capacity action sem = do
   bracket (embed (forkBackgroundLogger capacity action)) (embed . killBackgroundLogger) run
   where
     run worker =
       runLogAction (convertToLogAction @IO worker) sem
+{-# INLINE interpretCologConcNativeWith #-}
 
 -- |Interpret 'Colog.Log' using /co-log/'s concurrent logger with the default message and formatting.
-interpretCologConc ::
+interpretCologConcNative ::
   Members [Resource, Embed IO] r =>
   InterpreterFor (Colog.Log (LogEntry LogMessage)) r
-interpretCologConc =
-  interpretCologConcWith defCapacity (contramap formatLogEntry Colog.logTextStdout)
+interpretCologConcNative =
+  interpretCologConcNativeWith defCapacity (contramap formatLogEntry Colog.logTextStdout)
+{-# INLINE interpretCologConcNative #-}

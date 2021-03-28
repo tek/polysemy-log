@@ -5,10 +5,13 @@ import qualified Colog (Message, Msg(Msg), Severity(..), logTextStdout, richMess
 import qualified Colog.Polysemy as Colog
 import Colog.Polysemy (runLogAction)
 import Polysemy (interpretH, runT)
+import Polysemy.Async (Async)
 import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
+import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
 
+import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
 import Polysemy.Log.Data.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
@@ -126,6 +129,19 @@ interpretLogStdout =
   raiseUnder3
 {-# INLINE interpretLogStdout #-}
 
+-- |Like 'interpretLogStdout', but process messages concurrently.
+interpretLogStdoutConc ::
+  Members [Resource, Async, Embed IO] r =>
+  InterpreterFor Log r
+interpretLogStdoutConc =
+  interpretCologStdout @IO .
+  interpretTimeGhc .
+  interpretDataLogColog @(LogEntry LogMessage) .
+  interceptDataLogConc @(LogEntry LogMessage) 64 .
+  interpretLogDataLog .
+  raiseUnder3
+{-# INLINE interpretLogStdoutConc #-}
+
 -- |Interpret 'Colog.Log' with the /co-log/ message protocol by printing to stdout, using /co-log/'s rich message
 -- formatter.
 interpretCologStdoutNative ::
@@ -157,3 +173,16 @@ interpretLogStdoutAsNative =
   interpretLogCologAsNative .
   raiseUnder
 {-# INLINE interpretLogStdoutAsNative #-}
+
+-- |Interpret 'Log' fully in terms of 'Colog.Log', using /co-log/'s message protocol and stdout.
+interpretLogStdoutAsNativeConc ::
+  Members [Resource, Async, Embed IO] r =>
+  InterpretersFor [Log, Colog.Log Colog.Message] r
+interpretLogStdoutAsNativeConc =
+  interpretCologStdoutNative @IO .
+  interpretTimeGhc .
+  interpretDataLogNative .
+  interceptDataLogConc @(LogEntry LogMessage) 64 .
+  interpretLogDataLog .
+  raiseUnder2
+{-# INLINE interpretLogStdoutAsNativeConc #-}

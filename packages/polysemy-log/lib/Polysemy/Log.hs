@@ -37,16 +37,21 @@ module Polysemy.Log (
   interpretLogNull,
   interpretLogAtomic,
   interpretLogAtomic',
+
+  -- * Concurrent Logging
+  interceptDataLogConc,
+  interpretLogDataLogConc,
 ) where
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic, interpretDataLogAtomic', interpretLogAtomic, interpretLogAtomic')
+import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog(DataLog), dataLog)
 import Polysemy.Log.Data.Log (Log(Log), crit, debug, error, info, log, trace, warn)
 import Polysemy.Log.Data.LogEntry (LogEntry(LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
 import Polysemy.Log.Data.Severity (Severity(..))
 import Polysemy.Log.Format (formatLogEntry)
-import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog')
+import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog', interpretLogDataLogConc)
 import Polysemy.Log.Pure (interpretLogNull, interpretLogOutput)
 
 -- $intro

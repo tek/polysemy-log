@@ -4,7 +4,7 @@ import Colog (LogAction(LogAction), defCapacity)
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
 import Polysemy.Log.Colog.Colog (interpretLogColog')
-import Polysemy.Log.Colog.Conc (interpretCologConcWith)
+import Polysemy.Log.Colog.Conc (interpretCologConcNativeWith)
 import qualified Polysemy.Log.Data.Log as Log
 import Polysemy.Log.Data.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
@@ -28,6 +28,6 @@ test_concColog =
   runTestAuto do
     tv <- newTVarIO []
     let action msg = atomically (modifyTVar' tv (msg :))
-    interpretCologConcWith @(LogEntry LogMessage) defCapacity (LogAction action) (interpretLogColog' prog)
+    interpretCologConcNativeWith @(LogEntry LogMessage) defCapacity (LogAction action) (interpretLogColog' prog)
     msgs <- readTVarIO tv
     assertEq @_ @IO target (LogEntry.message <$> msgs)
