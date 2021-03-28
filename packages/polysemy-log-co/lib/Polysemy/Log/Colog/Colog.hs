@@ -4,10 +4,12 @@ module Polysemy.Log.Colog.Colog where
 import qualified Colog (Message, Msg(Msg), Severity(..), logTextStdout, richMessageAction)
 import qualified Colog.Polysemy as Colog
 import Colog.Polysemy (runLogAction)
+import Polysemy (interpretH, runT)
 import Polysemy.Internal (InterpretersFor)
+import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
 
-import Polysemy.Log.Data.DataLog (DataLog(DataLog))
+import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
 import Polysemy.Log.Data.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage(..))
@@ -37,13 +39,29 @@ toColog (LogEntry LogMessage {..} _ source) =
 {-# INLINE toColog #-}
 
 -- |Reinterpret 'DataLog' as 'Colog.Log'.
+-- Maintains a context function as state that is applied to each logged message, allowing the context of a block to be
+-- modified.
+interpretDataLogCologLocal ::
+  ∀ a b r .
+  Member (Colog.Log b) r =>
+  (a -> b) ->
+  (a -> a) ->
+  InterpreterFor (DataLog a) r
+interpretDataLogCologLocal convert context =
+  interpretH \case
+    DataLog msg ->
+      liftT (Colog.log (convert (context msg)))
+    Local f ma ->
+      raise . interpretDataLogCologLocal convert (f . context) =<< runT ma
+{-# INLINE interpretDataLogCologLocal #-}
+
+-- |Reinterpret 'DataLog' as 'Colog.Log'.
 interpretDataLogColog ::
   ∀ a r .
   Member (Colog.Log a) r =>
   InterpreterFor (DataLog a) r
 interpretDataLogColog =
-  interpret \case
-    DataLog msg -> Colog.log msg
+  interpretDataLogCologLocal id id
 {-# INLINE interpretDataLogColog #-}
 
 -- |Reinterpret 'DataLog', specialized to the default message, as 'Colog.Log'.
@@ -51,8 +69,7 @@ interpretDataLogNative ::
   Member (Colog.Log Colog.Message) r =>
   InterpreterFor (DataLog (LogEntry LogMessage)) r
 interpretDataLogNative =
-  interpret \case
-    DataLog msg -> Colog.log (toColog msg)
+  interpretDataLogCologLocal toColog id
 {-# INLINE interpretDataLogNative #-}
 
 -- |Reinterpret 'Log' as 'Colog.Log', using the /polysemy-log/ default message.

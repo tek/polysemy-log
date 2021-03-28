@@ -2,10 +2,12 @@
 module Polysemy.Log.Di.Di where
 
 import qualified DiPolysemy as Di
+import Polysemy (interpretH, runT)
 import Polysemy.Internal (InterpretersFor, raise2Under)
+import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime)
 
-import Polysemy.Log.Data.DataLog (DataLog(DataLog))
+import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
 import Polysemy.Log.Data.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
@@ -15,15 +17,30 @@ import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog')
 
 -- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
+-- Maintains a context function as state that is applied to each logged message, allowing the context of a block to be
+-- modified.
+interpretDataLogDiLocal ::
+  ∀ level path msg r .
+  Member (Di.Di level path msg) r =>
+  (msg -> level) ->
+  (msg -> msg) ->
+  InterpreterFor (DataLog msg) r
+interpretDataLogDiLocal extractLevel context =
+  interpretH \case
+    DataLog msg ->
+      liftT (Di.log @_ @path (extractLevel msg) (context msg))
+    Local f ma ->
+      raise . interpretDataLogDiLocal @_ @path extractLevel (f . context) =<< runT ma
+{-# INLINE interpretDataLogDiLocal #-}
+
+-- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
 interpretDataLogDi ::
   ∀ level path msg r .
   Member (Di.Di level path msg) r =>
   (msg -> level) ->
   InterpreterFor (DataLog msg) r
 interpretDataLogDi extractLevel =
-  interpret \case
-    DataLog msg ->
-      Di.log @_ @path (extractLevel msg) msg
+  interpretDataLogDiLocal @_ @path extractLevel id
 {-# INLINE interpretDataLogDi #-}
 
 -- |Reinterpret 'Log' as 'Di.Di', using the /polysemy-log/ default message.

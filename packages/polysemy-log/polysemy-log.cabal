@@ -124,6 +124,7 @@ test-suite polysemy-log-unit
   main-is: Main.hs
   other-modules:
       Polysemy.Log.Test.DataLogTest
+      Polysemy.Log.Test.LocalTest
       Polysemy.Log.Test.LogEntryTest
       Polysemy.Log.Test.SimpleTest
       Paths_polysemy_log
