@@ -10,7 +10,7 @@ import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog, dataLog)
 import Polysemy.Log.Data.Log (Log(Log))
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
-import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Data.LogMetadata (LogMetadata(Annotated), annotated)
 
 -- |Interpret 'Log' into the intermediate internal effect 'LogMetadata'.
