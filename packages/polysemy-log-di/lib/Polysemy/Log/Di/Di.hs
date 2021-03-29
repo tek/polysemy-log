@@ -4,6 +4,7 @@ module Polysemy.Log.Di.Di where
 import qualified DiPolysemy as Di
 import Polysemy (interpretH, runT)
 import Polysemy.Async (Async)
+import Polysemy.Conc (Race)
 import Polysemy.Internal (InterpretersFor, raise2Under)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Resource (Resource)
@@ -74,7 +75,7 @@ interpretLogDi' =
 -- |Reinterpret 'Log' as 'Di.Di' concurrently.
 interpretLogDiConc ::
   ∀ path r .
-  Members [Di.Di Severity path (LogEntry LogMessage), Resource, Async, Embed IO] r =>
+  Members [Di.Di Severity path (LogEntry LogMessage), Resource, Async, Race, Embed IO] r =>
   Int ->
   InterpreterFor Log r
 interpretLogDiConc maxQueued =

@@ -2,6 +2,7 @@
 module Polysemy.Log.Log where
 
 import Polysemy.Async (Async)
+import Polysemy.Conc (Race)
 import Polysemy.Internal (InterpretersFor)
 import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
@@ -64,7 +65,7 @@ interpretLogDataLog' =
 
 -- |Interpret 'Log' into 'DataLog' concurrently, adding metadata information and wrapping with 'LogEntry'.
 interpretLogDataLogConc ::
-  Members [DataLog (LogEntry LogMessage), Resource, Async, Embed IO] r =>
+  Members [DataLog (LogEntry LogMessage), Resource, Async, Race, Embed IO] r =>
   Int ->
   InterpreterFor Log r
 interpretLogDataLogConc maxQueued =

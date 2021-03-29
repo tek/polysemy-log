@@ -6,6 +6,7 @@ import qualified Colog.Polysemy as Colog
 import Colog.Polysemy (runLogAction)
 import Polysemy (interpretH, runT)
 import Polysemy.Async (Async)
+import Polysemy.Conc (Race)
 import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Resource (Resource)
@@ -131,7 +132,7 @@ interpretLogStdout =
 
 -- |Like 'interpretLogStdout', but process messages concurrently.
 interpretLogStdoutConc ::
-  Members [Resource, Async, Embed IO] r =>
+  Members [Resource, Async, Race, Embed IO] r =>
   InterpreterFor Log r
 interpretLogStdoutConc =
   interpretCologStdout @IO .
@@ -176,7 +177,7 @@ interpretLogStdoutAsNative =
 
 -- |Interpret 'Log' fully in terms of 'Colog.Log', using /co-log/'s message protocol and stdout.
 interpretLogStdoutAsNativeConc ::
-  Members [Resource, Async, Embed IO] r =>
+  Members [Resource, Async, Race, Embed IO] r =>
   InterpretersFor [Log, Colog.Log Colog.Message] r
 interpretLogStdoutAsNativeConc =
   interpretCologStdoutNative @IO .

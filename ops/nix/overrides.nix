@@ -20,6 +20,7 @@ let
     co-log-polysemy = subPkg "co-log-polysemy" "co-log-polysemy" inputs.co-log;
     di-polysemy = cabal2nix "di-polysemy" inputs.di-polysemy;
     polysemy = cabal2nixNoHpack "polysemy" inputs.polysemy;
+    polysemy-conc = subPkg "packages/conc" "polysemy-conc" inputs.polysemy-conc;
     polysemy-test = subPkg "packages/polysemy-test" "polysemy-test" inputs.polysemy-test;
     polysemy-time = subPkg "packages/time" "polysemy-time" inputs.polysemy-time;
   };

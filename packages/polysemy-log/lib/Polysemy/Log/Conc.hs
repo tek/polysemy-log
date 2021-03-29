@@ -1,11 +1,13 @@
 -- |Description: Internal
 module Polysemy.Log.Conc where
 
-import Control.Concurrent.STM.TBMQueue (TBMQueue, closeTBMQueue, newTBMQueueIO, readTBMQueue, writeTBMQueue)
 import Polysemy (interceptH, runT, subsume)
 import Polysemy.Async (Async, async)
+import Polysemy.Conc (Queue, Race, interpretQueueTBM)
+import qualified Polysemy.Conc.Data.Queue as Queue
+import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource, bracket)
+import Polysemy.Resource (Resource)
 
 import qualified Polysemy.Log.Data.DataLog as DataLog
 import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
@@ -15,28 +17,26 @@ import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
 -- 'Local' has to be handled here, otherwise this will not be called for actions in higher-order thunks.
 interceptDataLogConcWithLocal ::
   ∀ msg r a .
-  Members [DataLog msg, Embed IO] r =>
+  Members [Queue msg, DataLog msg] r =>
   (msg -> msg) ->
-  TBMQueue msg ->
   Sem r a ->
   Sem r a
-interceptDataLogConcWithLocal context queue =
+interceptDataLogConcWithLocal context =
   interceptH \case
     DataLog msg ->
-      liftT (atomically (writeTBMQueue queue (context msg)))
+      liftT (Queue.write (context msg))
     Local f ma ->
-      raise . interceptDataLogConcWithLocal (f . context) queue . subsume =<< runT ma
+      raise . interceptDataLogConcWithLocal (f . context) . subsume =<< runT ma
 {-# INLINE interceptDataLogConcWithLocal #-}
 
 -- |Intercept 'DataLog' for concurrent processing.
 interceptDataLogConcWith ::
   ∀ msg r a .
-  Members [DataLog msg, Embed IO] r =>
-  TBMQueue msg ->
+  Members [Queue msg, DataLog msg] r =>
   Sem r a ->
   Sem r a
 interceptDataLogConcWith =
-  interceptDataLogConcWithLocal id
+  interceptDataLogConcWithLocal @msg id
 {-# INLINE interceptDataLogConcWith #-}
 
 -- |Part of 'interceptDataLogConc'.
@@ -44,30 +44,16 @@ interceptDataLogConcWith =
 -- forcing the logging implementation to work in this thread.
 loggerThread ::
   ∀ msg r .
-  Members [DataLog msg, Embed IO] r =>
-  TBMQueue msg ->
+  Members [Queue msg, DataLog msg] r =>
   Sem r ()
-loggerThread queue = do
+loggerThread = do
   spin
   where
-    spin =
-      atomically (readTBMQueue queue) >>= \case
-        Nothing -> pure ()
-        Just msg -> do
-          DataLog.dataLog @msg msg
-          spin
-
--- |Part of 'interceptDataLogConc'.
--- Create a queue and start a thread that reads messages from it, calling the logging implementation.
-acquireQueue ::
-  ∀ msg r .
-  Members [DataLog msg, Async, Embed IO] r =>
-  Int ->
-  Sem r (TBMQueue msg)
-acquireQueue maxQueued = do
-  queue <- embed (newTBMQueueIO maxQueued)
-  !_ <- async (loggerThread queue)
-  pure queue
+    spin = do
+      next <- Queue.read
+      for_ (resultToMaybe next) \ msg -> do
+        DataLog.dataLog @msg msg
+        spin
 
 -- |Intercept 'DataLog' for concurrent processing.
 -- Creates a queue and starts a worker thread.
@@ -77,16 +63,17 @@ acquireQueue maxQueued = do
 -- Since this is an interceptor, it will not remove the effect from the stack, but relay it to another interpreter:
 --
 -- @
--- interpretDataLogAtomic (interceptDataLogConc (DataLog.dataLog "message"))
+-- interpretDataLogAtomic (interceptDataLogConc 64 (DataLog.dataLog "message"))
 -- @
 interceptDataLogConc ::
   ∀ msg r a .
-  Members [DataLog msg, Resource, Async, Embed IO] r =>
+  Members [DataLog msg, Resource, Async, Race, Embed IO] r =>
   -- |Queue size. When the queue fills up, the interceptor will block.
   Int ->
   Sem r a ->
   Sem r a
 interceptDataLogConc maxQueued sem = do
-  bracket (acquireQueue maxQueued) (atomically . closeTBMQueue) \ queue ->
-    interceptDataLogConcWith @msg queue sem
+  interpretQueueTBM @msg maxQueued do
+    !_ <- async (loggerThread @msg)
+    interceptDataLogConcWith @msg (raise sem)
 {-# INLINE interceptDataLogConc #-}

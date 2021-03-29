@@ -27,6 +27,10 @@
       url = github:tek/polysemy-test;
       flake = false;
     };
+    polysemy-conc = {
+      url = github:tek/polysemy-conc;
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, tryp-hs, flake-utils, ... }@inputs:
