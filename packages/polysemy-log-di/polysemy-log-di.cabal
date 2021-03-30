@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-log-di
-version:        0.2.0.0
+version:        0.2.0.1
 synopsis:       polysemy-log interpreter for di
 description:    See <https://hackage.haskell.org/package/polysemy-log-di/docs/Polysemy-Log-Di.html>
 category:       Logging
@@ -98,7 +98,7 @@ library
   build-depends:
       base ==4.*
     , di-polysemy >=0.2.0.0 && <0.3
-    , polysemy >=1.3 && <1.5
+    , polysemy >=1.3 && <1.6
     , polysemy-conc >=0.1.0.0 && <0.2
     , polysemy-log
     , polysemy-time >=0.1.1.0 && <0.2
@@ -183,7 +183,7 @@ test-suite polysemy-log-di-unit
       base ==4.*
     , di-polysemy >=0.2.0.0 && <0.3
     , hedgehog
-    , polysemy >=1.3 && <1.5
+    , polysemy >=1.3 && <1.6
     , polysemy-conc >=0.1.0.0 && <0.2
     , polysemy-log
     , polysemy-log-di

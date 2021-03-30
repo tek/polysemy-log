@@ -51,7 +51,7 @@
         };
         ghcid.prelude = "packages/polysemy-log/lib/Prelude.hs";
         packageDir = "packages";
-        cabal2nixOptions = "--no-hpack";
+        # cabal2nixOptions = "--no-hpack";
       };
     in {
       defaultPackage = project.ghc.polysemy-log-co;
