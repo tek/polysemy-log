@@ -120,6 +120,7 @@ test-suite polysemy-log-co-unit
   main-is: Main.hs
   other-modules:
       Polysemy.Log.Colog.Test.ConcTest
+      Polysemy.Log.Colog.Test.ExampleTest
       Polysemy.Log.Colog.Test.SimpleTest
       Paths_polysemy_log_co
   hs-source-dirs:

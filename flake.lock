@@ -19,11 +19,11 @@
     "co-log": {
       "flake": false,
       "locked": {
-        "lastModified": 1605366789,
-        "narHash": "sha256-oygb1r+NVAbeweB8X4BvfMCuKAaSMqfhoQWXitGG3F4=",
+        "lastModified": 1617357364,
+        "narHash": "sha256-9icDFmRCU1IlmUs0cy4PqCUI8YjgwVeFTYnhGCeXurg=",
         "owner": "kowainik",
         "repo": "co-log",
-        "rev": "38ebc84de3e937cf3f94570485a064837d537b18",
+        "rev": "d2c7ad66af4e79c7a8f8d5e6c324ea3ff2739277",
         "type": "github"
       },
       "original": {
@@ -114,11 +114,11 @@
     "polysemy": {
       "flake": false,
       "locked": {
-        "lastModified": 1617126697,
-        "narHash": "sha256-nGnA5CC4DLZ5TkYTPpBRfqP3FuT+ey7zZSJWu3g7f0Q=",
+        "lastModified": 1617203992,
+        "narHash": "sha256-wPLCdBlw2vPIhreSbOcJNT3j7PqGiE/rLBLEIUUMZzQ=",
         "owner": "polysemy-research",
         "repo": "polysemy",
-        "rev": "04642d090b1c683df476c9ec07c1017faa6134b5",
+        "rev": "43a67061fb2a6cd2f545c5bd5e8320f2a228fb6b",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1617131879,
-        "narHash": "sha256-C9su013rmHql1Yxys/7JvMSFaTJVQ6np4hgr6eStnqA=",
+        "lastModified": 1617403615,
+        "narHash": "sha256-5IBa3DZNenBsRUK+6MQ07vibNS+CFOLBJPy8WIvnk2g=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "a0f572f7fe806164022e7c7f459f3c130fd660f9",
+        "rev": "b3dc05370daf21284a4d33066b0ef12b314131a7",
         "type": "github"
       },
       "original": {

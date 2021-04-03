@@ -45,12 +45,8 @@
           polysemy-log-di = "packages/polysemy-log-di";
         };
         overrides = import ./ops/nix/overrides.nix inputs;
-        ghci = {
-          basicArgs = ["-Wall" "-Werror"];
-        };
         ghcid.prelude = "packages/polysemy-log/lib/Prelude.hs";
         packageDir = "packages";
-        # cabal2nixOptions = "--no-hpack";
       };
     in {
       defaultPackage = project.ghc.polysemy-log-co;
