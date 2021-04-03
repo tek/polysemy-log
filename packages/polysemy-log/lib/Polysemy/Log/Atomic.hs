@@ -1,29 +1,12 @@
 -- |Description: Internal
 module Polysemy.Log.Atomic where
 
-import Polysemy (interpretH, runT)
 import Polysemy.Internal (InterpretersFor)
-import Polysemy.Internal.Tactics (liftT)
 
-import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
+import Polysemy.Log.Data.DataLog (DataLog)
 import Polysemy.Log.Data.Log (Log(Log))
 import Polysemy.Log.Data.LogMessage (LogMessage)
-
--- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState'.
--- Maintains a context function as state that is applied to each logged message, allowing the context of a block to be
--- modified.
-interpretDataLogAtomicLocal ::
-  ∀ a r .
-  Member (AtomicState [a]) r =>
-  (a -> a) ->
-  InterpreterFor (DataLog a) r
-interpretDataLogAtomicLocal context =
-  interpretH \case
-    DataLog msg ->
-      liftT (atomicModify' (context msg :))
-    Local f ma ->
-      raise . interpretDataLogAtomicLocal (f . context) =<< runT ma
-{-# INLINE interpretDataLogAtomicLocal #-}
+import Polysemy.Log.Log (interpretDataLog)
 
 -- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState'.
 interpretDataLogAtomic' ::
@@ -31,7 +14,7 @@ interpretDataLogAtomic' ::
   Member (AtomicState [a]) r =>
   InterpreterFor (DataLog a) r
 interpretDataLogAtomic' =
-  interpretDataLogAtomicLocal id
+  interpretDataLog \ msg -> atomicModify' @[a] (msg :)
 {-# INLINE interpretDataLogAtomic' #-}
 
 -- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a

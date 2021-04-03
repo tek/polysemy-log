@@ -12,6 +12,8 @@ module Polysemy.Log (
   dataLog,
 
   -- ** Interpreters
+  interpretDataLogStderrWith,
+  interpretDataLogStderr,
   interpretDataLogAtomic',
   interpretDataLogAtomic,
 
@@ -31,6 +33,9 @@ module Polysemy.Log (
   Severity(..),
 
   -- ** Interpreters
+  interpretLogStderrWith,
+  interpretLogStderr,
+  interpretLogStderr',
   interpretLogDataLog,
   interpretLogDataLog',
   interpretLogOutput,
@@ -51,7 +56,16 @@ import Polysemy.Log.Data.LogEntry (LogEntry(LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
 import Polysemy.Log.Data.Severity (Severity(..))
 import Polysemy.Log.Format (formatLogEntry)
-import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog', interpretLogDataLogConc)
+import Polysemy.Log.Log (
+  interpretLogDataLog,
+  interpretLogDataLog',
+  interpretLogDataLogConc,
+  interpretDataLogStderrWith,
+  interpretDataLogStderr,
+  interpretLogStderrWith,
+  interpretLogStderr,
+  interpretLogStderr',
+  )
 import Polysemy.Log.Pure (interpretLogNull, interpretLogOutput)
 
 -- $intro

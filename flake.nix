@@ -5,7 +5,6 @@
     nixpkgs.url = github:NixOS/nixpkgs/cfed29bfcb28259376713005d176a6f82951014a;
     flake-utils.url = github:numtide/flake-utils;
     tryp-hs.url = github:tek/tryp-hs;
-    # tryp-hs.url = path:/home/tek/code/tek/nix/tryp-hs;
     tryp-hs.inputs.nixpkgs.follows = "nixpkgs";
     co-log = {
       url = github:kowainik/co-log;
