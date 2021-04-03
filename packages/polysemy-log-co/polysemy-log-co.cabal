@@ -106,7 +106,7 @@ library
     , polysemy-log
     , polysemy-time >=0.1.1.0 && <0.2
     , relude >=0.5 && <0.8
-    , string-interpolate >=0.2.1
+    , string-interpolate >=0.3.1
     , text
     , time
   mixins:
@@ -196,7 +196,7 @@ test-suite polysemy-log-co-unit
     , polysemy-test
     , polysemy-time >=0.1.1.0 && <0.2
     , relude >=0.5 && <0.8
-    , string-interpolate >=0.2.1
+    , string-interpolate >=0.3.1
     , tasty
     , tasty-hedgehog
     , text
