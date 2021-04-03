@@ -113,7 +113,7 @@ library
     , polysemy-conc >=0.1.0.0 && <0.2
     , polysemy-time >=0.1.1.0 && <0.2
     , relude >=0.5 && <0.8
-    , string-interpolate >=0.3.1
+    , string-interpolate >=0.2.1
     , template-haskell
     , text
     , time
@@ -202,7 +202,7 @@ test-suite polysemy-log-unit
     , polysemy-test
     , polysemy-time >=0.1.1.0 && <0.2
     , relude >=0.5 && <0.8
-    , string-interpolate >=0.3.1
+    , string-interpolate >=0.2.1
     , tasty
     , tasty-hedgehog
     , template-haskell

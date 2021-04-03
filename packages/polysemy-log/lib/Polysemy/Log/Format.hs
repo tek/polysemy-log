@@ -41,7 +41,7 @@ formatCaller =
   maybe "<unknown loc>" format . listToMaybe . getCallStack
   where
     format (_, SrcLoc {..}) =
-      [qt|#{shortModule (toText srcLocModule)}##{srcLocStartLine}|]
+      [qt|#{shortModule (toText srcLocModule)}\##{srcLocStartLine}|]
 
 -- |Default formatter for the default message type.
 formatLogEntry :: LogEntry LogMessage -> Text
