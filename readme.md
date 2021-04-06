@@ -78,3 +78,4 @@ nix flake check
 ```
 
 [nix]: https://nixos.org/manual/nix/unstable
+[co-log]: https://hackage.haskell.org/package/co-log

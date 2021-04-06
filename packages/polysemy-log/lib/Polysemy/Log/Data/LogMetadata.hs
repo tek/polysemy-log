@@ -2,13 +2,21 @@
 {-# options_haddock prune #-}
 module Polysemy.Log.Data.LogMetadata where
 
+import Polysemy.Internal (send)
+
 -- |Internal effect used as an intermediate stage between 'Polysemy.Log.Log' and 'Polysemy.Log.DataLog', for the purpose
 -- of isolating the metadata annotation task.
 --
 -- The type of metadata is arbitrary and chosen in interpreters, but this exposes a 'HasCallStack' dependency since it's
 -- the primary purpose.
-data LogMetadata a :: Effect where
+data LogMetadata msg :: Effect where
   -- |Schedule a message to be annotated and logged.
-  Annotated :: HasCallStack => a -> LogMetadata a m ()
+  Annotated :: HasCallStack => msg -> LogMetadata msg m ()
 
-makeSem ''LogMetadata
+annotated ::
+  HasCallStack =>
+  Member (LogMetadata msg) r =>
+  msg ->
+  Sem r ()
+annotated msg =
+  send (Annotated msg)
