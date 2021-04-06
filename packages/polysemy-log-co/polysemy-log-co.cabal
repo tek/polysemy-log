@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-log-co
-version:        0.2.2.0
+version:        0.2.2.1
 synopsis:       polysemy-log interpreter for co-log
 description:    See <https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html>
 category:       Logging
