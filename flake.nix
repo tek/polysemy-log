@@ -61,5 +61,6 @@
     compatOverrides = tryp-hs.overrides compatOverrides;
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     ghcid.prelude = "packages/polysemy-log/lib/Prelude.hs";
+    versionFile = "ops/hpack/shared/meta.yaml";
   };
 }
