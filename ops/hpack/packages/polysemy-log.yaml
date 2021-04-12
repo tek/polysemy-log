@@ -17,13 +17,13 @@ library:
     - Paths_polysemy_log
 
 dependencies:
-  - ansi-terminal
+  - ansi-terminal >= 0.10.3 && < 0.12
   - name: base
     version: ">= 4 && < 5"
     mixin:
       - hiding (Prelude)
   - polysemy-conc ^>= 0.1.0.0
-  - string-interpolate
+  - string-interpolate >= 0.2.1 && < 0.4
   - template-haskell
 
 tests:
