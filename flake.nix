@@ -3,9 +3,10 @@
 
   inputs = {
     polysemy-conc.url = github:tek/polysemy-conc;
-    polysemy-time.url = github:tek/polysemy-time;
-    polysemy-test.follows = "polysemy-time/polysemy-test";
-    tryp-hs.follows = "polysemy-time/tryp-hs";
+    polysemy-time.follows = "polysemy-conc/polysemy-time";
+    polysemy-test.follows = "polysemy-conc/polysemy-time/polysemy-test";
+    tryp-hs.follows = "polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
+    polysemy-time.inputs.tryp-hs.follows = "polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
     di-polysemy = { url = github:nitros12/di-polysemy; flake = false; };
   };
 
