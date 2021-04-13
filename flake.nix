@@ -1,17 +1,13 @@
 {
   description = "Polysemy effects for logging";
 
-  inputs = {
-    polysemy-conc.url = github:tek/polysemy-conc;
-    polysemy-time.follows = "polysemy-conc/polysemy-time";
-    polysemy-test.follows = "polysemy-conc/polysemy-time/polysemy-test";
-    tryp-hs.follows = "polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
-    polysemy-time.inputs.tryp-hs.follows = "polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
-    di-polysemy = { url = github:nitros12/di-polysemy; flake = false; };
-  };
+  inputs.polysemy-conc.url = github:tek/polysemy-conc;
 
-  outputs = { tryp-hs, polysemy-time, polysemy-test, polysemy-conc, ... }:
+  outputs = { polysemy-conc, ... }:
   let
+    inherit (polysemy-conc.inputs) polysemy-time;
+    inherit (polysemy-time.inputs) polysemy-test;
+    inherit (polysemy-test.inputs) tryp-hs;
     common = { hackage, source, jailbreak, ... }: {
       polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
       polysemy-plugin = hackage "0.3.0.0" "1frz0iksmg8bpm7ybnpz9h75hp6hajd20vpdvmi04aspklmr6hj0";
