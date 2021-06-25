@@ -10,7 +10,7 @@ import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime)
 
-import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
+import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
 import Polysemy.Log.Data.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
