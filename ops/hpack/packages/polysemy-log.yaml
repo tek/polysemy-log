@@ -1,5 +1,5 @@
 name: polysemy-log
-synopsis: Polysemy effects for logging
+synopsis: Polysemy Effects for Logging
 description: See <https://hackage.haskell.org/package/polysemy-log/docs/Polysemy-Log.html>
 <<: !include shared/meta.yaml
 defaults:

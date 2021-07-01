@@ -6,7 +6,7 @@ cabal-version: 2.2
 
 name:           polysemy-log-di
 version:        0.2.2.1
-synopsis:       polysemy-log interpreter for di
+synopsis:       Di Adapters for Polysemy-Log
 description:    See <https://hackage.haskell.org/package/polysemy-log-di/docs/Polysemy-Log-Di.html>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme

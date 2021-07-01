@@ -6,7 +6,7 @@ cabal-version: 2.2
 
 name:           polysemy-log
 version:        0.2.2.1
-synopsis:       Polysemy effects for logging
+synopsis:       Polysemy Effects for Logging
 description:    See <https://hackage.haskell.org/package/polysemy-log/docs/Polysemy-Log.html>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme

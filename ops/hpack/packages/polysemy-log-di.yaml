@@ -1,5 +1,5 @@
 name: polysemy-log-di
-synopsis: polysemy-log interpreter for di
+synopsis: Di Adapters for Polysemy-Log
 description: See <https://hackage.haskell.org/package/polysemy-log-di/docs/Polysemy-Log-Di.html>
 <<: !include shared/meta.yaml
 defaults:

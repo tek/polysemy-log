@@ -6,7 +6,7 @@ cabal-version: 2.2
 
 name:           polysemy-log-co
 version:        0.2.2.1
-synopsis:       polysemy-log interpreter for co-log
+synopsis:       Colog Adapters for Polysemy-Log
 description:    See <https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html>
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme

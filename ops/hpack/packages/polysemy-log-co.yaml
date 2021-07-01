@@ -1,5 +1,5 @@
 name: polysemy-log-co
-synopsis: polysemy-log interpreter for co-log
+synopsis: Colog Adapters for Polysemy-Log
 description: See <https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html>
 <<: !include shared/meta.yaml
 defaults:
