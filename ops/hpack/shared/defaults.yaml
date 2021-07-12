@@ -5,9 +5,9 @@ dependencies:
     version: '>= 4 && < 5'
     mixin:
       - hiding (Prelude)
-  - polysemy ^>= 1.5
-  - polysemy-time ^>= 0.1.1.0
-  - relude >= 0.7 && < 1.2
+  - polysemy >= 1.5
+  - polysemy-time >= 0.1.1.0
+  - relude >= 0.7
   - text
   - time
 

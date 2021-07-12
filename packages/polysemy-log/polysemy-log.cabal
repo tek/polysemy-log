@@ -107,13 +107,13 @@ library
       ViewPatterns
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints
   build-depends:
-      ansi-terminal >=0.10.3 && <0.12
+      ansi-terminal >=0.10.3
     , base ==4.*
-    , polysemy ==1.5.*
-    , polysemy-conc >=0.1.0.0 && <0.2
-    , polysemy-time >=0.1.1.0 && <0.2
-    , relude >=0.7 && <1.2
-    , string-interpolate >=0.2.1 && <0.4
+    , polysemy >=1.5
+    , polysemy-conc >=0.1.0.0
+    , polysemy-time >=0.1.1.0
+    , relude >=0.7
+    , string-interpolate >=0.2.1
     , template-haskell
     , text
     , time
@@ -193,16 +193,16 @@ test-suite polysemy-log-unit
       ViewPatterns
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      ansi-terminal >=0.10.3 && <0.12
+      ansi-terminal >=0.10.3
     , base ==4.*
     , hedgehog
-    , polysemy ==1.5.*
-    , polysemy-conc >=0.1.0.0 && <0.2
+    , polysemy >=1.5
+    , polysemy-conc >=0.1.0.0
     , polysemy-log
     , polysemy-test
-    , polysemy-time >=0.1.1.0 && <0.2
-    , relude >=0.7 && <1.2
-    , string-interpolate >=0.2.1 && <0.4
+    , polysemy-time >=0.1.1.0
+    , relude >=0.7
+    , string-interpolate >=0.2.1
     , tasty
     , tasty-hedgehog
     , template-haskell

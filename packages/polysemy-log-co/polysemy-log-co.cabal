@@ -101,11 +101,11 @@ library
     , co-log >=0.4.0.1 && <0.5
     , co-log-core >=0.2.1 && <0.3
     , co-log-polysemy >=0.0.1.2 && <0.1
-    , polysemy ==1.5.*
+    , polysemy >=1.5
     , polysemy-conc >=0.1.0.0 && <0.2
     , polysemy-log
-    , polysemy-time >=0.1.1.0 && <0.2
-    , relude >=0.7 && <1.2
+    , polysemy-time >=0.1.1.0
+    , relude >=0.7
     , text
     , time
   mixins:
@@ -189,13 +189,13 @@ test-suite polysemy-log-co-unit
     , co-log-core >=0.2.1 && <0.3
     , co-log-polysemy >=0.0.1.2 && <0.1
     , hedgehog
-    , polysemy ==1.5.*
+    , polysemy >=1.5
     , polysemy-conc >=0.1.0.0 && <0.2
     , polysemy-log
     , polysemy-log-co
     , polysemy-test
-    , polysemy-time >=0.1.1.0 && <0.2
-    , relude >=0.7 && <1.2
+    , polysemy-time >=0.1.1.0
+    , relude >=0.7
     , tasty
     , tasty-hedgehog
     , text
