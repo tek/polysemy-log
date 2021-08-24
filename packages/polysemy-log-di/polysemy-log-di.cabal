@@ -97,9 +97,9 @@ library
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints
   build-depends:
       base ==4.*
-    , di-polysemy >=0.2.0.0 && <0.3
+    , di-polysemy >=0.2.0.0
     , polysemy >=1.5
-    , polysemy-conc >=0.1.0.0 && <0.2
+    , polysemy-conc >=0.1.0.0
     , polysemy-log
     , polysemy-time >=0.1.1.0
     , relude >=0.7
@@ -180,10 +180,10 @@ test-suite polysemy-log-di-unit
   ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
-    , di-polysemy >=0.2.0.0 && <0.3
+    , di-polysemy >=0.2.0.0
     , hedgehog
     , polysemy >=1.5
-    , polysemy-conc >=0.1.0.0 && <0.2
+    , polysemy-conc >=0.1.0.0
     , polysemy-log
     , polysemy-log-di
     , polysemy-test

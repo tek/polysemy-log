@@ -15,10 +15,10 @@ library:
     - Paths_polysemy_log_co
 
 dependencies:
-  - co-log ^>= 0.4.0.1
-  - co-log-core ^>= 0.2.1
-  - co-log-polysemy ^>= 0.0.1.2
-  - polysemy-conc ^>= 0.1.0.0
+  - co-log >= 0.4.0.1
+  - co-log-core >= 0.2.1
+  - co-log-polysemy >= 0.0.1.2
+  - polysemy-conc >= 0.1.0.0
   - name: polysemy-log
     mixin:
       - hiding (Polysemy.Log.Prelude)

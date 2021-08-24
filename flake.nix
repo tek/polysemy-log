@@ -28,9 +28,9 @@
       co-log = jailbreak (hackage "0.4.0.1" "05f37lq1kwlmm62n1n932l8jnqirmlf87var2n2zb0cslmv63yxg");
       co-log-polysemy = jailbreak (hackage "0.0.1.2" "17bcs8dvrhwfcyklknkqg11gxgxm2jaa7kbm6xx4vm1976abzwss");
       di-polysemy = hackage "0.2.0.0" "1c6c4qx6ljx1ac10qic1fhrj282cs7cdx2q28lr5xhk73r5vabvf";
-      polysemy-conc = hackage "0.1.0.3" "0g4z20il8l2hgg2m6vmc6mk6c1x7rml57q4fg9gnri06vavsxy5n";
-      polysemy-test = hackage "0.3.1.6" "0bfh37l68a5chhjfr7gqcffsmvdgg5hqclxi0fc5xnqni2mg81ak";
-      polysemy-time = hackage "0.1.3.1" "1ldg92dmy1nyjhkbmh5k32q94pn2c7qcfjc4yhl4lc1wnfp6r59m";
+      polysemy-conc = hackage "0.2.0.0" "17w29sn3rqh78ik1jzwg7kvzlxdahy60s7l0ign4p5bhywhdnj6a";
+      polysemy-test = hackage "0.3.1.7" "0j33f5zh6gyhl86w8kqh6nm02915b4n32xikxc4hwcy7p5l7cl34";
+      polysemy-time = hackage "0.1.4.0" "0hwx89cilmsdjs3gb5w6by87ysy24scgj5zg77vbfnqpzr3ifrwh";
     };
 
     main = { hackage, source, ... }: {
@@ -45,7 +45,7 @@
     };
     main = "polysemy-log-co";
     overrides = [compat common main];
-    compatOverrides = { all = compat; ghc901 = [common compat901]; ghc884 = compat884; };
+    compatOverrides = { all = compat; ghc901 = [common compat901]; ghc884 = compat884; ghc8104 = compat884; };
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     versionFile = "ops/hpack/shared/meta.yaml";
   };
