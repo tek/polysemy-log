@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-log-di
-version:        0.2.2.3
+version:        0.2.2.4
 synopsis:       Di Adapters for Polysemy-Log
 description:    See <https://hackage.haskell.org/package/polysemy-log-di/docs/Polysemy-Log-Di.html>
 category:       Logging
