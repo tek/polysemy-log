@@ -16,16 +16,16 @@ module Polysemy.Log.Colog (
   interpretCologAtomic'
 ) where
 
+import Polysemy.Log.Colog.Atomic (interpretCologAtomic, interpretCologAtomic')
 import Polysemy.Log.Colog.Colog (
-  interpretLogStdout,
-  interpretLogStdoutConc,
-  interpretLogColog,
-  interpretLogStdoutAsNative,
-  interpretLogColog',
   interpretDataLogColog,
+  interpretLogColog,
+  interpretLogColog',
+  interpretLogStdout,
+  interpretLogStdoutAsNative,
+  interpretLogStdoutConc,
   )
 import Polysemy.Log.Colog.Conc (interpretCologConcNative, interpretCologConcNativeWith)
-import Polysemy.Log.Colog.Atomic (interpretCologAtomic, interpretCologAtomic')
 
 -- $intro
 -- This package is a [co-log](https://hackage.haskell.org/package/co-log-polysemy) adapter for
