@@ -6,13 +6,10 @@ dependencies:
     mixin:
       - hiding (Prelude)
   - polysemy >= 1.5
-  - polysemy-time >= 0.1.1.0
-  - relude >= 0.7
-  - text
-  - time
 
 ghc-options:
   - -flate-specialise
   - -fspecialise-aggressively
   - -Wall
   - -Wredundant-constraints
+  - -Wunused-packages

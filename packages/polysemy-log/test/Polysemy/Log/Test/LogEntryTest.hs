@@ -8,7 +8,7 @@ import Polysemy.Log.Data.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
-import Polysemy.Log.Data.Severity (Severity(Crit, Debug))
+import Polysemy.Log.Data.Severity (Severity (Crit, Debug))
 import Polysemy.Log.Format (formatCaller)
 import Polysemy.Log.Log (interpretLogDataLog')
 

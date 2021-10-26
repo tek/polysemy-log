@@ -15,16 +15,14 @@ library:
     - Prelude
   generated-other-modules:
     - Paths_polysemy_log
-
-dependencies:
-  - ansi-terminal >= 0.10.3
-  - name: base
-    version: ">= 4 && < 5"
-    mixin:
-      - hiding (Prelude)
-  - polysemy-conc >= 0.1.0.0
-  - string-interpolate >= 0.2.1
-  - template-haskell
+  dependencies:
+    - ansi-terminal >= 0.10.3
+    - polysemy-conc >= 0.1.0.0
+    - string-interpolate >= 0.2.1
+    - template-haskell
+    - polysemy-time >= 0.1.1.0
+    - relude >= 0.7
+    - time
 
 tests:
   polysemy-log-unit:
@@ -35,11 +33,12 @@ tests:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - hedgehog
       - name: polysemy-log
         mixin:
-          - hiding (Prelude)
+          - hiding (Polysemy.Log.Prelude)
           - (Polysemy.Log.Prelude as Prelude)
+      - polysemy-conc
       - polysemy-test
+      - polysemy-time
       - tasty
-      - tasty-hedgehog
+      - time

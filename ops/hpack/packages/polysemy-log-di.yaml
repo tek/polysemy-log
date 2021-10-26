@@ -13,18 +13,14 @@ library:
   source-dirs: lib
   generated-other-modules:
     - Paths_polysemy_log_di
-
-dependencies:
-  - name: base
-    version: ">= 4 && < 5"
-    mixin:
-      - hiding (Prelude)
-  - di-polysemy >= 0.2.0.0
-  - polysemy-conc >= 0.1.0.0
-  - name: polysemy-log
-    mixin:
-      - hiding (Polysemy.Log.Prelude)
-      - (Polysemy.Log.Prelude as Prelude)
+  dependencies:
+    - name: polysemy-log
+      mixin:
+        - hiding (Polysemy.Log.Prelude)
+        - (Polysemy.Log.Prelude as Prelude)
+    - di-polysemy >= 0.2.0.0
+    - polysemy-conc >= 0.1.0.0
+    - polysemy-time >= 0.1.1.0
 
 tests:
   polysemy-log-di-unit:
@@ -35,7 +31,6 @@ tests:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - hedgehog
       - name: polysemy-log
         mixin:
           - hiding (Polysemy.Log.Prelude)
@@ -43,4 +38,3 @@ tests:
       - polysemy-log-di
       - polysemy-test
       - tasty
-      - tasty-hedgehog

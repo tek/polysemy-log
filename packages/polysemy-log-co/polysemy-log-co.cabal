@@ -95,7 +95,7 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints
+  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages
   build-depends:
       base ==4.*
     , co-log >=0.4.0.1
@@ -105,9 +105,6 @@ library
     , polysemy-conc >=0.1.0.0
     , polysemy-log
     , polysemy-time >=0.1.1.0
-    , relude >=0.7
-    , text
-    , time
   mixins:
       base hiding (Prelude)
     , polysemy-log hiding (Polysemy.Log.Prelude)
@@ -182,24 +179,17 @@ test-suite polysemy-log-co-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
-    , co-log >=0.4.0.1
-    , co-log-core >=0.2.1
-    , co-log-polysemy >=0.0.1.2
-    , hedgehog
+    , co-log
+    , co-log-polysemy
     , polysemy >=1.5
-    , polysemy-conc >=0.1.0.0
     , polysemy-log
     , polysemy-log-co
     , polysemy-test
-    , polysemy-time >=0.1.1.0
-    , relude >=0.7
+    , polysemy-time
     , tasty
-    , tasty-hedgehog
-    , text
-    , time
   mixins:
       base hiding (Prelude)
     , polysemy-log hiding (Polysemy.Log.Prelude)
