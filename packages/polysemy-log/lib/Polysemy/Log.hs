@@ -14,6 +14,8 @@ module Polysemy.Log (
   -- ** Interpreters
   interpretDataLogStderrWith,
   interpretDataLogStderr,
+  interpretDataLogStdoutWith,
+  interpretDataLogStdout,
   interpretDataLogAtomic',
   interpretDataLogAtomic,
 
@@ -36,6 +38,9 @@ module Polysemy.Log (
   interpretLogStderrWith,
   interpretLogStderr,
   interpretLogStderr',
+  interpretLogStdoutWith,
+  interpretLogStdout,
+  interpretLogStdout',
   interpretLogDataLog,
   interpretLogDataLog',
   interpretLogOutput,
@@ -50,23 +55,32 @@ module Polysemy.Log (
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic, interpretDataLogAtomic', interpretLogAtomic, interpretLogAtomic')
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Data.DataLog (DataLog(DataLog), dataLog)
-import Polysemy.Log.Data.Log (Log(Log), crit, debug, error, info, log, trace, warn)
-import Polysemy.Log.Data.LogEntry (LogEntry(LogEntry))
-import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
-import Polysemy.Log.Data.Severity (Severity(..))
+import Polysemy.Log.Data.DataLog (DataLog (DataLog), dataLog)
+import Polysemy.Log.Data.Log (Log (Log), crit, debug, error, info, log, trace, warn)
+import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.Severity (Severity (..))
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Log (
   interpretLogDataLog,
   interpretLogDataLog',
   interpretLogDataLogConc,
-  interpretDataLogStderrWith,
-  interpretDataLogStderr,
-  interpretLogStderrWith,
-  interpretLogStderr,
-  interpretLogStderr',
   )
 import Polysemy.Log.Pure (interpretLogNull, interpretLogOutput)
+import Polysemy.Log.Stderr (
+  interpretDataLogStderr,
+  interpretDataLogStderrWith,
+  interpretLogStderr,
+  interpretLogStderr',
+  interpretLogStderrWith,
+  )
+import Polysemy.Log.Stdout (
+  interpretDataLogStdout,
+  interpretDataLogStdoutWith,
+  interpretLogStdout,
+  interpretLogStdout',
+  interpretLogStdoutWith,
+  )
 
 -- $intro
 -- There are at least two libraries that wrap a logging backend with polysemy interpreters.

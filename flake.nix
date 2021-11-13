@@ -44,8 +44,13 @@
       polysemy-log-di = ./packages/polysemy-log-di;
     };
     main = "polysemy-log-co";
-    overrides = [compat common main];
-    compatOverrides = { all = compat; ghc901 = [common compat901]; ghc884 = compat884; ghc8104 = compat884; };
+    overrides = {
+      all = compat;
+      dev = [common main];
+      ghc901 = [common compat901];
+      ghc884 = compat884;
+      ghc8104 = compat884;
+    };
     versionFile = "ops/hpack/shared/meta.yaml";
   };
 }

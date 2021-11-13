@@ -40,6 +40,8 @@ library
       Polysemy.Log.Log
       Polysemy.Log.Prelude
       Polysemy.Log.Pure
+      Polysemy.Log.Stderr
+      Polysemy.Log.Stdout
   other-modules:
       Prelude
       Paths_polysemy_log

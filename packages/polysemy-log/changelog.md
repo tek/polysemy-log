@@ -1,5 +1,11 @@
+# Unreleased
+
+* Add concurrent interpreters for stdout and stderr.
+* Add stdout interpreters.
+
 # 0.2.1.0
-* add naive stderr interpreters for `DataLog` and `Log`.
+
+* Add naive stderr interpreters for `DataLog` and `Log`.
 
 # 0.2.0.0
 
