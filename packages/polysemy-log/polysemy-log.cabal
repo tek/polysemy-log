@@ -112,8 +112,8 @@ library
       ansi-terminal >=0.10.3
     , base ==4.*
     , polysemy >=1.5
-    , polysemy-conc >=0.1.0.0
-    , polysemy-time >=0.1.1.0
+    , polysemy-conc >=0.3
+    , polysemy-time >=0.1.4
     , relude >=0.7
     , string-interpolate >=0.2.1
     , template-haskell
