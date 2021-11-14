@@ -74,14 +74,16 @@ import Polysemy.Log.Stderr (
   interpretDataLogStderrWith,
   interpretLogStderr,
   interpretLogStderr',
-  interpretLogStderrWith, interpretLogStderrConc
+  interpretLogStderrConc,
+  interpretLogStderrWith,
   )
 import Polysemy.Log.Stdout (
   interpretDataLogStdout,
   interpretDataLogStdoutWith,
   interpretLogStdout,
   interpretLogStdout',
-  interpretLogStdoutWith, interpretLogStdoutConc
+  interpretLogStdoutConc,
+  interpretLogStdoutWith,
   )
 
 -- $intro
