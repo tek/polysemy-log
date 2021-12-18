@@ -34,7 +34,7 @@ interpretDataLogDiLocal extractLevel context =
       liftT (Di.log @_ @path (extractLevel msg) (context msg))
     Local f ma ->
       raise . interpretDataLogDiLocal @_ @path extractLevel (f . context) =<< runT ma
-{-# INLINE interpretDataLogDiLocal #-}
+{-# inline interpretDataLogDiLocal #-}
 
 -- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
 interpretDataLogDi ::
@@ -44,7 +44,7 @@ interpretDataLogDi ::
   InterpreterFor (DataLog msg) r
 interpretDataLogDi extractLevel =
   interpretDataLogDiLocal @_ @path extractLevel id
-{-# INLINE interpretDataLogDi #-}
+{-# inline interpretDataLogDi #-}
 
 -- |Reinterpret 'Log' as 'Di.Di', using the /polysemy-log/ default message.
 --
@@ -58,7 +58,7 @@ interpretLogDi =
   interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
   interpretLogDataLog .
   raiseUnder
-{-# INLINE interpretLogDi #-}
+{-# inline interpretLogDi #-}
 
 -- |Reinterpret 'Log' as 'Di.Di', also interpreting 'GhcTime'.
 interpretLogDi' ::
@@ -70,7 +70,7 @@ interpretLogDi' =
   interpretLogDataLog' .
   raiseUnder .
   raise2Under
-{-# INLINE interpretLogDi' #-}
+{-# inline interpretLogDi' #-}
 
 -- |Reinterpret 'Log' as 'Di.Di' concurrently.
 interpretLogDiConc ::
@@ -82,4 +82,4 @@ interpretLogDiConc maxQueued =
   interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
   interpretLogDataLogConc maxQueued .
   raiseUnder
-{-# INLINE interpretLogDiConc #-}
+{-# inline interpretLogDiConc #-}

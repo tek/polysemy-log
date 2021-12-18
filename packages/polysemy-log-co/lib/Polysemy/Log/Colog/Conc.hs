@@ -24,7 +24,7 @@ interpretCologConcNativeWith capacity action sem = do
   where
     run worker =
       runLogAction (convertToLogAction @IO worker) sem
-{-# INLINE interpretCologConcNativeWith #-}
+{-# inline interpretCologConcNativeWith #-}
 
 -- |Interpret 'Colog.Log' using /co-log/'s concurrent logger with the default message and formatting.
 interpretCologConcNative ::
@@ -32,4 +32,4 @@ interpretCologConcNative ::
   InterpreterFor (Colog.Log (LogEntry LogMessage)) r
 interpretCologConcNative =
   interpretCologConcNativeWith defCapacity (contramap formatLogEntry Colog.logTextStdout)
-{-# INLINE interpretCologConcNative #-}
+{-# inline interpretCologConcNative #-}

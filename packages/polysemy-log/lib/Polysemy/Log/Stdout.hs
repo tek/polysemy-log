@@ -13,6 +13,8 @@ import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Log (interpretDataLog, interpretLogDataLog, interpretLogDataLogConc)
+import Polysemy.Log.Data.Severity (Severity)
+import Polysemy.Log.Level (setLogLevel)
 
 -- |Interpret 'DataLog' by printing to stdout, converting messages to 'Text' with the supplied function.
 interpretDataLogStdoutWith ::
@@ -21,7 +23,7 @@ interpretDataLogStdoutWith ::
   InterpreterFor (DataLog a) r
 interpretDataLogStdoutWith fmt =
   interpretDataLog \ msg -> embed (Text.hPutStrLn stdout (fmt msg))
-{-# INLINE interpretDataLogStdoutWith #-}
+{-# inline interpretDataLogStdoutWith #-}
 
 -- |Interpret 'DataLog' by printing to stdout, converting messages to 'Text' by using 'Show'.
 interpretDataLogStdout ::
@@ -30,7 +32,7 @@ interpretDataLogStdout ::
   InterpreterFor (DataLog a) r
 interpretDataLogStdout =
   interpretDataLogStdoutWith show
-{-# INLINE interpretDataLogStdout #-}
+{-# inline interpretDataLogStdout #-}
 
 -- |Interpret 'Log' by printing to stdout, converting messages to 'Text' with the supplied function.
 interpretLogStdoutWith ::
@@ -42,7 +44,22 @@ interpretLogStdoutWith fmt =
   interpretTimeGhc .
   interpretLogDataLog .
   raiseUnder2
-{-# INLINE interpretLogStdoutWith #-}
+{-# inline interpretLogStdoutWith #-}
+
+-- |Like 'interpretLogStdoutWith', but setting a log level.
+-- 'Nothing' causes no messages to be logged.
+interpretLogStdoutLevelWith ::
+  Members [Embed IO, GhcTime] r =>
+  (LogEntry LogMessage -> Text) ->
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStdoutLevelWith fmt level =
+  interpretDataLogStdoutWith fmt .
+  setLogLevel level .
+  interpretTimeGhc .
+  interpretLogDataLog .
+  raiseUnder2
+{-# inline interpretLogStdoutLevelWith #-}
 
 -- |Interpret 'Log' by printing to stdout, using the default formatter.
 --
@@ -53,7 +70,17 @@ interpretLogStdout ::
   InterpreterFor Log r
 interpretLogStdout =
   interpretLogStdoutWith formatLogEntry
-{-# INLINE interpretLogStdout #-}
+{-# inline interpretLogStdout #-}
+
+-- |Like 'interpretLogStdout', but setting a log level.
+-- 'Nothing' causes no messages to be logged.
+interpretLogStdoutLevel ::
+  Members [Embed IO, GhcTime] r =>
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStdoutLevel =
+  interpretLogStdoutLevelWith formatLogEntry
+{-# inline interpretLogStdoutLevel #-}
 
 -- |Interpret 'Log' by printing to stdout, using the default formatter, then interpreting 'GhcTime'.
 interpretLogStdout' ::
@@ -63,7 +90,7 @@ interpretLogStdout' =
   interpretTimeGhc .
   interpretLogStdout .
   raiseUnder
-{-# INLINE interpretLogStdout' #-}
+{-# inline interpretLogStdout' #-}
 
 -- |Like 'interpretLogStdout', but process messages concurrently.
 interpretLogStdoutConc ::
@@ -74,4 +101,17 @@ interpretLogStdoutConc =
   interpretDataLogStdoutWith formatLogEntry .
   interpretLogDataLogConc 64 .
   raiseUnder2
-{-# INLINE interpretLogStdoutConc #-}
+{-# inline interpretLogStdoutConc #-}
+
+-- |Like 'interpretLogStdout', but process messages concurrently.
+interpretLogStdoutLevelConc ::
+  Members [Resource, Async, Race, Embed IO] r =>
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStdoutLevelConc level =
+  interpretTimeGhc .
+  interpretDataLogStdoutWith formatLogEntry .
+  setLogLevel level .
+  interpretLogDataLogConc 64 .
+  raiseUnder2
+{-# inline interpretLogStdoutLevelConc #-}

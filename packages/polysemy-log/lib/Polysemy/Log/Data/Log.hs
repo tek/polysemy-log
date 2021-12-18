@@ -33,7 +33,7 @@ log ::
 log severity message =
   withFrozenCallStack $
   send (Log (LogMessage severity message))
-{-# INLINE log #-}
+{-# inline log #-}
 
 -- |Log a message with the 'Trace' severity.
 trace ::
@@ -44,7 +44,7 @@ trace ::
 trace =
   withFrozenCallStack $
   log Trace
-{-# INLINE trace #-}
+{-# inline trace #-}
 
 -- |Log a message with the 'Debug' severity.
 debug ::
@@ -55,7 +55,7 @@ debug ::
 debug =
   withFrozenCallStack $
   log Debug
-{-# INLINE debug #-}
+{-# inline debug #-}
 
 -- |Log a message with the 'Info' severity.
 info ::
@@ -66,7 +66,7 @@ info ::
 info =
   withFrozenCallStack $
   log Info
-{-# INLINE info #-}
+{-# inline info #-}
 
 -- |Log a message with the 'Warn' severity.
 warn ::
@@ -77,7 +77,7 @@ warn ::
 warn =
   withFrozenCallStack $
   log Warn
-{-# INLINE warn #-}
+{-# inline warn #-}
 
 -- |Log a message with the 'Error' severity.
 error ::
@@ -88,7 +88,7 @@ error ::
 error =
   withFrozenCallStack $
   log Error
-{-# INLINE error #-}
+{-# inline error #-}
 
 -- |Log a message with the 'Crit' severity.
 crit ::
@@ -99,4 +99,4 @@ crit ::
 crit =
   withFrozenCallStack $
   log Crit
-{-# INLINE crit #-}
+{-# inline crit #-}

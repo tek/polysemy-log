@@ -27,7 +27,7 @@ interceptDataLogConcWithLocal context =
       liftT (Queue.write (context msg))
     Local f ma ->
       raise . interceptDataLogConcWithLocal (f . context) . subsume =<< runT ma
-{-# INLINE interceptDataLogConcWithLocal #-}
+{-# inline interceptDataLogConcWithLocal #-}
 
 -- |Intercept 'DataLog' for concurrent processing.
 interceptDataLogConcWith ::
@@ -37,7 +37,7 @@ interceptDataLogConcWith ::
   Sem r a
 interceptDataLogConcWith =
   interceptDataLogConcWithLocal @msg id
-{-# INLINE interceptDataLogConcWith #-}
+{-# inline interceptDataLogConcWith #-}
 
 -- |Part of 'interceptDataLogConc'.
 -- Loop as long as the proided queue is open and relay all dequeued messages to the ultimate interpreter, thereby
@@ -76,4 +76,4 @@ interceptDataLogConc maxQueued sem = do
   interpretQueueTBM @msg maxQueued do
     !_ <- async (loggerThread @msg)
     interceptDataLogConcWith @msg (raise sem)
-{-# INLINE interceptDataLogConc #-}
+{-# inline interceptDataLogConc #-}

@@ -15,7 +15,7 @@ interpretDataLogAtomic' ::
   InterpreterFor (DataLog a) r
 interpretDataLogAtomic' =
   interpretDataLog \ msg -> atomicModify' @[a] (msg :)
-{-# INLINE interpretDataLogAtomic' #-}
+{-# inline interpretDataLogAtomic' #-}
 
 -- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
 -- 'TVar'.
@@ -26,7 +26,7 @@ interpretDataLogAtomic ::
 interpretDataLogAtomic sem = do
   tv <- newTVarIO []
   runAtomicStateTVar tv (interpretDataLogAtomic' sem)
-{-# INLINE interpretDataLogAtomic #-}
+{-# inline interpretDataLogAtomic #-}
 
 -- |Interpret 'Log' by prepending each message to a list in an 'AtomicState'.
 interpretLogAtomic' ::
@@ -35,7 +35,7 @@ interpretLogAtomic' ::
 interpretLogAtomic' =
   interpret \case
     Log msg -> atomicModify' (msg :)
-{-# INLINE interpretLogAtomic' #-}
+{-# inline interpretLogAtomic' #-}
 
 -- |Interpret 'Log' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
 -- 'TVar'.
@@ -45,4 +45,4 @@ interpretLogAtomic ::
 interpretLogAtomic sem = do
   tv <- newTVarIO []
   runAtomicStateTVar tv (interpretLogAtomic' sem)
-{-# INLINE interpretLogAtomic #-}
+{-# inline interpretLogAtomic #-}

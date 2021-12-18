@@ -34,13 +34,13 @@ severityToColog = \case
   Severity.Warn -> Colog.Warning
   Severity.Error -> Colog.Error
   Severity.Crit -> Colog.Error
-{-# INLINE severityToColog #-}
+{-# inline severityToColog #-}
 
 -- |Convert a default log message into the /co-log/-native 'Colog.Message'.
 toColog :: LogEntry LogMessage -> Colog.Message
 toColog (LogEntry LogMessage {..} _ source) =
   Colog.Msg (severityToColog severity) source message
-{-# INLINE toColog #-}
+{-# inline toColog #-}
 
 -- |Reinterpret 'DataLog' as 'Colog.Log'.
 -- Maintains a context function as state that is applied to each logged message, allowing the context of a block to be
@@ -57,7 +57,7 @@ interpretDataLogCologLocal convert context =
       liftT (Colog.log (convert (context msg)))
     Local f ma ->
       raise . interpretDataLogCologLocal convert (f . context) =<< runT ma
-{-# INLINE interpretDataLogCologLocal #-}
+{-# inline interpretDataLogCologLocal #-}
 
 -- |Reinterpret 'DataLog' as 'Colog.Log'.
 interpretDataLogColog ::
@@ -66,7 +66,7 @@ interpretDataLogColog ::
   InterpreterFor (DataLog a) r
 interpretDataLogColog =
   interpretDataLogCologLocal id id
-{-# INLINE interpretDataLogColog #-}
+{-# inline interpretDataLogColog #-}
 
 -- |Reinterpret 'DataLog', specialized to the default message, as 'Colog.Log'.
 interpretDataLogNative ::
@@ -74,7 +74,7 @@ interpretDataLogNative ::
   InterpreterFor (DataLog (LogEntry LogMessage)) r
 interpretDataLogNative =
   interpretDataLogCologLocal toColog id
-{-# INLINE interpretDataLogNative #-}
+{-# inline interpretDataLogNative #-}
 
 -- |Reinterpret 'Log' as 'Colog.Log', using the /polysemy-log/ default message.
 --
@@ -87,7 +87,7 @@ interpretLogColog =
   interpretDataLogColog @(LogEntry LogMessage) .
   interpretLogDataLog .
   raiseUnder
-{-# INLINE interpretLogColog #-}
+{-# inline interpretLogColog #-}
 
 -- |Reinterpret 'Log' as 'Colog.Log', also interpreting 'GhcTime'.
 interpretLogColog' ::
@@ -95,7 +95,7 @@ interpretLogColog' ::
   InterpretersFor [Log, GhcTime] r
 interpretLogColog' =
   interpretTimeGhc . interpretLogColog
-{-# INLINE interpretLogColog' #-}
+{-# inline interpretLogColog' #-}
 
 -- |Interpret 'Colog.Log' by printing to stdout, using the provided message formatter.
 interpretCologStdoutFormat ::
@@ -106,7 +106,7 @@ interpretCologStdoutFormat ::
   InterpreterFor (Colog.Log msg) r
 interpretCologStdoutFormat format =
   runLogAction @m (contramap format Colog.logTextStdout)
-{-# INLINE interpretCologStdoutFormat #-}
+{-# inline interpretCologStdoutFormat #-}
 
 -- |Interpret 'Colog.Log' with the default message by printing to stdout, using the default message formatter.
 interpretCologStdout ::
@@ -116,7 +116,7 @@ interpretCologStdout ::
   InterpreterFor (Colog.Log (LogEntry LogMessage)) r
 interpretCologStdout =
   interpretCologStdoutFormat @_ @m formatLogEntry
-{-# INLINE interpretCologStdout #-}
+{-# inline interpretCologStdout #-}
 
 -- |Interpret 'Log' fully in terms of 'Colog.Log', using the default message and stdout.
 interpretLogStdout ::
@@ -128,7 +128,7 @@ interpretLogStdout =
   interpretDataLogColog @(LogEntry LogMessage) .
   interpretLogDataLog .
   raiseUnder3
-{-# INLINE interpretLogStdout #-}
+{-# inline interpretLogStdout #-}
 
 -- |Like 'interpretLogStdout', but process messages concurrently.
 interpretLogStdoutConc ::
@@ -141,7 +141,7 @@ interpretLogStdoutConc =
   interceptDataLogConc @(LogEntry LogMessage) 64 .
   interpretLogDataLog .
   raiseUnder3
-{-# INLINE interpretLogStdoutConc #-}
+{-# inline interpretLogStdoutConc #-}
 
 -- |Interpret 'Colog.Log' with the /co-log/ message protocol by printing to stdout, using /co-log/'s rich message
 -- formatter.
@@ -152,7 +152,7 @@ interpretCologStdoutNative ::
   InterpreterFor (Colog.Log Colog.Message) r
 interpretCologStdoutNative =
   runLogAction @m Colog.richMessageAction
-{-# INLINE interpretCologStdoutNative #-}
+{-# inline interpretCologStdoutNative #-}
 
 -- |Reinterpret 'Log' as 'Colog.Log', using the /co-log/ message protocol.
 interpretLogCologAsNative ::
@@ -162,7 +162,7 @@ interpretLogCologAsNative =
   interpretDataLogNative .
   interpretLogDataLog .
   raiseUnder
-{-# INLINE interpretLogCologAsNative #-}
+{-# inline interpretLogCologAsNative #-}
 
 -- |Interpret 'Log' fully in terms of 'Colog.Log', using /co-log/'s message protocol and stdout.
 interpretLogStdoutAsNative ::
@@ -173,7 +173,7 @@ interpretLogStdoutAsNative =
   interpretTimeGhc .
   interpretLogCologAsNative .
   raiseUnder
-{-# INLINE interpretLogStdoutAsNative #-}
+{-# inline interpretLogStdoutAsNative #-}
 
 -- |Interpret 'Log' fully in terms of 'Colog.Log', using /co-log/'s message protocol and stdout.
 interpretLogStdoutAsNativeConc ::
@@ -186,4 +186,4 @@ interpretLogStdoutAsNativeConc =
   interceptDataLogConc @(LogEntry LogMessage) 64 .
   interpretLogDataLog .
   raiseUnder2
-{-# INLINE interpretLogStdoutAsNativeConc #-}
+{-# inline interpretLogStdoutAsNativeConc #-}

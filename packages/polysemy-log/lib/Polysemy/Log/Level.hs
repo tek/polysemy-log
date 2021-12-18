@@ -28,6 +28,7 @@ setLogLevelWith ex level =
       pureT ()
     Local f mb ->
       DataLog.local f (runTSimple mb)
+{-# inline setLogLevelWith #-}
 
 -- |Set the minimum severity for messages to be handled, with 'Nothing' meaning no messages are logged.
 setLogLevel ::
@@ -37,3 +38,4 @@ setLogLevel ::
   Sem r a
 setLogLevel =
   setLogLevelWith (LogMessage.severity . LogEntry.message)
+{-# inline setLogLevel #-}

@@ -23,7 +23,7 @@ interpretLogLogMetadata ::
 interpretLogLogMetadata =
   interpret \case
     Log msg -> annotated msg
-{-# INLINE interpretLogLogMetadata #-}
+{-# inline interpretLogLogMetadata #-}
 
 -- |Interpret the intermediate internal effect 'LogMetadata' into 'DataLog'.
 --
@@ -36,7 +36,7 @@ interpretLogMetadataDataLog ::
 interpretLogMetadataDataLog =
   interpret \case
     Annotated msg -> dataLog =<< annotate msg
-{-# INLINE interpretLogMetadataDataLog #-}
+{-# inline interpretLogMetadataDataLog #-}
 
 -- |Interpret the intermediate internal effect 'LogMetadata' into 'DataLog'.
 interpretLogMetadataDataLog' ::
@@ -44,7 +44,7 @@ interpretLogMetadataDataLog' ::
   InterpretersFor [LogMetadata a, GhcTime] r
 interpretLogMetadataDataLog' =
   interpretTimeGhc . interpretLogMetadataDataLog
-{-# INLINE interpretLogMetadataDataLog' #-}
+{-# inline interpretLogMetadataDataLog' #-}
 
 -- |Interpret 'Log' into 'DataLog', adding metadata information and wrapping with 'LogEntry'.
 --
@@ -55,7 +55,7 @@ interpretLogDataLog ::
   InterpreterFor Log r
 interpretLogDataLog =
   interpretLogMetadataDataLog @LogMessage . interpretLogLogMetadata . raiseUnder
-{-# INLINE interpretLogDataLog #-}
+{-# inline interpretLogDataLog #-}
 
 -- |Interpret 'Log' into 'DataLog', adding metadata information and wrapping with 'LogEntry'.
 interpretLogDataLog' ::
@@ -63,7 +63,7 @@ interpretLogDataLog' ::
   InterpretersFor [Log, LogMetadata LogMessage, GhcTime] r
 interpretLogDataLog' =
   interpretLogMetadataDataLog' . interpretLogLogMetadata
-{-# INLINE interpretLogDataLog' #-}
+{-# inline interpretLogDataLog' #-}
 
 -- |Interpret 'Log' into 'DataLog' concurrently, adding metadata information and wrapping with 'LogEntry'.
 interpretLogDataLogConc ::
@@ -76,7 +76,7 @@ interpretLogDataLogConc maxQueued =
   interpretLogMetadataDataLog @LogMessage .
   interpretLogLogMetadata .
   raiseUnder2
-{-# INLINE interpretLogDataLogConc #-}
+{-# inline interpretLogDataLogConc #-}
 
 -- |Helper for maintaining a context function as state that is applied to each logged message, allowing the context of a
 -- block to be modified.
@@ -91,7 +91,7 @@ interpretDataLogLocal context log =
       liftT (log (context msg))
     Local f ma ->
       raise . interpretDataLogLocal (f . context) log =<< runT ma
-{-# INLINE interpretDataLogLocal #-}
+{-# inline interpretDataLogLocal #-}
 
 -- |Combinator for building 'DataLog' interpreters that handles 'Local'.
 interpretDataLog ::

@@ -17,7 +17,7 @@ interpretDiAtomic' =
     Di.Flush -> pureT ()
     Di.Local _ ma -> runTSimple ma
     Di.Fetch -> pureT Nothing
-{-# INLINE interpretDiAtomic' #-}
+{-# inline interpretDiAtomic' #-}
 
 -- |Interpret 'Di.Di' by prepending each message to a list in an 'AtomicState', then interpret the
 -- 'AtomicState' in a 'TVar'.
@@ -28,4 +28,4 @@ interpretDiAtomic ::
 interpretDiAtomic sem = do
   tv <- newTVarIO []
   runAtomicStateTVar tv (interpretDiAtomic' sem)
-{-# INLINE interpretDiAtomic #-}
+{-# inline interpretDiAtomic #-}

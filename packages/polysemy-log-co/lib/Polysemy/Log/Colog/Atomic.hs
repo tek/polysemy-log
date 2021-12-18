@@ -13,7 +13,7 @@ interpretCologAtomic' ::
 interpretCologAtomic' =
   interpret \case
     Colog.Log msg -> atomicModify' (msg :)
-{-# INLINE interpretCologAtomic' #-}
+{-# inline interpretCologAtomic' #-}
 
 -- |Interpret 'Colog.Log' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in
 -- a 'TVar'.
@@ -24,4 +24,4 @@ interpretCologAtomic ::
 interpretCologAtomic sem = do
   tv <- newTVarIO []
   runAtomicStateTVar tv (interpretCologAtomic' sem)
-{-# INLINE interpretCologAtomic #-}
+{-# inline interpretCologAtomic #-}

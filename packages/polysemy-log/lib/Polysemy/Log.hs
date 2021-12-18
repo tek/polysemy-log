@@ -38,12 +38,18 @@ module Polysemy.Log (
 
   -- ** Interpreters
   interpretLogStderrWith,
+  interpretLogStderrLevelWith,
   interpretLogStderrConc,
+  interpretLogStderrLevelConc,
   interpretLogStderr,
+  interpretLogStderrLevel,
   interpretLogStderr',
   interpretLogStdoutWith,
+  interpretLogStdoutLevelWith,
   interpretLogStdoutConc,
+  interpretLogStdoutLevelConc,
   interpretLogStdout,
+  interpretLogStdoutLevel,
   interpretLogStdout',
   interpretLogDataLog,
   interpretLogDataLog',
@@ -78,6 +84,9 @@ import Polysemy.Log.Stderr (
   interpretLogStderr,
   interpretLogStderr',
   interpretLogStderrConc,
+  interpretLogStderrLevel,
+  interpretLogStderrLevelConc,
+  interpretLogStderrLevelWith,
   interpretLogStderrWith,
   )
 import Polysemy.Log.Stdout (
@@ -86,6 +95,9 @@ import Polysemy.Log.Stdout (
   interpretLogStdout,
   interpretLogStdout',
   interpretLogStdoutConc,
+  interpretLogStdoutLevel,
+  interpretLogStdoutLevelConc,
+  interpretLogStdoutLevelWith,
   interpretLogStdoutWith,
   )
 

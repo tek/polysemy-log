@@ -11,7 +11,9 @@ import Polysemy.Log.Data.DataLog (DataLog)
 import Polysemy.Log.Data.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage)
+import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Format (formatLogEntry)
+import Polysemy.Log.Level (setLogLevel)
 import Polysemy.Log.Log (interpretDataLog, interpretLogDataLog, interpretLogDataLogConc)
 
 -- |Interpret 'DataLog' by printing to stderr, converting messages to 'Text' with the supplied function.
@@ -21,7 +23,7 @@ interpretDataLogStderrWith ::
   InterpreterFor (DataLog a) r
 interpretDataLogStderrWith fmt =
   interpretDataLog \ msg -> embed (Text.hPutStrLn stderr (fmt msg))
-{-# INLINE interpretDataLogStderrWith #-}
+{-# inline interpretDataLogStderrWith #-}
 
 -- |Interpret 'DataLog' by printing to stderr, converting messages to 'Text' by using 'Show'.
 interpretDataLogStderr ::
@@ -30,7 +32,7 @@ interpretDataLogStderr ::
   InterpreterFor (DataLog a) r
 interpretDataLogStderr =
   interpretDataLogStderrWith show
-{-# INLINE interpretDataLogStderr #-}
+{-# inline interpretDataLogStderr #-}
 
 -- |Interpret 'Log' by printing to stderr, converting messages to 'Text' with the supplied function.
 interpretLogStderrWith ::
@@ -42,7 +44,22 @@ interpretLogStderrWith fmt =
   interpretTimeGhc .
   interpretLogDataLog .
   raiseUnder2
-{-# INLINE interpretLogStderrWith #-}
+{-# inline interpretLogStderrWith #-}
+
+-- |Like 'interpretLogStderrWith', but setting a log level.
+-- 'Nothing' causes no messages to be logged.
+interpretLogStderrLevelWith ::
+  Members [Embed IO, GhcTime] r =>
+  (LogEntry LogMessage -> Text) ->
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStderrLevelWith fmt level =
+  interpretDataLogStderrWith fmt .
+  setLogLevel level .
+  interpretTimeGhc .
+  interpretLogDataLog .
+  raiseUnder2
+{-# inline interpretLogStderrLevelWith #-}
 
 -- |Interpret 'Log' by printing to stderr, using the default formatter.
 --
@@ -53,7 +70,17 @@ interpretLogStderr ::
   InterpreterFor Log r
 interpretLogStderr =
   interpretLogStderrWith formatLogEntry
-{-# INLINE interpretLogStderr #-}
+{-# inline interpretLogStderr #-}
+
+-- |Like 'interpretLogStderr', but setting a log level.
+-- 'Nothing' causes no messages to be logged.
+interpretLogStderrLevel ::
+  Members [Embed IO, GhcTime] r =>
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStderrLevel =
+  interpretLogStderrLevelWith formatLogEntry
+{-# inline interpretLogStderrLevel #-}
 
 -- |Interpret 'Log' by printing to stderr, using the default formatter, then interpreting 'GhcTime'.
 interpretLogStderr' ::
@@ -63,7 +90,7 @@ interpretLogStderr' =
   interpretTimeGhc .
   interpretLogStderr .
   raiseUnder
-{-# INLINE interpretLogStderr' #-}
+{-# inline interpretLogStderr' #-}
 
 -- |Like 'interpretLogStderr', but process messages concurrently.
 interpretLogStderrConc ::
@@ -74,4 +101,17 @@ interpretLogStderrConc =
   interpretDataLogStderrWith formatLogEntry .
   interpretLogDataLogConc 64 .
   raiseUnder2
-{-# INLINE interpretLogStderrConc #-}
+{-# inline interpretLogStderrConc #-}
+
+-- |Like 'interpretLogStderr', but process messages concurrently.
+interpretLogStderrLevelConc ::
+  Members [Resource, Async, Race, Embed IO] r =>
+  Maybe Severity ->
+  InterpreterFor Log r
+interpretLogStderrLevelConc level =
+  interpretTimeGhc .
+  interpretDataLogStderrWith formatLogEntry .
+  setLogLevel level .
+  interpretLogDataLogConc 64 .
+  raiseUnder2
+{-# inline interpretLogStderrLevelConc #-}
