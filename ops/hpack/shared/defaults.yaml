@@ -8,8 +8,7 @@ dependencies:
   - polysemy >= 1.5
 
 ghc-options:
-  - -flate-specialise
-  - -fspecialise-aggressively
   - -Wall
   - -Wredundant-constraints
   - -Wunused-packages
+  - -Widentities

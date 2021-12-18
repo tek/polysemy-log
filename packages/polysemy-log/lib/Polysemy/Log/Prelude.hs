@@ -2,14 +2,12 @@
 {-# language NoImplicitPrelude #-}
 
 module Polysemy.Log.Prelude (
-  module Exon,
   module GHC.Err,
   module Polysemy,
   module Polysemy.AtomicState,
   module Relude,
 ) where
 
-import Exon (exon)
 import GHC.Err (undefined)
 import Polysemy (
   Effect,

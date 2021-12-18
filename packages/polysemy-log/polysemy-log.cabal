@@ -108,11 +108,10 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages
+  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities
   build-depends:
       ansi-terminal >=0.10.3
     , base ==4.*
-    , exon >=0.2.0.1
     , polysemy >=1.5
     , polysemy-conc >=0.3
     , polysemy-time >=0.1.4
@@ -194,7 +193,7 @@ test-suite polysemy-log-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
     , polysemy >=1.5

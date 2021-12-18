@@ -41,9 +41,9 @@ formatCaller =
   maybe "<unknown loc>" format . listToMaybe . getCallStack
   where
     format (_, SrcLoc {..}) =
-      [exon|#{shortModule (toText srcLocModule)}##{show srcLocStartLine}|]
+      shortModule (toText srcLocModule) <> "#" <> show srcLocStartLine
 
 -- |Default formatter for the default message type.
 formatLogEntry :: LogEntry LogMessage -> Text
 formatLogEntry (LogEntry LogMessage {..} _ source) =
-  [exon|#{formatSeverity severity} [#{formatCaller source}] #{message}|]
+  formatSeverity severity <> " [" <> formatCaller source <> "] " <> message

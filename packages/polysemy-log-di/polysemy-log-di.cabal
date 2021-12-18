@@ -94,7 +94,7 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages
+  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities
   build-depends:
       base ==4.*
     , di-polysemy >=0.2.0.0
@@ -174,7 +174,7 @@ test-suite polysemy-log-di-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -flate-specialise -fspecialise-aggressively -Wall -Wredundant-constraints -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
     , polysemy >=1.5
