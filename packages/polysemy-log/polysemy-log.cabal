@@ -37,6 +37,7 @@ library
       Polysemy.Log.Data.LogMetadata
       Polysemy.Log.Data.Severity
       Polysemy.Log.Format
+      Polysemy.Log.Level
       Polysemy.Log.Log
       Polysemy.Log.Prelude
       Polysemy.Log.Pure

@@ -1,5 +1,7 @@
 # Unreleased
 
+* Add interceptors for setting the log level.
+
 # 0.3.0.0
 
 * Add concurrent interpreters for stdout and stderr.

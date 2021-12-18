@@ -14,4 +14,4 @@ data Severity =
   Error
   |
   Crit
-  deriving (Eq, Show, Enum)
+  deriving (Eq, Show, Enum, Ord)

@@ -6,7 +6,7 @@
 
 A common interface for the polysemy logging backend adapters.
 
-An example program using [co-log], for the simple logger with predefined formatting and a custom data type:
+An example program using a simple logger with predefined formatting and a custom data type:
 
 ```haskell
 import Colog (logTextStdout)

@@ -33,6 +33,8 @@ module Polysemy.Log (
   crit,
   formatLogEntry,
   Severity(..),
+  setLogLevel,
+  setLogLevelWith,
 
   -- ** Interpreters
   interpretLogStderrWith,
@@ -63,6 +65,7 @@ import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
 import Polysemy.Log.Data.Severity (Severity (..))
 import Polysemy.Log.Format (formatLogEntry)
+import Polysemy.Log.Level (setLogLevel, setLogLevelWith)
 import Polysemy.Log.Log (
   interpretLogDataLog,
   interpretLogDataLog',
@@ -93,10 +96,10 @@ import Polysemy.Log.Stdout (
 --
 -- /polysemy-log/ provides an abstraction for this task with interpreter adapters for
 -- [co-log](https://hackage.haskell.org/package/co-log-polysemy) and
--- [di](https://hackage.haskell.org/package/di-polysemy).
+-- [di](https://hackage.haskell.org/package/di-polysemy), but the library can be used without those as well.
 --
--- If you're looking for instructions on how to use /polysemy-log/ with a backend, please visit the haddocks of the
--- adapter libraries:
+-- If you're looking for instructions on how to use /polysemy-log/ with a third-party backend, please visit the haddocks
+-- of the adapter libraries:
 --
 --  - [polysemy-log-co for co-log](https://hackage.haskell.org/package/polysemy-log-co)
 --  - [polysemy-log-di for di](https://hackage.haskell.org/package/polysemy-log-di)
@@ -127,7 +130,7 @@ import Polysemy.Log.Stdout (
 
 -- $messages
 -- While it would be quite reasonable to handle any kind of complexly structured logging data ergonomically with
--- /polysemy/, most authors probably prefer not to burden their users with this task while still appreciating the
+-- /Polysemy/, most authors probably prefer not to burden their users with this task while still appreciating the
 -- possibility to easily relay debug information in a standardized way.
 --
 -- The default logging effect uses a simple data structure that annotates the given severity and text message with the
