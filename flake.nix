@@ -34,13 +34,14 @@
 
   in hix.flake {
     base = ./.;
+    compiler = "ghc901";
     packages = {
       polysemy-log = ./packages/polysemy-log;
       polysemy-log-co = ./packages/polysemy-log-co;
       polysemy-log-di = ./packages/polysemy-log-di;
     };
     main = "polysemy-log-co";
-    overrides = { inherit all dev ghc901 ghc884; };
+    overrides = { inherit all ghc901 ghc884; dev = ghc901; };
     versionFile = "ops/hpack/shared/meta.yaml";
   };
 }
