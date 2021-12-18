@@ -17,13 +17,13 @@ library:
     - Paths_polysemy_log
   dependencies:
     - ansi-terminal >= 0.10.3
+    - exon >= 0.2.0.1
     - polysemy-conc >= 0.3
-    - string-interpolate >= 0.2.1
-    - template-haskell
     - polysemy-time >= 0.1.4
     - relude >= 0.7
-    - time
+    - template-haskell
     - text
+    - time
 
 tests:
   polysemy-log-unit:

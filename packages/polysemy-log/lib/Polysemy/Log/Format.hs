@@ -2,13 +2,13 @@
 module Polysemy.Log.Format where
 
 import qualified Data.Text as Text
-import GHC.Exception (SrcLoc(..))
-import System.Console.ANSI (Color(..), ColorIntensity(Dull), ConsoleLayer(Foreground), SGR (..), setSGRCode)
+import GHC.Exception (SrcLoc (..))
+import System.Console.ANSI (Color (..), ColorIntensity (Dull), ConsoleLayer (Foreground), SGR (..), setSGRCode)
 
-import Polysemy.Log.Data.LogEntry (LogEntry(LogEntry))
+import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import qualified Polysemy.Log.Data.LogMessage as LogMessage
-import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
-import Polysemy.Log.Data.Severity (Severity(..))
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.Severity (Severity (..))
 
 -- |Create a colored tag with the format @"[tag]"@ for a 'Severity' value.
 formatSeverity :: Severity -> Text
@@ -41,9 +41,9 @@ formatCaller =
   maybe "<unknown loc>" format . listToMaybe . getCallStack
   where
     format (_, SrcLoc {..}) =
-      [qt|#{shortModule (toText srcLocModule)}\##{srcLocStartLine}|]
+      [exon|#{shortModule (toText srcLocModule)}##{show srcLocStartLine}|]
 
 -- |Default formatter for the default message type.
 formatLogEntry :: LogEntry LogMessage -> Text
 formatLogEntry (LogEntry LogMessage {..} _ source) =
-  [qt|#{formatSeverity severity} [#{formatCaller source}] #{message}|]
+  [exon|#{formatSeverity severity} [#{formatCaller source}] #{message}|]

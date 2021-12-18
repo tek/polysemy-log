@@ -2,16 +2,15 @@
 {-# language NoImplicitPrelude #-}
 
 module Polysemy.Log.Prelude (
-  module Polysemy.Log.Prelude,
+  module Exon,
   module GHC.Err,
   module Polysemy,
   module Polysemy.AtomicState,
   module Relude,
 ) where
 
-import qualified Data.String.Interpolate as Interpolate
+import Exon (exon)
 import GHC.Err (undefined)
-import Language.Haskell.TH.Quote (QuasiQuoter)
 import Polysemy (
   Effect,
   EffectRow,
@@ -58,8 +57,3 @@ import Relude hiding (
   traceShow,
   undefined,
   )
-
-qt :: QuasiQuoter
-qt =
-  Interpolate.i
-{-# INLINE qt #-}
