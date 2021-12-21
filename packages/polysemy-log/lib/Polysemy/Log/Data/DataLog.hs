@@ -3,8 +3,12 @@
 -- |Description: Internal
 module Polysemy.Log.Data.DataLog where
 
-import Polysemy.Log.Data.LogEntry (LogEntry)
-import Polysemy.Log.Data.LogMessage (LogMessage)
+import Polysemy.Internal (send)
+import Polysemy.Time (GhcTime)
+
+import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.Severity (Severity (Crit, Debug, Error, Info, Trace, Warn))
 
 -- |Structural logs, used as a backend for the simpler 'Text' log effect, 'Polysemy.Log.Log'.
 --
@@ -21,3 +25,76 @@ makeSem ''DataLog
 -- |Alias for the logger with the default message type used by 'Polysemy.Log.Log'.
 type Logger =
   DataLog (LogEntry LogMessage)
+
+-- |Log a text message with the given severity.
+-- Basic 'Sem' constructor.
+log ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Severity ->
+  Text ->
+  Sem r ()
+log severity message =
+  withFrozenCallStack do
+    send . DataLog =<< annotate (LogMessage severity message)
+{-# inline log #-}
+
+-- |Log a text message with the 'Trace' severity.
+trace ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+trace =
+  withFrozenCallStack (log Trace)
+{-# inline trace #-}
+
+-- |Log a text message with the 'Debug' severity.
+debug ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+debug =
+  withFrozenCallStack (log Debug)
+{-# inline debug #-}
+
+-- |Log a text message with the 'Info' severity.
+info ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+info =
+  withFrozenCallStack (log Info)
+{-# inline info #-}
+
+-- |Log a text message with the 'Warn' severity.
+warn ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+warn =
+  withFrozenCallStack (log Warn)
+{-# inline warn #-}
+
+-- |Log a text message with the 'Error' severity.
+error ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+error =
+  withFrozenCallStack (log Error)
+{-# inline error #-}
+
+-- |Log a text message with the 'Crit' severity.
+crit ::
+  HasCallStack =>
+  Members [Logger, GhcTime] r =>
+  Text ->
+  Sem r ()
+crit =
+  withFrozenCallStack (log Crit)
+{-# inline crit #-}

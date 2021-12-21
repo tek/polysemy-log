@@ -3,8 +3,8 @@ module Polysemy.Log.Data.Log where
 
 import Polysemy.Internal (send)
 
-import Polysemy.Log.Data.Severity (Severity, Severity(Debug, Trace, Info, Warn, Error, Crit))
-import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.Severity (Severity (Crit, Debug, Error, Info, Trace, Warn))
 
 -- |The default high-level effect for simple text messages.
 -- To be used with the severity constructors:
