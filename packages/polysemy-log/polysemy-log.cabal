@@ -111,6 +111,7 @@ library
   ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities
   build-depends:
       ansi-terminal >=0.10.3
+    , async
     , base ==4.*
     , polysemy >=1.5
     , polysemy-conc >=0.3

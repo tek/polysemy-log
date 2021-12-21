@@ -2,15 +2,18 @@
 module Polysemy.Log.Conc where
 
 import Polysemy (interceptH, runT, subsume)
-import Polysemy.Async (Async, async)
+import Polysemy.Async (Async, async, await)
 import Polysemy.Conc (Queue, Race, interpretQueueTBM)
 import qualified Polysemy.Conc.Queue as Queue
 import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource)
+import Polysemy.Resource (Resource, finally)
 
 import qualified Polysemy.Log.Data.DataLog as DataLog
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
+import qualified Control.Concurrent.Async as Base
+import qualified Polysemy.Conc as Conc
+import Polysemy.Time (Seconds(Seconds))
 
 -- |Intercept 'DataLog' for concurrent processing.
 -- This does not send any action to the ultimate interpreter but writes all log messages to the provided queue.
@@ -55,6 +58,18 @@ loggerThread = do
         DataLog.dataLog @msg msg
         spin
 
+-- |Close the concurrent logger's queue and wait for one second to allow it to process any messages that have been
+-- queued.
+finalize ::
+  ∀ msg r .
+  Members [Queue msg, Resource, Async, Race, Embed IO] r =>
+  Base.Async (Maybe ()) ->
+  Sem r ()
+finalize handle =
+  Conc.timeoutU (Seconds 1) do
+    Queue.close @msg
+    void (await handle)
+
 -- |Intercept 'DataLog' for concurrent processing.
 -- Creates a queue and starts a worker thread.
 -- All log messages received by the interceptor in 'interceptDataLogConcWithLocal' are written to the queue and sent to
@@ -74,6 +89,6 @@ interceptDataLogConc ::
   Sem r a
 interceptDataLogConc maxQueued sem = do
   interpretQueueTBM @msg maxQueued do
-    !_ <- async (loggerThread @msg)
-    interceptDataLogConcWith @msg (raise sem)
+    !handle <- async (loggerThread @msg)
+    finally (interceptDataLogConcWith @msg (raise sem)) (finalize @msg handle)
 {-# inline interceptDataLogConc #-}

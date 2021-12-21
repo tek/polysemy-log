@@ -17,6 +17,7 @@ library:
     - Paths_polysemy_log
   dependencies:
     - ansi-terminal >= 0.10.3
+    - async
     - polysemy-conc >= 0.3
     - polysemy-time >= 0.1.4
     - relude >= 0.7
