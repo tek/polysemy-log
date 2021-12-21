@@ -9,6 +9,7 @@ module Polysemy.Log (
   -- * Arbitrary Data Messages
   -- $datalog
   DataLog(DataLog),
+  Logger,
   dataLog,
 
   -- ** Interpreters
@@ -65,7 +66,7 @@ module Polysemy.Log (
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic, interpretDataLogAtomic', interpretLogAtomic, interpretLogAtomic')
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Data.DataLog (DataLog (DataLog), dataLog)
+import Polysemy.Log.Data.DataLog (DataLog (DataLog), Logger, dataLog)
 import Polysemy.Log.Data.Log (Log (Log), crit, debug, error, info, log, trace, warn)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))

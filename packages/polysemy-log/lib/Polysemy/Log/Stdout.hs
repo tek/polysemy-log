@@ -97,10 +97,9 @@ interpretLogStdoutConc ::
   Members [Resource, Async, Race, Embed IO] r =>
   InterpreterFor Log r
 interpretLogStdoutConc =
-  interpretTimeGhc .
   interpretDataLogStdoutWith formatLogEntry .
   interpretLogDataLogConc 64 .
-  raiseUnder2
+  raiseUnder
 {-# inline interpretLogStdoutConc #-}
 
 -- |Like 'interpretLogStdout', but process messages concurrently.
@@ -109,9 +108,8 @@ interpretLogStdoutLevelConc ::
   Maybe Severity ->
   InterpreterFor Log r
 interpretLogStdoutLevelConc level =
-  interpretTimeGhc .
   interpretDataLogStdoutWith formatLogEntry .
   setLogLevel level .
   interpretLogDataLogConc 64 .
-  raiseUnder2
+  raiseUnder
 {-# inline interpretLogStdoutLevelConc #-}

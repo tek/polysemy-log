@@ -1,11 +1,14 @@
 {-# options_haddock prune #-}
--- |Description: Internal
 
+-- |Description: Internal
 module Polysemy.Log.Data.DataLog where
 
--- |Adapter for a logging backend.
+import Polysemy.Log.Data.LogEntry (LogEntry)
+import Polysemy.Log.Data.LogMessage (LogMessage)
+
+-- |Structural logs, used as a backend for the simpler 'Text' log effect, 'Polysemy.Log.Log'.
 --
--- Usually this is reinterpreted into an effect like those from /co-log/ or /di/, but it can be used purely for testing.
+-- Can also be used on its own, or reinterpreted into an effect like those from /co-log/ or /di/.
 data DataLog a :: Effect where
   -- |Schedule an arbitrary value for logging.
   DataLog :: a -> DataLog a m ()
@@ -14,3 +17,7 @@ data DataLog a :: Effect where
   Local :: (a -> a) -> m b -> DataLog a m b
 
 makeSem ''DataLog
+
+-- |Alias for the logger with the default message type used by 'Polysemy.Log.Log'.
+type Logger =
+  DataLog (LogEntry LogMessage)
