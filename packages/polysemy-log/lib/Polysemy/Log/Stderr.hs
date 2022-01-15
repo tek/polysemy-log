@@ -1,7 +1,6 @@
--- |Description: Internal
+-- |Description: Stderr Interpreters, Internal
 module Polysemy.Log.Stderr where
 
-import qualified Data.Text.IO as Text
 import Polysemy.Async (Async)
 import Polysemy.Conc (Race)
 import Polysemy.Resource (Resource)
@@ -13,16 +12,17 @@ import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Format (formatLogEntry)
+import Polysemy.Log.Handle (interpretDataLogHandleWith)
 import Polysemy.Log.Level (setLogLevel)
-import Polysemy.Log.Log (interpretDataLog, interpretLogDataLog, interpretLogDataLogConc)
+import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLogConc)
 
 -- |Interpret 'DataLog' by printing to stderr, converting messages to 'Text' with the supplied function.
 interpretDataLogStderrWith ::
   Member (Embed IO) r =>
   (a -> Text) ->
   InterpreterFor (DataLog a) r
-interpretDataLogStderrWith fmt =
-  interpretDataLog \ msg -> embed (Text.hPutStrLn stderr (fmt msg))
+interpretDataLogStderrWith =
+  interpretDataLogHandleWith stderr
 {-# inline interpretDataLogStderrWith #-}
 
 -- |Interpret 'DataLog' by printing to stderr, converting messages to 'Text' by using 'Show'.

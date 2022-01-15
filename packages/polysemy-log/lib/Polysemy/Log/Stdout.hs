@@ -1,7 +1,6 @@
--- |Description: Internal
+-- |Description: Stdout Interpreters, Internal
 module Polysemy.Log.Stdout where
 
-import qualified Data.Text.IO as Text
 import Polysemy.Async (Async)
 import Polysemy.Conc (Race)
 import Polysemy.Resource (Resource)
@@ -11,18 +10,19 @@ import Polysemy.Log.Data.DataLog (DataLog)
 import Polysemy.Log.Data.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage)
-import Polysemy.Log.Format (formatLogEntry)
-import Polysemy.Log.Log (interpretDataLog, interpretLogDataLog, interpretLogDataLogConc)
 import Polysemy.Log.Data.Severity (Severity)
+import Polysemy.Log.Format (formatLogEntry)
+import Polysemy.Log.Handle (interpretDataLogHandleWith)
 import Polysemy.Log.Level (setLogLevel)
+import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLogConc)
 
 -- |Interpret 'DataLog' by printing to stdout, converting messages to 'Text' with the supplied function.
 interpretDataLogStdoutWith ::
   Member (Embed IO) r =>
   (a -> Text) ->
   InterpreterFor (DataLog a) r
-interpretDataLogStdoutWith fmt =
-  interpretDataLog \ msg -> embed (Text.hPutStrLn stdout (fmt msg))
+interpretDataLogStdoutWith =
+  interpretDataLogHandleWith stdout
 {-# inline interpretDataLogStdoutWith #-}
 
 -- |Interpret 'DataLog' by printing to stdout, converting messages to 'Text' by using 'Show'.

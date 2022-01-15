@@ -40,8 +40,8 @@
       polysemy-log-co = ./packages/polysemy-log-co;
       polysemy-log-di = ./packages/polysemy-log-di;
     };
-    main = "polysemy-log-co";
-    overrides = { inherit all ghc901 ghc884; dev = ghc901; };
+    main = "polysemy-log";
+    overrides = { inherit all ghc901 ghc884; };
     versionFile = "ops/hpack/shared/meta.yaml";
   };
 }
