@@ -1,6 +1,7 @@
 # Unreleased
 
 * Add interceptors for setting the log level.
+* Set std streams to line buffering.
 
 # 0.3.0.0
 
