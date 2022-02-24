@@ -1,8 +1,5 @@
 -- |Description: Internal
-{-# options_haddock prune #-}
 module Polysemy.Log.Data.LogMetadata where
-
-import Polysemy.Internal (send)
 
 -- |Internal effect used as an intermediate stage between 'Polysemy.Log.Log' and 'Polysemy.Log.DataLog', for the purpose
 -- of isolating the metadata annotation task.
@@ -13,6 +10,7 @@ data LogMetadata msg :: Effect where
   -- |Schedule a message to be annotated and logged.
   Annotated :: HasCallStack => msg -> LogMetadata msg m ()
 
+-- |Schedule a message to be annotated and logged.
 annotated ::
   HasCallStack =>
   Member (LogMetadata msg) r =>

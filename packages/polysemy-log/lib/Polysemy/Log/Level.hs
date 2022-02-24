@@ -1,7 +1,7 @@
 -- |Description: Internal
 module Polysemy.Log.Level where
 
-import Polysemy (interceptH, runTSimple)
+import Prelude hiding (Local)
 
 import qualified Polysemy.Log.Data.DataLog as DataLog
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))

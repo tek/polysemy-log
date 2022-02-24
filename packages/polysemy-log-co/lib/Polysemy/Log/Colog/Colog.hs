@@ -1,22 +1,20 @@
--- |Description: Interpreters
+-- |Description: Interpreters for 'Log' and 'DataLog' using a co-log backend.
 module Polysemy.Log.Colog.Colog where
 
-import qualified Colog (Message, Msg(Msg), Severity(..), logTextStdout, richMessageAction)
+import qualified Colog (Message, Msg (Msg), Severity (..), logTextStdout, richMessageAction)
 import qualified Colog.Polysemy as Colog
 import Colog.Polysemy (runLogAction)
-import Polysemy (interpretH, runT)
-import Polysemy.Async (Async)
+import Control.Monad.IO.Class (MonadIO)
 import Polysemy.Conc (Race)
-import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
+import Prelude hiding (Local)
 
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Data.DataLog (DataLog(DataLog, Local))
+import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
 import Polysemy.Log.Data.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
-import Polysemy.Log.Data.LogMessage (LogMessage(..))
+import Polysemy.Log.Data.LogMessage (LogMessage (..))
 import qualified Polysemy.Log.Data.Severity as Severity
 import Polysemy.Log.Data.Severity (Severity)
 import Polysemy.Log.Format (formatLogEntry)

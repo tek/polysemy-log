@@ -1,11 +1,10 @@
 module Polysemy.Log.Test.ConcTest where
 
 import Data.Time (Day, UTCTime)
-import Polysemy.Async (asyncToIOFinal)
 import Polysemy.Conc (interpretRace)
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 import qualified Polysemy.Time as Time
-import Polysemy.Time (GhcTime, MilliSeconds(MilliSeconds), interpretTimeGhc)
+import Polysemy.Time (GhcTime, MilliSeconds (MilliSeconds), interpretTimeGhc)
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic)
 import Polysemy.Log.Conc (interceptDataLogConc)

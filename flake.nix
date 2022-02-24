@@ -5,43 +5,45 @@
 
   outputs = { hix, ... }:
   let
-    all = { hackage, jailbreak, unbreak, ... }: {
+
+    ghc902 = { hackage, jailbreak, ... }: {
+      polysemy = hackage "1.7.1.0" "0qwli1kx3hk68hqsgw65mk81bx0djw1wlk17v8ggym7mf3lailyc";
+      polysemy-plugin = hackage "0.4.3.0" "1r7j1ffsd6z2q2fgpg78brl2gb0dg8r5ywfiwdrsjd2fxkinjcg1";
+      typerep-map = hackage "0.5.0.0" "1j2jbl8qg88zz5yydfi3iqrqmazch038ra7cpccylxz1rdyqm9k3";
+    };
+
+    ghc921 = { hackage, jailbreak, notest, ... }: {
+      chronos = jailbreak;
+      polysemy = hackage "1.7.1.0" "0qwli1kx3hk68hqsgw65mk81bx0djw1wlk17v8ggym7mf3lailyc";
+      polysemy-plugin = hackage "0.4.3.0" "1r7j1ffsd6z2q2fgpg78brl2gb0dg8r5ywfiwdrsjd2fxkinjcg1";
+      type-errors = notest;
+      typerep-map = hackage "0.5.0.0" "1j2jbl8qg88zz5yydfi3iqrqmazch038ra7cpccylxz1rdyqm9k3";
+    };
+
+    all = { hackage, unbreak, jailbreak, ... }: {
       co-log = jailbreak;
       co-log-core = jailbreak;
       co-log-polysemy = jailbreak unbreak;
+      polysemy = hackage "1.6.0.0" "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
+      polysemy-conc = hackage "0.6.0.0" "16b20nlij227pmd2qxq5ad9fr6496y0ammmw2y95x66dz85c5yg4";
+      polysemy-plugin = hackage "0.4.1.0" "117g92l1ppsqd3w0rqjrxfk0lx6yndd54rpymgxljilnv43zg29s";
+      polysemy-resume = hackage "0.3.0.0" "0kv8x41cxrdwxh7xw8vrywl7sgjkigl84xl7gv038gijh7pvd358";
+      polysemy-test = hackage "0.4.0.1" "038n31xxid72vrckr3afgkvbsvqhf9q4b912agg24ppjzckq2s15";
+      polysemy-time = hackage "0.3.0.0" "0mgiq70b35q7ymfwvb8fv291l3f8v7k0z7w6909h922d6jgl4jgp";
+      incipit-base = hackage "0.1.0.1" "0bcygln28zhrp0jqsm1z8p45k7faas5yamwddz2narsgpkzirx4y";
+      incipit-core = hackage "0.1.0.1" "1bdkw0q4db3k73i3jjhil96p3rz3gw7mq9jcpcphamld72f4f5ni";
     };
 
-    ghc901 = { hackage, jailbreak, ... }: {
-      polysemy = hackage "1.7.1.0" "0qwli1kx3hk68hqsgw65mk81bx0djw1wlk17v8ggym7mf3lailyc";
-      polysemy-plugin = hackage "0.4.3.0" "1r7j1ffsd6z2q2fgpg78brl2gb0dg8r5ywfiwdrsjd2fxkinjcg1";
-      relude = hackage "1.0.0.1" "164p21334c3pyfzs839cv90438naxq9pmpyvy87113mwy51gm6xn";
-      typerep-map = jailbreak;
-    };
-
-    ghc884 = { hackage, ... }: {
-      polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
-      polysemy-conc = hackage "0.3.0.0" "0vqp4q3pgxgf5azr87vmlk5irxdd7491gayp7n74373nhrndfd45";
-      polysemy-plugin = hackage "0.3.0.0" "1frz0iksmg8bpm7ybnpz9h75hp6hajd20vpdvmi04aspklmr6hj0";
-      polysemy-test = hackage "0.3.1.7" "0j33f5zh6gyhl86w8kqh6nm02915b4n32xikxc4hwcy7p5l7cl34";
-      polysemy-time = hackage "0.1.4.0" "0hwx89cilmsdjs3gb5w6by87ysy24scgj5zg77vbfnqpzr3ifrwh";
-    };
-
-    dev = { hackage, jailbreak, unbreak, ... }: {
-      polysemy = hackage "1.7.1.0" "0qwli1kx3hk68hqsgw65mk81bx0djw1wlk17v8ggym7mf3lailyc";
-      polysemy-plugin = hackage "0.4.3.0" "1r7j1ffsd6z2q2fgpg78brl2gb0dg8r5ywfiwdrsjd2fxkinjcg1";
-      relude = hackage "1.0.0.1" "164p21334c3pyfzs839cv90438naxq9pmpyvy87113mwy51gm6xn";
-    };
-
-  in hix.flake {
+  in hix.lib.flake {
     base = ./.;
-    compiler = "ghc901";
     packages = {
       polysemy-log = ./packages/polysemy-log;
       polysemy-log-co = ./packages/polysemy-log-co;
       polysemy-log-di = ./packages/polysemy-log-di;
     };
     main = "polysemy-log";
-    overrides = { inherit all ghc901 ghc884; };
-    versionFile = "ops/hpack/shared/meta.yaml";
+    overrides = { inherit all ghc921 ghc902; };
+    hackage.versionFile = "ops/hpack/shared/meta.yaml";
+    ghci.preludePackage = "incipit-core";
   };
 }

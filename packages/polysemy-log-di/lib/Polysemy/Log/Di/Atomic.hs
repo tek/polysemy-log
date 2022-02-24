@@ -1,9 +1,8 @@
 -- |Description: Internal
 module Polysemy.Log.Di.Atomic where
 
+import Control.Concurrent.STM (newTVarIO)
 import qualified DiPolysemy as Di
-import Polysemy (interpretH, runTSimple)
-import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
 
 -- |Interpret 'Di.Di' by prepending each message to a list in an 'AtomicState'.
@@ -26,6 +25,6 @@ interpretDiAtomic ::
   Member (Embed IO) r =>
   InterpretersFor [Di.Di level path msg, AtomicState [msg]] r
 interpretDiAtomic sem = do
-  tv <- newTVarIO []
+  tv <- embed (newTVarIO [])
   runAtomicStateTVar tv (interpretDiAtomic' sem)
 {-# inline interpretDiAtomic #-}

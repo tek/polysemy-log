@@ -2,13 +2,10 @@
 module Polysemy.Log.Di.Di where
 
 import qualified DiPolysemy as Di
-import Polysemy (interpretH, runT)
-import Polysemy.Async (Async)
 import Polysemy.Conc (Race)
-import Polysemy.Internal (InterpretersFor, raise2Under)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime)
+import Prelude hiding (Local)
 
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
 import Polysemy.Log.Data.Log (Log)

@@ -2,8 +2,7 @@
 module Polysemy.Log.Colog.Atomic where
 
 import qualified Colog.Polysemy as Colog
-
-import Polysemy.Internal (InterpretersFor)
+import Control.Concurrent.STM (newTVarIO)
 
 -- |Interpret 'Colog.Log' by prepending each message to a list in an 'AtomicState'.
 interpretCologAtomic' ::
@@ -16,12 +15,12 @@ interpretCologAtomic' =
 {-# inline interpretCologAtomic' #-}
 
 -- |Interpret 'Colog.Log' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in
--- a 'TVar'.
+-- a 'Control.Concurrent.STM.TVar'.
 interpretCologAtomic ::
   ∀ a r .
   Member (Embed IO) r =>
   InterpretersFor [Colog.Log a, AtomicState [a]] r
 interpretCologAtomic sem = do
-  tv <- newTVarIO []
+  tv <- embed (newTVarIO [])
   runAtomicStateTVar tv (interpretCologAtomic' sem)
 {-# inline interpretCologAtomic #-}

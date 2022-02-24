@@ -6,18 +6,14 @@
 
 A common interface for the polysemy logging backend adapters.
 
-An example program using a simple logger with predefined formatting and a custom data type:
+An example program using a simple logger with a custom data type:
 
 ```haskell
-import Colog (logTextStdout)
-import Colog.Polysemy (runLogAction)
-import Polysemy (runM)
+import Polysemy.Conc (runConc)
 
-import Polysemy.Log.Colog (interpretDataLogColog, interpretLogStdout)
+import qualified Polysemy.Log as Log
+import Polysemy.Log (DataLog, Log, interpretDataLogStdout, interpretLogStdoutConc)
 import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
 
 progSimple ::
   Member Log r =>
@@ -43,9 +39,9 @@ progData = do
 
 main :: IO ()
 main =
-  runM do
-    interpretLogStdout progSimple
-    runLogAction @IO (contramap message logTextStdout) $ interpretDataLogColog @Message $ progData
+  runConc do
+    interpretLogStdoutConc progSimple
+    interpretDataLogStdout progData
 ```
 
 For more documentation, please consult Hackage:
@@ -61,14 +57,14 @@ With `nix-build`:
 
 ```bash
 nix-build -A defaultPackage
-nix-build -A packages.x86_64-linux.polysemy-log-co
+nix-build -A packages.x86_64-linux.polysemy-log
 ```
 
 With `nix flake`:
 
 ```
 nix build
-nix build '.#polysemy-log-co'
+nix build '.#polysemy-log
 ```
 
 To run all tests:
@@ -78,4 +74,3 @@ nix flake check
 ```
 
 [nix]: https://nixos.org/manual/nix/unstable
-[co-log]: https://hackage.haskell.org/package/co-log

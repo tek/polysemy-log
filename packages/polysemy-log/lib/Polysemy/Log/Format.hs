@@ -2,7 +2,7 @@
 module Polysemy.Log.Format where
 
 import qualified Data.Text as Text
-import GHC.Exception (SrcLoc (..))
+import GHC.Exception (CallStack, SrcLoc (..), getCallStack)
 import System.Console.ANSI (Color (..), ColorIntensity (Dull), ConsoleLayer (Foreground), SGR (..), setSGRCode)
 
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))

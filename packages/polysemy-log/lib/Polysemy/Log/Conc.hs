@@ -1,19 +1,17 @@
 -- |Description: Internal
 module Polysemy.Log.Conc where
 
-import Polysemy (interceptH, runT, subsume)
-import Polysemy.Async (Async, async, await)
+import qualified Control.Concurrent.Async as Base
+import qualified Polysemy.Conc as Conc
 import Polysemy.Conc (Queue, Race, interpretQueueTBM)
 import qualified Polysemy.Conc.Queue as Queue
 import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource, finally)
+import Polysemy.Time (Seconds (Seconds))
+import Prelude hiding (Local)
 
 import qualified Polysemy.Log.Data.DataLog as DataLog
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
-import qualified Control.Concurrent.Async as Base
-import qualified Polysemy.Conc as Conc
-import Polysemy.Time (Seconds(Seconds))
 
 -- |Intercept 'DataLog' for concurrent processing.
 -- This does not send any action to the ultimate interpreter but writes all log messages to the provided queue.

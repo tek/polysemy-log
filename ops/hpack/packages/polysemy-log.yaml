@@ -11,19 +11,17 @@ extra-source-files:
 
 library:
   source-dirs: lib
-  other-modules:
-    - Prelude
-  generated-other-modules:
-    - Paths_polysemy_log
   dependencies:
     - ansi-terminal >= 0.10.3
     - async
-    - polysemy-conc >= 0.3
-    - polysemy-time >= 0.1.4
-    - relude >= 0.7
-    - template-haskell
-    - text
+    - polysemy-conc >= 0.6
+    - polysemy-time >= 0.3
+    - stm
     - time
+  when:
+    condition: false
+    generated-other-modules:
+      - Paths_polysemy_log
 
 tests:
   polysemy-log-unit:
@@ -34,12 +32,14 @@ tests:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - name: polysemy-log
-        mixin:
-          - hiding (Polysemy.Log.Prelude)
-          - (Polysemy.Log.Prelude as Prelude)
+      - polysemy-log
       - polysemy-conc
+      - polysemy-plugin
       - polysemy-test
       - polysemy-time
       - tasty
       - time
+    when:
+      condition: false
+      generated-other-modules:
+        - Paths_polysemy_log

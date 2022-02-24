@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.34.6.
 --
 -- see: https://github.com/sol/hpack
 
@@ -30,10 +30,6 @@ library
       Polysemy.Log.Di
       Polysemy.Log.Di.Atomic
       Polysemy.Log.Di.Di
-  other-modules:
-      Paths_polysemy_log_di
-  autogen-modules:
-      Paths_polysemy_log_di
   hs-source-dirs:
       lib
   default-extensions:
@@ -97,15 +93,15 @@ library
   ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities
   build-depends:
       base ==4.*
-    , di-polysemy >=0.2.0.0
+    , di-polysemy >=0.2
+    , incipit-core >=0.1.0.1
     , polysemy >=1.5
-    , polysemy-conc >=0.1.0.0
+    , polysemy-conc >=0.6
     , polysemy-log
-    , polysemy-time >=0.1.1.0
+    , polysemy-time >=0.3
+    , stm
   mixins:
       base hiding (Prelude)
-    , polysemy-log hiding (Polysemy.Log.Prelude)
-    , polysemy-log (Polysemy.Log.Prelude as Prelude)
   default-language: Haskell2010
 
 test-suite polysemy-log-di-unit
@@ -113,7 +109,6 @@ test-suite polysemy-log-di-unit
   main-is: Main.hs
   other-modules:
       Polysemy.Log.Di.Test.SimpleTest
-      Paths_polysemy_log_di
   hs-source-dirs:
       test
   default-extensions:
@@ -177,13 +172,13 @@ test-suite polysemy-log-di-unit
   ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
+    , incipit-core >=0.1.0.1
     , polysemy >=1.5
     , polysemy-log
     , polysemy-log-di
     , polysemy-test
+    , stm
     , tasty
   mixins:
       base hiding (Prelude)
-    , polysemy-log hiding (Polysemy.Log.Prelude)
-    , polysemy-log (Polysemy.Log.Prelude as Prelude)
   default-language: Haskell2010

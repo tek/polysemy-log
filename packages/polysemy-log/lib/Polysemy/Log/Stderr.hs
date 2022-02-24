@@ -1,10 +1,9 @@
 -- |Description: Stderr Interpreters, Internal
 module Polysemy.Log.Stderr where
 
-import Polysemy.Async (Async)
 import Polysemy.Conc (Race)
-import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
+import System.IO (stderr)
 
 import Polysemy.Log.Data.DataLog (DataLog)
 import Polysemy.Log.Data.Log (Log)

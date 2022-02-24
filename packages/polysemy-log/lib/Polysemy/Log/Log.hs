@@ -1,13 +1,10 @@
 -- |Description: Internal
 module Polysemy.Log.Log where
 
-import Polysemy (interpretH, runT)
-import Polysemy.Async (Async)
 import Polysemy.Conc (Race)
-import Polysemy.Internal (InterpretersFor)
 import Polysemy.Internal.Tactics (liftT)
-import Polysemy.Resource (Resource)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
+import Prelude hiding (Local)
 
 import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local), dataLog)

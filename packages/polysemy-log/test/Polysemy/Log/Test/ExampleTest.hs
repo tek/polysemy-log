@@ -1,13 +1,12 @@
-module Polysemy.Log.Colog.Test.ExampleTest where
+{-# options_ghc -fplugin=Polysemy.Plugin #-}
 
-import Colog (logTextStdout)
-import Colog.Polysemy (runLogAction)
+module Polysemy.Log.Test.ExampleTest where
 
-import Polysemy.Log.Colog (interpretDataLogColog, interpretLogStdout)
+import Polysemy.Conc (runConc)
+
+import qualified Polysemy.Log as Log
+import Polysemy.Log (DataLog, Log, interpretDataLogStdout, interpretLogStdoutConc)
 import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
 
 progSimple ::
   Member Log r =>
@@ -33,6 +32,6 @@ progData = do
 
 main :: IO ()
 main =
-  runM do
-    interpretLogStdout progSimple
-    runLogAction @IO (contramap message logTextStdout) $ interpretDataLogColog @Message progData
+  runConc do
+    interpretLogStdoutConc progSimple
+    interpretDataLogStdout progData

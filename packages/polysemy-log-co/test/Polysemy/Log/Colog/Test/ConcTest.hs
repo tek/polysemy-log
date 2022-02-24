@@ -11,6 +11,7 @@ import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
 import qualified Polysemy.Log.Data.Severity as Severity
+import Control.Concurrent.STM (newTVarIO, atomically, modifyTVar', readTVarIO)
 
 prog ::
   Member Log r =>
@@ -26,8 +27,8 @@ target =
 test_concColog :: UnitTest
 test_concColog =
   runTestAuto do
-    tv <- newTVarIO []
+    tv <- embed (newTVarIO [])
     let action msg = atomically (modifyTVar' tv (msg :))
     interpretCologConcNativeWith @(LogEntry LogMessage) defCapacity (LogAction action) (interpretLogColog' prog)
-    msgs <- readTVarIO tv
+    msgs <- embed (readTVarIO tv)
     assertEq @_ @IO target (LogEntry.message <$> msgs)

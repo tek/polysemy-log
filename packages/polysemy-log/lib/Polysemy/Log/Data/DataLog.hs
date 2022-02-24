@@ -3,7 +3,7 @@
 -- |Description: Internal
 module Polysemy.Log.Data.DataLog where
 
-import Polysemy.Internal (send)
+import GHC.Stack (withFrozenCallStack)
 import Polysemy.Time (GhcTime)
 
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
@@ -79,7 +79,7 @@ warn =
   withFrozenCallStack (log Warn)
 {-# inline warn #-}
 
--- |Log a text message with the 'Error' severity.
+-- |Log a text message with the 'Polysemy.Log.Data.Severity.Error' severity.
 error ::
   HasCallStack =>
   Members [Logger, GhcTime] r =>

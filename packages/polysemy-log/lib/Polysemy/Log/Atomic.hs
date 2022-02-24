@@ -1,10 +1,10 @@
--- |Description: Internal
+-- |Description: Interpreters for 'DataLog' that write to 'AtomicState'.
 module Polysemy.Log.Atomic where
 
-import Polysemy.Internal (InterpretersFor)
+import Control.Concurrent.STM (newTVarIO)
 
 import Polysemy.Log.Data.DataLog (DataLog)
-import Polysemy.Log.Data.Log (Log(Log))
+import Polysemy.Log.Data.Log (Log (Log))
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Log (interpretDataLog)
 
@@ -18,13 +18,13 @@ interpretDataLogAtomic' =
 {-# inline interpretDataLogAtomic' #-}
 
 -- |Interpret 'DataLog' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
--- 'TVar'.
+-- 'Control.Concurrent.STM.TVar'.
 interpretDataLogAtomic ::
   ∀ a r .
   Member (Embed IO) r =>
   InterpretersFor [DataLog a, AtomicState [a]] r
 interpretDataLogAtomic sem = do
-  tv <- newTVarIO []
+  tv <- embed (newTVarIO [])
   runAtomicStateTVar tv (interpretDataLogAtomic' sem)
 {-# inline interpretDataLogAtomic #-}
 
@@ -38,11 +38,11 @@ interpretLogAtomic' =
 {-# inline interpretLogAtomic' #-}
 
 -- |Interpret 'Log' by prepending each message to a list in an 'AtomicState', then interpret the 'AtomicState' in a
--- 'TVar'.
+-- 'Control.Concurrent.STM.TVar'.
 interpretLogAtomic ::
   Member (Embed IO) r =>
   InterpretersFor [Log, AtomicState [LogMessage]] r
 interpretLogAtomic sem = do
-  tv <- newTVarIO []
+  tv <- embed (newTVarIO [])
   runAtomicStateTVar tv (interpretLogAtomic' sem)
 {-# inline interpretLogAtomic #-}

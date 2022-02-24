@@ -1,7 +1,7 @@
 -- |Description: Internal
 module Polysemy.Log.Data.Log where
 
-import Polysemy.Internal (send)
+import GHC.Stack (withFrozenCallStack)
 
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
 import Polysemy.Log.Data.Severity (Severity (Crit, Debug, Error, Info, Trace, Warn))
@@ -79,7 +79,7 @@ warn =
   log Warn
 {-# inline warn #-}
 
--- |Log a message with the 'Error' severity.
+-- |Log a message with the 'Polysemy.Log.Data.Severity.Error' severity.
 error ::
   HasCallStack =>
   Member Log r =>

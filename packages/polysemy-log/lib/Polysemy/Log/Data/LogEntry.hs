@@ -3,6 +3,7 @@ module Polysemy.Log.Data.LogEntry where
 
 import Data.Time (UTCTime)
 import Data.Time.Calendar (Day)
+import GHC.Stack (CallStack, callStack)
 import qualified Polysemy.Time as Time
 import Polysemy.Time (GhcTime)
 

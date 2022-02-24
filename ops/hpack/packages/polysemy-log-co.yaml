@@ -11,18 +11,17 @@ extra-source-files:
 
 library:
   source-dirs: lib
-  generated-other-modules:
-    - Paths_polysemy_log_co
   dependencies:
     - co-log >= 0.4.0.1
-    - co-log-core >= 0.2.1
     - co-log-polysemy >= 0.0.1.2
-    - polysemy-conc >= 0.1.0.0
-    - polysemy-time >= 0.1.1.0
-    - name: polysemy-log
-      mixin:
-        - hiding (Polysemy.Log.Prelude)
-        - (Polysemy.Log.Prelude as Prelude)
+    - polysemy-conc >= 0.6
+    - polysemy-time >= 0.3
+    - polysemy-log
+    - stm
+  when:
+    condition: false
+    generated-other-modules:
+      - Paths_polysemy_log_co
 
 tests:
   polysemy-log-co-unit:
@@ -35,11 +34,13 @@ tests:
     dependencies:
       - co-log
       - co-log-polysemy
-      - name: polysemy-log
-        mixin:
-          - hiding (Polysemy.Log.Prelude)
-          - (Polysemy.Log.Prelude as Prelude)
+      - polysemy-log
       - polysemy-log-co
       - polysemy-test
       - polysemy-time
+      - stm
       - tasty
+    when:
+      condition: false
+      generated-other-modules:
+        - Paths_polysemy_log_co
