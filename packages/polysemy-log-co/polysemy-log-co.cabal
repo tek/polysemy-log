@@ -96,11 +96,11 @@ library
       base ==4.*
     , co-log >=0.4.0.1
     , co-log-polysemy >=0.0.1.2
-    , incipit-core >=0.1.0.1
+    , incipit-core >=0.2
     , polysemy >=1.5
-    , polysemy-conc >=0.6
+    , polysemy-conc >=0.7
     , polysemy-log
-    , polysemy-time >=0.3
+    , polysemy-time >=0.4
     , stm
   mixins:
       base hiding (Prelude)
@@ -178,7 +178,7 @@ test-suite polysemy-log-co-unit
       base ==4.*
     , co-log
     , co-log-polysemy
-    , incipit-core >=0.1.0.1
+    , incipit-core >=0.2
     , polysemy >=1.5
     , polysemy-log
     , polysemy-log-co

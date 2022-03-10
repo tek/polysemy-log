@@ -7,7 +7,7 @@
   outputs = { hix, polysemy-conc, ... }:
   let
 
-    ghc902 = { hackage, jailbreak, ... }: {
+    ghc902 = { hackage, ... }: {
       polysemy = hackage "1.7.1.0" "0qwli1kx3hk68hqsgw65mk81bx0djw1wlk17v8ggym7mf3lailyc";
       polysemy-plugin = hackage "0.4.3.0" "1r7j1ffsd6z2q2fgpg78brl2gb0dg8r5ywfiwdrsjd2fxkinjcg1";
       typerep-map = hackage "0.5.0.0" "1j2jbl8qg88zz5yydfi3iqrqmazch038ra7cpccylxz1rdyqm9k3";

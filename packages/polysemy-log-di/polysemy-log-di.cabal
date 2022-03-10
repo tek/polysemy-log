@@ -94,11 +94,11 @@ library
   build-depends:
       base ==4.*
     , di-polysemy >=0.2
-    , incipit-core >=0.1.0.1
+    , incipit-core >=0.2
     , polysemy >=1.5
-    , polysemy-conc >=0.6
+    , polysemy-conc >=0.7
     , polysemy-log
-    , polysemy-time >=0.3
+    , polysemy-time >=0.4
     , stm
   mixins:
       base hiding (Prelude)
@@ -172,7 +172,7 @@ test-suite polysemy-log-di-unit
   ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base ==4.*
-    , incipit-core >=0.1.0.1
+    , incipit-core >=0.2
     , polysemy >=1.5
     , polysemy-log
     , polysemy-log-di

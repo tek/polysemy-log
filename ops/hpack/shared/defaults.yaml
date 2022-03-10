@@ -6,7 +6,7 @@ dependencies:
     mixin:
       - hiding (Prelude)
   - polysemy >= 1.5
-  - incipit-core >= 0.1.0.1
+  - incipit-core >= 0.2
 
 ghc-options:
   - -Wall

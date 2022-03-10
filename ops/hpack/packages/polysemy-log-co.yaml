@@ -14,8 +14,8 @@ library:
   dependencies:
     - co-log >= 0.4.0.1
     - co-log-polysemy >= 0.0.1.2
-    - polysemy-conc >= 0.6
-    - polysemy-time >= 0.3
+    - polysemy-conc >= 0.7
+    - polysemy-time >= 0.4
     - polysemy-log
     - stm
   when:

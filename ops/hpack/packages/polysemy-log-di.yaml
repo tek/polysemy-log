@@ -14,8 +14,8 @@ library:
   dependencies:
     - polysemy-log
     - di-polysemy >= 0.2
-    - polysemy-conc >= 0.6
-    - polysemy-time >= 0.3
+    - polysemy-conc >= 0.7
+    - polysemy-time >= 0.4
     - stm
   when:
     condition: false
