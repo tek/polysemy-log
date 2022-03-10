@@ -8,7 +8,6 @@ import qualified Polysemy.Conc.Queue as Queue
 import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (Seconds (Seconds))
-import Prelude hiding (Local)
 
 import qualified Polysemy.Log.Data.DataLog as DataLog
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))

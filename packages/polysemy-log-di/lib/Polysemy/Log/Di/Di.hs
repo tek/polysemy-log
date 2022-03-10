@@ -5,7 +5,6 @@ import qualified DiPolysemy as Di
 import Polysemy.Conc (Race)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime)
-import Prelude hiding (Local)
 
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
 import Polysemy.Log.Data.Log (Log)

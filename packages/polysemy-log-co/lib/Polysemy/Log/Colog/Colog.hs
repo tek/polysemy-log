@@ -4,11 +4,9 @@ module Polysemy.Log.Colog.Colog where
 import qualified Colog (Message, Msg (Msg), Severity (..), logTextStdout, richMessageAction)
 import qualified Colog.Polysemy as Colog
 import Colog.Polysemy (runLogAction)
-import Control.Monad.IO.Class (MonadIO)
 import Polysemy.Conc (Race)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
-import Prelude hiding (Local)
 
 import Polysemy.Log.Conc (interceptDataLogConc)
 import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
