@@ -1,7 +1,14 @@
 # Unreleased
 
-* Add interceptors for setting the log level.
+* Add parser for `Severity`.
+
+# 0.4.3.0
+
 * Set std streams to line buffering.
+
+# 0.4.0.0
+
+* Add interceptors for setting the log level.
 
 # 0.3.0.0
 

@@ -1,7 +1,7 @@
 {-# language NoImplicitPrelude #-}
 {-# options_haddock prune #-}
--- |Description: Polysemy Effects for Logging
 
+-- |Description: Polysemy Effects for Logging
 module Polysemy.Log (
   -- * Introduction
   -- $intro
@@ -34,6 +34,7 @@ module Polysemy.Log (
   crit,
   formatLogEntry,
   Severity(..),
+  parseSeverity,
   setLogLevel,
   setLogLevelWith,
 
@@ -70,7 +71,7 @@ import Polysemy.Log.Data.DataLog (DataLog (DataLog), Logger, dataLog)
 import Polysemy.Log.Data.Log (Log (Log), crit, debug, error, info, log, trace, warn)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
-import Polysemy.Log.Data.Severity (Severity (..))
+import Polysemy.Log.Data.Severity (Severity (..), parseSeverity)
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Level (setLogLevel, setLogLevelWith)
 import Polysemy.Log.Log (
