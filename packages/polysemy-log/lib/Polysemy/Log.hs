@@ -19,6 +19,7 @@ module Polysemy.Log (
   interpretDataLogStdout,
   interpretDataLogAtomic',
   interpretDataLogAtomic,
+  interpretDataLog,
 
   -- * Text Messages with Severity and Metadata
   -- $messages
@@ -75,6 +76,7 @@ import Polysemy.Log.Data.Severity (Severity (..), parseSeverity)
 import Polysemy.Log.Format (formatLogEntry)
 import Polysemy.Log.Level (setLogLevel, setLogLevelWith)
 import Polysemy.Log.Log (
+  interpretDataLog,
   interpretLogDataLog,
   interpretLogDataLog',
   interpretLogDataLogConc,
