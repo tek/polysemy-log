@@ -3,17 +3,17 @@ module Polysemy.Log.Test.LocalTest where
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic)
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
-import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
-import Polysemy.Log.Data.Severity (Severity(Debug))
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import Polysemy.Log.Data.Severity (Severity (Debug))
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog)
 
 data Context =
   Context {
     context :: [Text],
     message :: LogMessage
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 log ::
   Member (DataLog Context) r =>

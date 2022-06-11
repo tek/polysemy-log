@@ -1,8 +1,8 @@
 -- |Description: Internal
 module Polysemy.Log.Level where
 
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import qualified Polysemy.Log.Data.LogMessage as LogMessage

@@ -1,5 +1,5 @@
 -- |Description: Internal
-module Polysemy.Log.Data.LogMetadata where
+module Polysemy.Log.Effect.LogMetadata where
 
 -- |Internal effect used as an intermediate stage between 'Polysemy.Log.Log' and 'Polysemy.Log.DataLog', for the purpose
 -- of isolating the metadata annotation task.

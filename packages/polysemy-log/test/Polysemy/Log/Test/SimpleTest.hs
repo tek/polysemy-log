@@ -3,8 +3,8 @@ module Polysemy.Log.Test.SimpleTest where
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
 import Polysemy.Log.Atomic (interpretLogAtomic)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
+import qualified Polysemy.Log.Effect.Log as Log
+import Polysemy.Log.Effect.Log (Log)
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
 import Polysemy.Log.Data.Severity (Severity(Crit, Debug))
 

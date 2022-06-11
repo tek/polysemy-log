@@ -2,8 +2,8 @@ module Polysemy.Log.Di.Test.SimpleTest where
 
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
+import qualified Polysemy.Log.Effect.Log as Log
+import Polysemy.Log.Effect.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry (LogEntry(..))
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))

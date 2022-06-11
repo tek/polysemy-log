@@ -10,4 +10,4 @@ data LogMessage =
     severity :: !Severity,
     message :: !Text
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)

@@ -16,7 +16,7 @@ data LogEntry a =
     -- |The call stack of the function in which the entry was created.
     source :: !CallStack
   }
-  deriving (Show)
+  deriving stock (Show)
 
 -- |Add call stack and timestamp to a message and wrap it with 'LogEntry'.
 annotate ::

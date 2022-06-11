@@ -3,8 +3,8 @@ module Polysemy.Log.Atomic where
 
 import Control.Concurrent.STM (newTVarIO)
 
-import Polysemy.Log.Data.DataLog (DataLog)
-import Polysemy.Log.Data.Log (Log (Log))
+import Polysemy.Log.Effect.DataLog (DataLog)
+import Polysemy.Log.Effect.Log (Log (Log))
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Log (interpretDataLog)
 

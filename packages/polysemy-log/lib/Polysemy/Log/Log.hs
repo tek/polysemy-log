@@ -6,11 +6,11 @@ import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
 
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local), dataLog)
-import Polysemy.Log.Data.Log (Log (Log))
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local), dataLog)
+import Polysemy.Log.Effect.Log (Log (Log))
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
 import Polysemy.Log.Data.LogMessage (LogMessage)
-import Polysemy.Log.Data.LogMetadata (LogMetadata (Annotated), annotated)
+import Polysemy.Log.Effect.LogMetadata (LogMetadata (Annotated), annotated)
 
 -- |Interpret 'Log' into the intermediate internal effect 'LogMetadata'.
 interpretLogLogMetadata ::

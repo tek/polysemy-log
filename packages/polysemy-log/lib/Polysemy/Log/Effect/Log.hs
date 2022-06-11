@@ -1,7 +1,5 @@
 -- |Description: Internal
-module Polysemy.Log.Data.Log where
-
-import GHC.Stack (withFrozenCallStack)
+module Polysemy.Log.Effect.Log where
 
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
 import Polysemy.Log.Data.Severity (Severity (Crit, Debug, Error, Info, Trace, Warn))

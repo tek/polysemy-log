@@ -6,8 +6,8 @@ import Polysemy.Conc (Race)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime)
 
-import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
-import Polysemy.Log.Data.Log (Log)
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
+import Polysemy.Log.Effect.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import qualified Polysemy.Log.Data.LogMessage as LogMessage

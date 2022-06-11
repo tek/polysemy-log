@@ -1,9 +1,8 @@
 {-# options_haddock prune #-}
 
 -- |Description: Internal
-module Polysemy.Log.Data.DataLog where
+module Polysemy.Log.Effect.DataLog where
 
-import GHC.Stack (withFrozenCallStack)
 import Polysemy.Time (GhcTime)
 
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)

@@ -8,15 +8,15 @@ import Polysemy.Time (GhcTime, MilliSeconds (MilliSeconds), interpretTimeGhc)
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic)
 import Polysemy.Log.Conc (interceptDataLogConc)
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog)
 
 data Context =
   Context {
     context :: [Text],
     message :: Text
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 prog ::
   Members [DataLog Context, GhcTime, AtomicState [Context]] r =>

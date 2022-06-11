@@ -4,7 +4,7 @@ module Polysemy.Log.Handle where
 import qualified Data.Text.IO as Text
 import System.IO (BufferMode (LineBuffering), Handle, hSetBuffering)
 
-import Polysemy.Log.Data.DataLog (DataLog)
+import Polysemy.Log.Effect.DataLog (DataLog)
 import Polysemy.Log.Log (interpretDataLog)
 
 -- |Interpret 'DataLog' by printing to the given handle, converting messages to 'Text' with the supplied function.

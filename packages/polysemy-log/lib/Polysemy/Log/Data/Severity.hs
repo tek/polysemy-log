@@ -16,7 +16,7 @@ data Severity =
   Error
   |
   Crit
-  deriving (Eq, Show, Enum, Ord)
+  deriving stock (Eq, Show, Enum, Ord)
 
 -- |Parse a 'Text' into a 'Severity'.
 parseSeverity :: Text -> Maybe Severity

@@ -1,7 +1,7 @@
 -- |Description: Pure interpreters for 'Log'.
 module Polysemy.Log.Pure where
 
-import Polysemy.Log.Data.Log (Log (Log))
+import Polysemy.Log.Effect.Log (Log (Log))
 import Polysemy.Log.Data.LogMessage (LogMessage)
 
 -- |Interpret 'Log' in terms of 'Output'.

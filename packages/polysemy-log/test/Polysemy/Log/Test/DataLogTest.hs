@@ -3,14 +3,14 @@ module Polysemy.Log.Test.DataLogTest where
 import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic)
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog)
 
 data CustomLog =
   User Text
   |
   Fatal Int
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 prog ::
   Members [DataLog CustomLog, AtomicState [CustomLog]] r =>

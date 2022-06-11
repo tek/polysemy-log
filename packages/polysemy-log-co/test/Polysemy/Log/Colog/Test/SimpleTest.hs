@@ -5,8 +5,8 @@ import Polysemy.Time (interpretTimeGhc)
 
 import Polysemy.Log.Colog.Atomic (interpretCologAtomic)
 import Polysemy.Log.Colog.Colog (interpretLogColog)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
+import qualified Polysemy.Log.Effect.Log as Log
+import Polysemy.Log.Effect.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry (LogEntry(..))
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))

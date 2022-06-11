@@ -9,8 +9,8 @@ import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime, interpretTimeGhc)
 
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
-import Polysemy.Log.Data.Log (Log)
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
+import Polysemy.Log.Effect.Log (Log)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage (..))
 import qualified Polysemy.Log.Data.Severity as Severity

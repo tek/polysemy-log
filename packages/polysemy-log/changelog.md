@@ -1,6 +1,7 @@
 # Unreleased
 
 * Add parser for `Severity`.
+* Export `interpretDataLog`.
 
 # 0.4.3.0
 

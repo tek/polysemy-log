@@ -5,8 +5,8 @@ import Polysemy.Test (UnitTest, assertEq, runTestAuto)
 
 import Polysemy.Log.Colog.Colog (interpretLogColog')
 import Polysemy.Log.Colog.Conc (interpretCologConcNativeWith)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
+import qualified Polysemy.Log.Effect.Log as Log
+import Polysemy.Log.Effect.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))

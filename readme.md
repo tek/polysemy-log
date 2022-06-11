@@ -13,7 +13,7 @@ import Polysemy.Conc (runConc)
 
 import qualified Polysemy.Log as Log
 import Polysemy.Log (DataLog, Log, interpretDataLogStdout, interpretLogStdoutConc)
-import qualified Polysemy.Log.Data.DataLog as DataLog
+import qualified Polysemy.Log.Effect.DataLog as DataLog
 
 progSimple ::
   Member Log r =>
@@ -27,7 +27,7 @@ data Message =
     severity :: Text,
     message :: Text
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 progData ::
   Member (DataLog Message) r =>

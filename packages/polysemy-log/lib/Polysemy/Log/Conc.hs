@@ -9,8 +9,8 @@ import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (Seconds (Seconds))
 
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog (DataLog, Local))
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
 
 -- |Intercept 'DataLog' for concurrent processing.
 -- This does not send any action to the ultimate interpreter but writes all log messages to the provided queue.

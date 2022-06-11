@@ -4,10 +4,10 @@ import Colog (logTextStdout)
 import Colog.Polysemy (runLogAction)
 
 import Polysemy.Log.Colog (interpretDataLogColog, interpretLogStdout)
-import qualified Polysemy.Log.Data.DataLog as DataLog
-import Polysemy.Log.Data.DataLog (DataLog)
-import qualified Polysemy.Log.Data.Log as Log
-import Polysemy.Log.Data.Log (Log)
+import qualified Polysemy.Log.Effect.DataLog as DataLog
+import Polysemy.Log.Effect.DataLog (DataLog)
+import qualified Polysemy.Log.Effect.Log as Log
+import Polysemy.Log.Effect.Log (Log)
 
 progSimple ::
   Member Log r =>
@@ -21,7 +21,7 @@ data Message =
     severity :: Text,
     message :: Text
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 progData ::
   Member (DataLog Message) r =>

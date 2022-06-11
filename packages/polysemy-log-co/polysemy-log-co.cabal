@@ -6,20 +6,17 @@ cabal-version: 2.2
 
 name:           polysemy-log-co
 version:        0.6.0.1
-synopsis:       Colog Adapters for Polysemy-Log
-description:    See <https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html>
+synopsis:       Colog adapters for Polysemy.Log
+description:    See https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme
 bug-reports:    https://github.com/tek/polysemy-log/issues
 author:         Torsten Schmits
-maintainer:     tek@tryp.io
-copyright:      2021 Torsten Schmits
+maintainer:     hackage@tryp.io
+copyright:      2022 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
-extra-source-files:
-    readme.md
-    changelog.md
 
 source-repository head
   type: git
@@ -47,6 +44,7 @@ library
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
+      DeriveLift
       DeriveTraversable
       DerivingStrategies
       DerivingVia
@@ -79,6 +77,7 @@ library
       RankNTypes
       RecordWildCards
       RecursiveDo
+      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
       TemplateHaskell
@@ -91,19 +90,21 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities
+  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages
   build-depends:
-      base ==4.*
+      base >=4.12 && <5
     , co-log >=0.4.0.1
     , co-log-polysemy >=0.0.1.2
-    , incipit-core >=0.2
-    , polysemy >=1.5
-    , polysemy-conc >=0.7
+    , incipit-core >=0.3
+    , polysemy
+    , polysemy-conc >=0.9
     , polysemy-log
-    , polysemy-time >=0.4
+    , polysemy-time >=0.5
     , stm
   mixins:
       base hiding (Prelude)
+    , incipit-core (IncipitCore as Prelude)
+    , incipit-core hiding (IncipitCore)
   default-language: Haskell2010
 
 test-suite polysemy-log-co-unit
@@ -129,6 +130,7 @@ test-suite polysemy-log-co-unit
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
+      DeriveLift
       DeriveTraversable
       DerivingStrategies
       DerivingVia
@@ -161,6 +163,7 @@ test-suite polysemy-log-co-unit
       RankNTypes
       RecordWildCards
       RecursiveDo
+      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
       TemplateHaskell
@@ -173,19 +176,21 @@ test-suite polysemy-log-co-unit
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wunused-packages -Widentities -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base ==4.*
+      base >=4.12 && <5
     , co-log
     , co-log-polysemy
-    , incipit-core >=0.2
-    , polysemy >=1.5
+    , incipit-core >=0.3
+    , polysemy
     , polysemy-log
     , polysemy-log-co
-    , polysemy-test
+    , polysemy-test >=0.6
     , polysemy-time
     , stm
     , tasty
   mixins:
       base hiding (Prelude)
+    , incipit-core (IncipitCore as Prelude)
+    , incipit-core hiding (IncipitCore)
   default-language: Haskell2010
