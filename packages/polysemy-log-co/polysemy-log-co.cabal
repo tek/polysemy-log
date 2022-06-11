@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-log-co
-version:        0.6.0.1
+version:        0.7.0.0
 synopsis:       Colog adapters for Polysemy.Log
 description:    See https://hackage.haskell.org/package/polysemy-log-co/docs/Polysemy-Log-Colog.html
 category:       Logging
