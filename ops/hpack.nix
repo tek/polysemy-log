@@ -60,6 +60,7 @@ let
       inherit dependencies;
     };
     default-extensions = config.ghci.extensions;
+    extra-source-files = ["changelog.md" "readme.md"];
   };
 
   exe = name: dir: merge (paths name // {
