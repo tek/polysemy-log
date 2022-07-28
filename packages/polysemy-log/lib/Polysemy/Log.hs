@@ -11,6 +11,7 @@ module Polysemy.Log (
   DataLog(DataLog),
   Logger,
   dataLog,
+  local,
 
   -- ** Interpreters
   interpretDataLogStderrWith,
@@ -68,7 +69,7 @@ module Polysemy.Log (
 
 import Polysemy.Log.Atomic (interpretDataLogAtomic, interpretDataLogAtomic', interpretLogAtomic, interpretLogAtomic')
 import Polysemy.Log.Conc (interceptDataLogConc)
-import Polysemy.Log.Effect.DataLog (DataLog (DataLog), Logger, dataLog)
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog), Logger, dataLog, local)
 import Polysemy.Log.Effect.Log (Log (Log), crit, debug, error, info, log, trace, warn)
 import Polysemy.Log.Data.LogEntry (LogEntry (LogEntry))
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))

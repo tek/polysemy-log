@@ -2,6 +2,7 @@
 
 * Add parser for `Severity`.
 * Export `interpretDataLog`.
+* Export `local`.
 
 # 0.4.3.0
 
