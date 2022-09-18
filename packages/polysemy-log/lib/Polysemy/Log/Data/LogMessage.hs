@@ -8,6 +8,6 @@ import Polysemy.Log.Data.Severity (Severity)
 data LogMessage =
   LogMessage {
     severity :: !Severity,
-    message :: !Text
+    message :: Text
   }
   deriving stock (Eq, Show)
