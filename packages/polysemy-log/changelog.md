@@ -2,6 +2,10 @@
 
 # 0.7.1.0
 
+* Plug a space leak in the concurrent logger.
+
+# 0.7.1.0
+
 * Add parser for `Severity`.
 * Export `interpretDataLog`.
 * Export `local`.
