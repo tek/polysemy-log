@@ -98,6 +98,13 @@ in {
         "time"
       ];
     };
+    benchmarks.space = exe "polysemy-log" "benchmark" {
+      dependencies = [
+        "polysemy-log"
+        "polysemy-conc"
+        "polysemy-plugin"
+      ];
+    };
   };
 
   polysemy-log-co = merge (project "polysemy-log-co" "Polysemy-Log-Colog") {

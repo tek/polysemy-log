@@ -5,7 +5,6 @@ import qualified Control.Concurrent.Async as Base
 import qualified Polysemy.Conc as Conc
 import Polysemy.Conc (Queue, Race, interpretQueueTBM)
 import qualified Polysemy.Conc.Queue as Queue
-import Polysemy.Conc.Queue.Result (resultToMaybe)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (Seconds (Seconds))
 
@@ -40,20 +39,20 @@ interceptDataLogConcWith =
 {-# inline interceptDataLogConcWith #-}
 
 -- |Part of 'interceptDataLogConc'.
--- Loop as long as the proided queue is open and relay all dequeued messages to the ultimate interpreter, thereby
+-- Loop as long as the provided queue is open and relay all dequeued messages to the ultimate interpreter, thereby
 -- forcing the logging implementation to work in this thread.
 loggerThread ::
   ∀ msg r .
   Members [Queue msg, DataLog msg] r =>
   Sem r ()
-loggerThread = do
+loggerThread =
   spin
   where
     spin = do
-      next <- Queue.read
-      for_ (resultToMaybe next) \ msg -> do
+      next <- Queue.readMaybe
+      for_ next \ msg -> do
         DataLog.dataLog @msg msg
-        spin
+      when (isJust next) spin
 
 -- |Close the concurrent logger's queue and wait for one second to allow it to process any messages that have been
 -- queued.
