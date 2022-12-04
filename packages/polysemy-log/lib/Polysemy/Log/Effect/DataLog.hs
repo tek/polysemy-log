@@ -4,6 +4,7 @@
 module Polysemy.Log.Effect.DataLog where
 
 import Polysemy.Time (GhcTime)
+import Prelude hiding (local)
 
 import Polysemy.Log.Data.LogEntry (LogEntry, annotate)
 import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
