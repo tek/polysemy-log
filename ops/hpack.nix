@@ -82,7 +82,7 @@ in {
       "polysemy >= 1.6 && < 2"
       "ansi-terminal >= 0.10.3"
       "async"
-      "polysemy-conc ^>= 0.9"
+      "polysemy-conc >= 0.10 && < 0.12"
       "polysemy-time ^>= 0.5"
       "stm"
       "time"
@@ -113,7 +113,7 @@ in {
       "co-log ^>= 0.5"
       "co-log-concurrent ^>= 0.5"
       "co-log-polysemy ^>= 0.0.1.3"
-      "polysemy-conc ^>= 0.9"
+      "polysemy-conc >= 0.10 && < 0.12"
       "polysemy-time ^>= 0.5"
       "polysemy-log"
       "stm"
@@ -138,7 +138,7 @@ in {
     library.dependencies = [
       "polysemy-log"
       "di-polysemy ^>= 0.2"
-      "polysemy-conc ^>= 0.9"
+      "polysemy-conc >= 0.10 && < 0.12"
       "polysemy-time ^>= 0.5"
       "stm"
     ];

@@ -552,11 +552,11 @@
         "rev": "2ccb0624e0ca71482475ddf4718c5d503f55dd9a",
         "revCount": 231,
         "type": "git",
-        "url": "https://git.tryp.io/tek/polysemy-conc?tag=v0.9.0.0"
+        "url": "https://git.tryp.io/tek/polysemy-conc?tag=v0.11.0.0"
       },
       "original": {
         "type": "git",
-        "url": "https://git.tryp.io/tek/polysemy-conc?tag=v0.9.0.0"
+        "url": "https://git.tryp.io/tek/polysemy-conc?tag=v0.11.0.0"
       }
     },
     "polysemy-time": {

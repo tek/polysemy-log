@@ -3,7 +3,7 @@
 
   inputs = {
     hix.url = git+https://git.tryp.io/tek/hix;
-    polysemy-conc.url = git+https://git.tryp.io/tek/polysemy-conc?tag=v0.9.0.0;
+    polysemy-conc.url = git+https://git.tryp.io/tek/polysemy-conc?tag=v0.11.0.0;
   };
 
   outputs = { hix, polysemy-conc, ... }:
@@ -24,6 +24,7 @@
       co-log = hackage "0.5.0.0" "1ngdm3dyxlj8nxf3khhp6p88lc3y80d35n0sgvb7fkw5v5w0za8z";
       co-log-polysemy = jailbreak;
       co-log-concurrent = jailbreak unbreak;
+      polysemy-conc = hackage "0.11.0.0" "1gnxha1r8fwv164j6jwhw6zszknrc71vqyb03xd03c7hp2hgs46v";
     };
 
   in hix.lib.pro ({ config, lib, ... }: {

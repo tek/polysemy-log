@@ -100,7 +100,7 @@ library
     , di-polysemy ==0.2.*
     , incipit-core >=0.3
     , polysemy
-    , polysemy-conc ==0.9.*
+    , polysemy-conc >=0.10 && <0.12
     , polysemy-log
     , polysemy-time ==0.5.*
     , stm
