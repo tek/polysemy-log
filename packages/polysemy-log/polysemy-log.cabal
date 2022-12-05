@@ -113,9 +113,9 @@ library
     , async
     , base >=4.12 && <5
     , incipit-core >=0.3
-    , polysemy >=1.6
-    , polysemy-conc >=0.9
-    , polysemy-time >=0.5
+    , polysemy >=1.6 && <2
+    , polysemy-conc ==0.9.*
+    , polysemy-time ==0.5.*
     , stm
     , time
   mixins:

@@ -20,8 +20,10 @@
       type-errors = notest;
     };
 
-    all = { hackage, source, unbreak, jailbreak, ... }: {
+    all = { hackage, jailbreak, unbreak, ... }: {
+      co-log = hackage "0.5.0.0" "1ngdm3dyxlj8nxf3khhp6p88lc3y80d35n0sgvb7fkw5v5w0za8z";
       co-log-polysemy = jailbreak;
+      co-log-concurrent = jailbreak unbreak;
     };
 
   in hix.lib.pro ({ config, lib, ... }: {

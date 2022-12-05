@@ -97,12 +97,12 @@ library
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages
   build-depends:
       base >=4.12 && <5
-    , di-polysemy >=0.2
+    , di-polysemy ==0.2.*
     , incipit-core >=0.3
     , polysemy
-    , polysemy-conc >=0.9
+    , polysemy-conc ==0.9.*
     , polysemy-log
-    , polysemy-time >=0.5
+    , polysemy-time ==0.5.*
     , stm
   mixins:
       base hiding (Prelude)
@@ -186,7 +186,7 @@ test-suite polysemy-log-di-unit
     , polysemy
     , polysemy-log
     , polysemy-log-di
-    , polysemy-test >=0.6
+    , polysemy-test ==0.6.*
     , stm
     , tasty
   mixins:

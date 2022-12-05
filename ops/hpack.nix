@@ -79,11 +79,11 @@ in {
   polysemy-log = merge (project "polysemy-log" "Polysemy-Log") {
     synopsis = "Polysemy effects for logging";
     library.dependencies = [
-      "polysemy >= 1.6"
+      "polysemy >= 1.6 && < 2"
       "ansi-terminal >= 0.10.3"
       "async"
-      "polysemy-conc >= 0.9"
-      "polysemy-time >= 0.5"
+      "polysemy-conc ^>= 0.9"
+      "polysemy-time ^>= 0.5"
       "stm"
       "time"
     ];
@@ -110,20 +110,22 @@ in {
   polysemy-log-co = merge (project "polysemy-log-co" "Polysemy-Log-Colog") {
     synopsis = "Colog adapters for Polysemy.Log";
     library.dependencies = [
-      "co-log >= 0.4.0.1"
-      "co-log-polysemy >= 0.0.1.2"
-      "polysemy-conc >= 0.9"
-      "polysemy-time >= 0.5"
+      "co-log ^>= 0.5"
+      "co-log-concurrent ^>= 0.5"
+      "co-log-polysemy ^>= 0.0.1.3"
+      "polysemy-conc ^>= 0.9"
+      "polysemy-time ^>= 0.5"
       "polysemy-log"
       "stm"
     ];
     tests.polysemy-log-co-unit = exe "polysemy-log-co" "test" {
       dependencies = [
       "co-log"
+      "co-log-concurrent"
       "co-log-polysemy"
       "polysemy-log"
       "polysemy-log-co"
-      "polysemy-test >= 0.6"
+      "polysemy-test ^>= 0.6"
       "polysemy-time"
       "stm"
       "tasty"
@@ -135,16 +137,16 @@ in {
     synopsis = "Di adapters for Polysemy.Log";
     library.dependencies = [
       "polysemy-log"
-      "di-polysemy >= 0.2"
-      "polysemy-conc >= 0.9"
-      "polysemy-time >= 0.5"
+      "di-polysemy ^>= 0.2"
+      "polysemy-conc ^>= 0.9"
+      "polysemy-time ^>= 0.5"
       "stm"
     ];
     tests.polysemy-log-di-unit = exe "polysemy-log-di" "test" {
       dependencies = [
       "polysemy-log"
       "polysemy-log-di"
-      "polysemy-test >= 0.6"
+      "polysemy-test ^>= 0.6"
       "stm"
       "tasty"
       ];
