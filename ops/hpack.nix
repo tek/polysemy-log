@@ -48,7 +48,7 @@ let
 
   dependencies = [
       { name = "base"; version = ">= 4.12 && < 5"; mixin = "hiding (Prelude)"; }
-      { name = "incipit-core"; version = ">= 0.3"; mixin = ["(IncipitCore as Prelude)" "hiding (IncipitCore)"]; }
+      { name = "incipit-core"; version = ">= 0.4"; mixin = ["(IncipitCore as Prelude)" "hiding (IncipitCore)"]; }
       "polysemy"
     ];
 
@@ -79,11 +79,11 @@ in {
   polysemy-log = merge (project "polysemy-log" "Polysemy-Log") {
     synopsis = "Polysemy effects for logging";
     library.dependencies = [
-      "polysemy >= 1.6 && < 2"
+      "polysemy ^>= 1.9"
       "ansi-terminal >= 0.10.3"
       "async"
-      "polysemy-conc >= 0.10 && < 0.12"
-      "polysemy-time ^>= 0.5"
+      "polysemy-conc ^>= 0.12"
+      "polysemy-time ^>= 0.6"
       "stm"
       "time"
     ];
@@ -113,8 +113,8 @@ in {
       "co-log ^>= 0.5"
       "co-log-concurrent ^>= 0.5"
       "co-log-polysemy ^>= 0.0.1.3"
-      "polysemy-conc >= 0.10 && < 0.12"
-      "polysemy-time ^>= 0.5"
+      "polysemy-conc ^>= 0.12"
+      "polysemy-time ^>= 0.6"
       "polysemy-log"
       "stm"
     ];
@@ -125,7 +125,7 @@ in {
       "co-log-polysemy"
       "polysemy-log"
       "polysemy-log-co"
-      "polysemy-test ^>= 0.6"
+      "polysemy-test >= 0.6"
       "polysemy-time"
       "stm"
       "tasty"
@@ -138,15 +138,15 @@ in {
     library.dependencies = [
       "polysemy-log"
       "di-polysemy ^>= 0.2"
-      "polysemy-conc >= 0.10 && < 0.12"
-      "polysemy-time ^>= 0.5"
+      "polysemy-conc ^>= 0.12"
+      "polysemy-time ^>= 0.6"
       "stm"
     ];
     tests.polysemy-log-di-unit = exe "polysemy-log-di" "test" {
       dependencies = [
       "polysemy-log"
       "polysemy-log-di"
-      "polysemy-test ^>= 0.6"
+      "polysemy-test >= 0.6"
       "stm"
       "tasty"
       ];

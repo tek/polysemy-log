@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.7.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -112,10 +112,10 @@ library
       ansi-terminal >=0.10.3
     , async
     , base >=4.12 && <5
-    , incipit-core >=0.3
-    , polysemy >=1.6 && <2
-    , polysemy-conc >=0.10 && <0.12
-    , polysemy-time ==0.5.*
+    , incipit-core >=0.4
+    , polysemy ==1.9.*
+    , polysemy-conc ==0.12.*
+    , polysemy-time ==0.6.*
     , stm
     , time
   mixins:
@@ -201,7 +201,7 @@ test-suite polysemy-log-unit
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.12 && <5
-    , incipit-core >=0.3
+    , incipit-core >=0.4
     , polysemy
     , polysemy-conc
     , polysemy-log
@@ -286,7 +286,7 @@ benchmark space
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.12 && <5
-    , incipit-core >=0.3
+    , incipit-core >=0.4
     , polysemy
     , polysemy-conc
     , polysemy-log

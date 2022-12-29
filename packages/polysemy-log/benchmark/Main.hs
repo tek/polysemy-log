@@ -8,5 +8,5 @@ import Polysemy.Log.Stdout (interpretLogStdoutLevelConc)
 main :: IO ()
 main =
   runConc $ interpretLogStdoutLevelConc (Just Error) do
-    for_ @[] [1..50000] \ (i :: Int) ->
+    for_ @[] [1..500000] \ (i :: Int) ->
       Log.warn ("line " <> show i)
