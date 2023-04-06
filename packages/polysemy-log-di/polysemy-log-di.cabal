@@ -6,20 +6,20 @@ cabal-version: 2.2
 
 name:           polysemy-log-di
 version:        0.9.0.0
-synopsis:       Di adapters for Polysemy.Log
+synopsis:       Di adapters for polysemy-log
 description:    See https://hackage.haskell.org/package/polysemy-log-di/docs/Polysemy-Log-Di.html
 category:       Logging
 homepage:       https://github.com/tek/polysemy-log#readme
 bug-reports:    https://github.com/tek/polysemy-log/issues
 author:         Torsten Schmits
 maintainer:     hackage@tryp.io
-copyright:      2022 Torsten Schmits
+copyright:      2023 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
-    changelog.md
     readme.md
+    changelog.md
 
 source-repository head
   type: git
@@ -35,73 +35,73 @@ library
   default-extensions:
       AllowAmbiguousTypes
       ApplicativeDo
-      BangPatterns
-      BinaryLiterals
       BlockArguments
-      ConstraintKinds
       DataKinds
       DefaultSignatures
       DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DisambiguateRecordFields
+      DuplicateRecordFields
+      FunctionalDependencies
+      GADTs
+      LambdaCase
+      LiberalTypeSynonyms
+      MultiWayIf
+      OverloadedLabels
+      OverloadedLists
+      OverloadedStrings
+      PackageImports
+      PartialTypeSignatures
+      PatternSynonyms
+      QuantifiedConstraints
+      QuasiQuotes
+      RecordWildCards
+      RecursiveDo
+      RoleAnnotations
+      TemplateHaskell
+      TypeFamilies
+      TypeFamilyDependencies
+      UndecidableInstances
+      UnicodeSyntax
+      ViewPatterns
+      BangPatterns
+      BinaryLiterals
+      ConstraintKinds
       DeriveDataTypeable
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
       DeriveLift
       DeriveTraversable
-      DerivingStrategies
-      DerivingVia
-      DisambiguateRecordFields
       DoAndIfThenElse
-      DuplicateRecordFields
       EmptyCase
       EmptyDataDecls
       ExistentialQuantification
       FlexibleContexts
       FlexibleInstances
-      FunctionalDependencies
-      GADTs
       GeneralizedNewtypeDeriving
       InstanceSigs
       KindSignatures
-      LambdaCase
-      LiberalTypeSynonyms
       MultiParamTypeClasses
-      MultiWayIf
       NamedFieldPuns
-      OverloadedLabels
-      OverloadedLists
-      OverloadedStrings
-      PackageImports
-      PartialTypeSignatures
       PatternGuards
-      PatternSynonyms
       PolyKinds
-      QuantifiedConstraints
-      QuasiQuotes
       RankNTypes
-      RecordWildCards
-      RecursiveDo
-      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
-      TemplateHaskell
       TupleSections
       TypeApplications
-      TypeFamilies
-      TypeFamilyDependencies
       TypeOperators
       TypeSynonymInstances
-      UndecidableInstances
-      UnicodeSyntax
-      ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages
+  ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base >=4.12 && <5
+      base ==4.*
     , di-polysemy ==0.2.*
-    , incipit-core >=0.4
-    , polysemy
+    , incipit-core >=0.4 && <0.6
+    , polysemy ==1.9.*
     , polysemy-conc ==0.12.*
-    , polysemy-log
+    , polysemy-log >=0.9.0.0 && <0.10
     , polysemy-time ==0.6.*
     , stm
   mixins:
@@ -110,7 +110,7 @@ library
     , incipit-core hiding (IncipitCore)
   default-language: Haskell2010
 
-test-suite polysemy-log-di-unit
+test-suite polysemy-log-di-test
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
@@ -120,75 +120,75 @@ test-suite polysemy-log-di-unit
   default-extensions:
       AllowAmbiguousTypes
       ApplicativeDo
-      BangPatterns
-      BinaryLiterals
       BlockArguments
-      ConstraintKinds
       DataKinds
       DefaultSignatures
       DeriveAnyClass
+      DerivingStrategies
+      DerivingVia
+      DisambiguateRecordFields
+      DuplicateRecordFields
+      FunctionalDependencies
+      GADTs
+      LambdaCase
+      LiberalTypeSynonyms
+      MultiWayIf
+      OverloadedLabels
+      OverloadedLists
+      OverloadedStrings
+      PackageImports
+      PartialTypeSignatures
+      PatternSynonyms
+      QuantifiedConstraints
+      QuasiQuotes
+      RecordWildCards
+      RecursiveDo
+      RoleAnnotations
+      TemplateHaskell
+      TypeFamilies
+      TypeFamilyDependencies
+      UndecidableInstances
+      UnicodeSyntax
+      ViewPatterns
+      BangPatterns
+      BinaryLiterals
+      ConstraintKinds
       DeriveDataTypeable
       DeriveFoldable
       DeriveFunctor
       DeriveGeneric
       DeriveLift
       DeriveTraversable
-      DerivingStrategies
-      DerivingVia
-      DisambiguateRecordFields
       DoAndIfThenElse
-      DuplicateRecordFields
       EmptyCase
       EmptyDataDecls
       ExistentialQuantification
       FlexibleContexts
       FlexibleInstances
-      FunctionalDependencies
-      GADTs
       GeneralizedNewtypeDeriving
       InstanceSigs
       KindSignatures
-      LambdaCase
-      LiberalTypeSynonyms
       MultiParamTypeClasses
-      MultiWayIf
       NamedFieldPuns
-      OverloadedLabels
-      OverloadedLists
-      OverloadedStrings
-      PackageImports
-      PartialTypeSignatures
       PatternGuards
-      PatternSynonyms
       PolyKinds
-      QuantifiedConstraints
-      QuasiQuotes
       RankNTypes
-      RecordWildCards
-      RecursiveDo
-      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
-      TemplateHaskell
       TupleSections
       TypeApplications
-      TypeFamilies
-      TypeFamilyDependencies
       TypeOperators
       TypeSynonymInstances
-      UndecidableInstances
-      UnicodeSyntax
-      ViewPatterns
-  ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base >=4.12 && <5
-    , incipit-core >=0.4
-    , polysemy
+      base ==4.*
+    , incipit-core >=0.4 && <0.6
+    , polysemy ==1.9.*
     , polysemy-log
     , polysemy-log-di
     , polysemy-test >=0.6
     , stm
-    , tasty
+    , tasty ==1.4.*
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
