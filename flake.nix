@@ -11,6 +11,7 @@
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
     deps = [polysemy-conc];
+    gen-overrides.enable = true;
 
     overrides = { hackage, source, jailbreak, unbreak, ... }: {
       co-log = jailbreak (hackage "0.5.0.0" "1ngdm3dyxlj8nxf3khhp6p88lc3y80d35n0sgvb7fkw5v5w0za8z");
