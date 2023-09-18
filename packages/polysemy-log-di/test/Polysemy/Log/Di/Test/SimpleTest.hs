@@ -28,4 +28,4 @@ test_simpleDi :: UnitTest
 test_simpleDi = do
   runTestAuto do
     msgs <- interpretDiAtomic @Severity @() @(LogEntry LogMessage) (interpretLogDi' @() prog)
-    assertEq @_ @IO target (LogEntry.message <$> msgs)
+    assertEq @_ @IO target ((.message) <$> msgs)

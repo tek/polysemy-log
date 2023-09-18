@@ -35,5 +35,5 @@ test_logEntry :: UnitTest
 test_logEntry =
   runTestAuto do
     msgs <- interpretDataLogAtomic @(LogEntry LogMessage) (interpretLogDataLog' prog)
-    assertEq @_ @IO target (LogEntry.message <$> msgs)
-    assertEq @_ @IO sourceTarget (formatCaller . LogEntry.source <$> msgs)
+    assertEq @_ @IO target ((.message) <$> msgs)
+    assertEq @_ @IO sourceTarget (formatCaller . (.source) <$> msgs)

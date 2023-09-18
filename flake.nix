@@ -6,18 +6,23 @@
     polysemy-conc.url = "git+https://git.tryp.io/tek/polysemy-conc";
   };
 
-  outputs = { hix, polysemy-conc, ... }: hix.lib.pro {
-    ghcVersions = ["ghc810" "ghc90" "ghc92" "ghc94"];
+  outputs = {hix, polysemy-conc, ...}: hix.lib.pro ({config, ...}: {
+    ghcVersions = ["ghc92" "ghc94" "ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
     deps = [polysemy-conc];
+    compiler = "ghc94";
     gen-overrides.enable = true;
 
     overrides = { hackage, source, jailbreak, unbreak, ... }: {
-      co-log = jailbreak (hackage "0.5.0.0" "1ngdm3dyxlj8nxf3khhp6p88lc3y80d35n0sgvb7fkw5v5w0za8z");
-      co-log-polysemy = jailbreak;
-      co-log-concurrent = jailbreak unbreak;
-      polysemy-conc = hackage "0.12.1.0" "0cm2hkr58fhxr2w5pmq01m66qmd1yfzikjx5v7c0xsk8mdjv9f6g";
+      # polysemy-conc = hackage "0.12.1.0" "0cm2hkr58fhxr2w5pmq01m66qmd1yfzikjx5v7c0xsk8mdjv9f6g";
+    };
+
+    envs.ghc96.overrides = {hackage, ...}: {
+    };
+
+    envs.dev.overrides = {hackage, ...}: {
+      polysemy-conc = hackage "0.13.0.0" "13y02kpnpx45fvmklra78q31abpdsvlkcqv6crpkzf4212n88nd4";
     };
 
     cabal = {
@@ -51,7 +56,7 @@
         dependencies = [
           "ansi-terminal >= 0.10.3"
           "async"
-          "polysemy-conc ^>= 0.12"
+          "polysemy-conc >= 0.12 && < 0.14"
           "polysemy-time ^>= 0.6"
           "stm"
           "time"
@@ -62,10 +67,10 @@
         enable = true;
         dependencies = [
           "polysemy-log"
-          "polysemy-conc"
+          "polysemy-conc >= 0.12 && < 0.14"
           "polysemy-plugin ^>= 0.4.4"
-          "polysemy-test >= 0.6 && < 0.8"
-          "polysemy-time"
+          "polysemy-test >= 0.6 && < 0.9"
+          "polysemy-time ^>= 0.6"
           "tasty ^>= 1.4"
           "time"
         ];
@@ -125,9 +130,9 @@
       library = {
         enable = true;
         dependencies = [
-          "polysemy-log ^>= ${import ./ops/version.nix}"
+          config.packages.polysemy-log.dep.minor
           "di-polysemy ^>= 0.2"
-          "polysemy-conc ^>= 0.12"
+          "polysemy-conc >= 0.12 && < 0.14"
           "polysemy-time ^>= 0.6"
           "stm"
         ];
@@ -138,7 +143,7 @@
         dependencies = [
           "polysemy-log"
           "polysemy-log-di"
-          "polysemy-test >= 0.6"
+          "polysemy-test >= 0.6 && < 0.9"
           "stm"
           "tasty ^>= 1.4"
         ];
@@ -146,5 +151,5 @@
 
     };
 
-  };
+  });
 }

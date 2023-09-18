@@ -6,13 +6,13 @@ import Polysemy.Conc (Race)
 import Polysemy.Internal.Tactics (liftT)
 import Polysemy.Time (GhcTime)
 
-import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
-import Polysemy.Log.Effect.Log (Log)
 import qualified Polysemy.Log.Data.LogEntry as LogEntry
 import Polysemy.Log.Data.LogEntry (LogEntry)
 import qualified Polysemy.Log.Data.LogMessage as LogMessage
 import Polysemy.Log.Data.LogMessage (LogMessage)
 import Polysemy.Log.Data.Severity (Severity)
+import Polysemy.Log.Effect.DataLog (DataLog (DataLog, Local))
+import Polysemy.Log.Effect.Log (Log)
 import Polysemy.Log.Log (interpretLogDataLog, interpretLogDataLog', interpretLogDataLogConc)
 
 -- |Reinterpret 'DataLog' as 'Di.Di', using the provided function to extract the log level from the message.
@@ -51,7 +51,7 @@ interpretLogDi ::
   Members [Di.Di Severity path (LogEntry LogMessage), GhcTime] r =>
   InterpreterFor Log r
 interpretLogDi =
-  interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
+  interpretDataLogDi @_ @path @(LogEntry LogMessage) (\ m -> m.message.severity) .
   interpretLogDataLog .
   raiseUnder
 {-# inline interpretLogDi #-}
@@ -62,7 +62,7 @@ interpretLogDi' ::
   Members [Di.Di Severity path (LogEntry LogMessage), Embed IO] r =>
   InterpretersFor [Log, GhcTime] r
 interpretLogDi' =
-  interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
+  interpretDataLogDi @_ @path @(LogEntry LogMessage) (\ m -> m.message.severity) .
   interpretLogDataLog' .
   raiseUnder .
   raise2Under
@@ -75,7 +75,7 @@ interpretLogDiConc ::
   Int ->
   InterpreterFor Log r
 interpretLogDiConc maxQueued =
-  interpretDataLogDi @_ @path (LogMessage.severity . LogEntry.message) .
+  interpretDataLogDi @_ @path @(LogEntry LogMessage) (\ m -> m.message.severity) .
   interpretLogDataLogConc maxQueued .
   raiseUnder
 {-# inline interpretLogDiConc #-}

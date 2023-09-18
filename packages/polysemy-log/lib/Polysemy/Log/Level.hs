@@ -35,5 +35,5 @@ setLogLevel ::
   Sem r a ->
   Sem r a
 setLogLevel =
-  setLogLevelWith (LogMessage.severity . LogEntry.message)
+  setLogLevelWith @(LogEntry LogMessage) \ m -> m.message.severity
 {-# inline setLogLevel #-}
