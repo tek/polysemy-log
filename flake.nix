@@ -82,40 +82,40 @@
 
     };
 
-    packages.polysemy-log-co = {
-      src = ./packages/polysemy-log-co;
+    # packages.polysemy-log-co = {
+    #   src = ./packages/polysemy-log-co;
 
-      cabal.meta.synopsis = "Colog adapters for polysemy-log";
+    #   cabal.meta.synopsis = "Colog adapters for polysemy-log";
 
-      library = {
-        enable = true;
-        dependencies = [
-          "co-log ^>= 0.5"
-          "co-log-concurrent ^>= 0.5"
-          "co-log-polysemy ^>= 0.0.1.3"
-          "polysemy-conc ^>= 0.12"
-          "polysemy-time ^>= 0.6"
-          "polysemy-log ^>= ${import ./ops/version.nix}"
-          "stm"
-        ];
-      };
+    #   library = {
+    #     enable = true;
+    #     dependencies = [
+    #       "co-log ^>= 0.5"
+    #       "co-log-concurrent ^>= 0.5"
+    #       "co-log-polysemy ^>= 0.0.1.3"
+    #       "polysemy-conc >= 0.12 && < 0.14"
+    #       "polysemy-time ^>= 0.6"
+    #       config.packages.polysemy-log.dep.minor
+    #       "stm"
+    #     ];
+    #   };
 
-      test = {
-        enable = true;
-        dependencies = [
-          "co-log"
-          "co-log-concurrent"
-          "co-log-polysemy"
-          "polysemy-log"
-          "polysemy-log-co"
-          "polysemy-test >= 0.6"
-          "polysemy-time"
-          "stm"
-          "tasty ^>= 1.4"
-        ];
-      };
+    #   test = {
+    #     enable = true;
+    #     dependencies = [
+    #       "co-log"
+    #       "co-log-concurrent"
+    #       "co-log-polysemy"
+    #       "polysemy-log"
+    #       "polysemy-log-co"
+    #       "polysemy-test >= 0.6 && < 0.9"
+    #       "polysemy-time ^>= 0.6"
+    #       "stm"
+    #       "tasty ^>= 1.4"
+    #     ];
+    #   };
 
-    };
+    # };
 
     packages.polysemy-log-di = {
       src = ./packages/polysemy-log-di;
