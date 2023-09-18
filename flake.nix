@@ -14,13 +14,6 @@
     compiler = "ghc94";
     gen-overrides.enable = true;
 
-    overrides = { hackage, source, jailbreak, unbreak, ... }: {
-      # polysemy-conc = hackage "0.12.1.0" "0cm2hkr58fhxr2w5pmq01m66qmd1yfzikjx5v7c0xsk8mdjv9f6g";
-    };
-
-    envs.ghc96.overrides = {hackage, ...}: {
-    };
-
     envs.dev.overrides = {hackage, ...}: {
       polysemy-conc = hackage "0.13.0.0" "13y02kpnpx45fvmklra78q31abpdsvlkcqv6crpkzf4212n88nd4";
     };
@@ -54,7 +47,7 @@
       library = {
         enable = true;
         dependencies = [
-          "ansi-terminal >= 0.10.3"
+          "ansi-terminal >= 0.10.3 && < 0.12"
           "async"
           "polysemy-conc >= 0.12 && < 0.14"
           "polysemy-time ^>= 0.6"
