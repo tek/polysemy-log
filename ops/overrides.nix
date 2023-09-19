@@ -171,33 +171,72 @@ mkDerivation {
 ;
 };
 ghc92 = {
-  polysemy-resume = {
+  polysemy = {
   meta = {
-    sha256 = "1b9agh2qd0nrbd7cc5iabkzjb7g9lnzzy3pprvn33hr54va9p928";
-    ver = "0.7.0.0";
+    sha256 = "01vkiqxcjvvihgg8dvws76sfg0d98z8xyvpnj3g3nz02i078xf8j";
+    ver = "1.9.1.2";
   };
-  drv = { mkDerivation, base, incipit-core, lib, polysemy, polysemy-plugin
-, polysemy-test, stm, tasty, transformers
+  drv = { mkDerivation, async, base, Cabal, cabal-doctest, containers
+, doctest, first-class-families, hspec, hspec-discover
+, inspection-testing, lib, mtl, stm, syb, template-haskell
+, th-abstraction, transformers, type-errors, unagi-chan
 }:
 mkDerivation {
-  pname = "polysemy-resume";
-  version = "0.7.0.0";
-  src = /nix/store/2l5708xrry0mnv5znidx9affjinmpryq-source;
+  pname = "polysemy";
+  version = "1.9.1.2";
+  src = /nix/store/anfwczj25hh5zcm9y70vb1221wayi1v0-source;
+  setupHaskellDepends = [ base Cabal cabal-doctest ];
   libraryHaskellDepends = [
-    base incipit-core polysemy transformers
+    async base containers first-class-families mtl stm syb
+    template-haskell th-abstraction transformers type-errors unagi-chan
   ];
   testHaskellDepends = [
-    base incipit-core polysemy polysemy-plugin polysemy-test stm tasty
+    async base containers doctest first-class-families hspec
+    hspec-discover inspection-testing mtl stm syb template-haskell
+    th-abstraction transformers type-errors unagi-chan
   ];
-  homepage = "https://github.com/tek/polysemy-resume#readme";
-  description = "Polysemy error tracking";
-  license = "BSD-2-Clause-Patent";
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/polysemy-research/polysemy#readme";
+  description = "Higher-order, low-boilerplate free monads";
+  license = lib.licenses.bsd3;
 }
 ;
 }
 ;
 };
 ghc94 = {
+  polysemy = {
+  meta = {
+    sha256 = "01vkiqxcjvvihgg8dvws76sfg0d98z8xyvpnj3g3nz02i078xf8j";
+    ver = "1.9.1.2";
+  };
+  drv = { mkDerivation, async, base, Cabal, cabal-doctest, containers
+, doctest, first-class-families, hspec, hspec-discover
+, inspection-testing, lib, mtl, stm, syb, template-haskell
+, th-abstraction, transformers, type-errors, unagi-chan
+}:
+mkDerivation {
+  pname = "polysemy";
+  version = "1.9.1.2";
+  src = /nix/store/anfwczj25hh5zcm9y70vb1221wayi1v0-source;
+  setupHaskellDepends = [ base Cabal cabal-doctest ];
+  libraryHaskellDepends = [
+    async base containers first-class-families mtl stm syb
+    template-haskell th-abstraction transformers type-errors unagi-chan
+  ];
+  testHaskellDepends = [
+    async base containers doctest first-class-families hspec
+    hspec-discover inspection-testing mtl stm syb template-haskell
+    th-abstraction transformers type-errors unagi-chan
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/polysemy-research/polysemy#readme";
+  description = "Higher-order, low-boilerplate free monads";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   polysemy-resume = {
   meta = {
     sha256 = "1b9agh2qd0nrbd7cc5iabkzjb7g9lnzzy3pprvn33hr54va9p928";
@@ -326,31 +365,6 @@ mkDerivation {
   homepage = "https://github.com/polysemy-research/polysemy#readme";
   description = "Higher-order, low-boilerplate free monads";
   license = lib.licenses.bsd3;
-}
-;
-}
-;
-  polysemy-resume = {
-  meta = {
-    sha256 = "1b9agh2qd0nrbd7cc5iabkzjb7g9lnzzy3pprvn33hr54va9p928";
-    ver = "0.7.0.0";
-  };
-  drv = { mkDerivation, base, incipit-core, lib, polysemy, polysemy-plugin
-, polysemy-test, stm, tasty, transformers
-}:
-mkDerivation {
-  pname = "polysemy-resume";
-  version = "0.7.0.0";
-  src = /nix/store/2l5708xrry0mnv5znidx9affjinmpryq-source;
-  libraryHaskellDepends = [
-    base incipit-core polysemy transformers
-  ];
-  testHaskellDepends = [
-    base incipit-core polysemy polysemy-plugin polysemy-test stm tasty
-  ];
-  homepage = "https://github.com/tek/polysemy-resume#readme";
-  description = "Polysemy error tracking";
-  license = "BSD-2-Clause-Patent";
 }
 ;
 }
