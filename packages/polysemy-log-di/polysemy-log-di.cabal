@@ -132,7 +132,7 @@ test-suite polysemy-log-di-test
     , polysemy ==1.9.*
     , polysemy-log
     , polysemy-log-di
-    , polysemy-test >=0.6 && <0.9
+    , polysemy-test >=0.6 && <0.10
     , stm
     , tasty ==1.4.*
   mixins:

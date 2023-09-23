@@ -15,7 +15,7 @@
     gen-overrides.enable = true;
 
     envs.dev.overrides = {hackage, ...}: {
-      polysemy-conc = hackage "0.13.0.0" "13y02kpnpx45fvmklra78q31abpdsvlkcqv6crpkzf4212n88nd4";
+      polysemy-conc = hackage "0.13.0.1" "01zfjx1kmrw5hnqyckrwwkdzjbihfn6y516lw7lffhqfp354522b";
     };
 
     cabal = {
@@ -62,7 +62,7 @@
           "polysemy-log"
           "polysemy-conc >= 0.12 && < 0.14"
           "polysemy-plugin ^>= 0.4.4"
-          "polysemy-test >= 0.6 && < 0.9"
+          "polysemy-test >= 0.6 && < 0.10"
           "polysemy-time ^>= 0.6"
           "tasty ^>= 1.4"
           "time"
@@ -106,7 +106,7 @@
     #       "co-log-polysemy"
     #       "polysemy-log"
     #       "polysemy-log-co"
-    #       "polysemy-test >= 0.6 && < 0.9"
+    #       "polysemy-test >= 0.6 && < 0.10"
     #       "polysemy-time ^>= 0.6"
     #       "stm"
     #       "tasty ^>= 1.4"
@@ -136,7 +136,7 @@
         dependencies = [
           "polysemy-log"
           "polysemy-log-di"
-          "polysemy-test >= 0.6 && < 0.9"
+          "polysemy-test >= 0.6 && < 0.10"
           "stm"
           "tasty ^>= 1.4"
         ];
