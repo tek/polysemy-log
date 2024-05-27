@@ -3,19 +3,32 @@
 
   inputs = {
     hix.url = "git+https://git.tryp.io/tek/hix";
-    polysemy-conc.url = "git+https://git.tryp.io/tek/polysemy-conc";
   };
 
-  outputs = {hix, polysemy-conc, ...}: hix.lib.pro ({config, ...}: {
-    ghcVersions = ["ghc92" "ghc94" "ghc96"];
+  outputs = { hix, ... }: hix.lib.pro ({config, ...}: let
+    overrides = {jailbreak, unbreak, ...}: {
+      polysemy-test = jailbreak unbreak;
+      polysemy-conc = jailbreak;
+    };
+  in {
+    ghcVersions = ["ghc94" "ghc96" "ghc98"];
+    compat.versions = ["ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
-    deps = [polysemy-conc];
-    compiler = "ghc94";
     gen-overrides.enable = true;
+    managed = {
+      enable = true;
+      lower.enable = true;
+      envs.solverOverrides = overrides;
+      latest.compiler = "ghc98";
+    };
+    internal.hixCli.dev = true;
 
-    envs.dev.overrides = {hackage, ...}: {
-      polysemy-conc = hackage "0.13.0.1" "01zfjx1kmrw5hnqyckrwwkdzjbihfn6y516lw7lffhqfp354522b";
+    inherit overrides;
+
+    envs.lower.overrides = {notest, ...}: {
+      polysemy-conc = notest;
+      polysemy-process = notest;
     };
 
     cabal = {
