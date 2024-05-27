@@ -3,32 +3,36 @@
 
   inputs = {
     hix.url = "git+https://git.tryp.io/tek/hix";
-    polysemy-conc.url = "git+https://git.tryp.io/tek/polysemy-conc";
   };
 
-  outputs = {hix, polysemy-conc, ...}: hix.lib.pro ({config, ...}: {
-    ghcVersions = ["ghc92" "ghc94" "ghc96"];
+  outputs = { hix, ... }: hix.lib.pro ({config, ...}: let
+    overrides = {jailbreak, unbreak, ...}: {
+      polysemy-test = jailbreak unbreak;
+      polysemy-conc = jailbreak;
+    };
+  in {
+    ghcVersions = ["ghc94" "ghc96" "ghc98"];
+    compat.versions = ["ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
-    deps = [polysemy-conc];
-    compiler = "ghc94";
     gen-overrides.enable = true;
-
-    envs.dev.overrides = {hackage, ...}: {
-      polysemy-conc = hackage "0.13.0.1" "01zfjx1kmrw5hnqyckrwwkdzjbihfn6y516lw7lffhqfp354522b";
+    managed = {
+      enable = true;
+      lower.enable = true;
+      envs.solverOverrides = overrides;
+      latest.compiler = "ghc98";
     };
+
+    inherit overrides;
 
     cabal = {
       license = "BSD-2-Clause-Patent";
       license-file = "LICENSE";
       author = "Torsten Schmits";
-      dependencies = ["polysemy ^>= 1.9"];
+      dependencies = ["polysemy"];
       prelude = {
         enable = true;
-        package = {
-          name = "incipit-core";
-          version = ">= 0.4 && < 0.6";
-        };
+        package = "incipit-core";
         module = "IncipitCore";
       };
       meta = {
@@ -47,10 +51,10 @@
       library = {
         enable = true;
         dependencies = [
-          "ansi-terminal >= 0.10.3 && < 0.12"
+          "ansi-terminal"
           "async"
-          "polysemy-conc >= 0.12 && < 0.14"
-          "polysemy-time ^>= 0.6"
+          "polysemy-conc"
+          "polysemy-time"
           "stm"
           "time"
         ];
@@ -60,11 +64,11 @@
         enable = true;
         dependencies = [
           "polysemy-log"
-          "polysemy-conc >= 0.12 && < 0.14"
-          "polysemy-plugin ^>= 0.4.4"
-          "polysemy-test >= 0.6 && < 0.10"
-          "polysemy-time ^>= 0.6"
-          "tasty ^>= 1.4"
+          "polysemy-conc"
+          "polysemy-plugin"
+          "polysemy-test"
+          "polysemy-time"
+          "tasty"
           "time"
         ];
       };
@@ -74,7 +78,7 @@
         dependencies = [
           "polysemy-log"
           "polysemy-conc"
-          "polysemy-plugin ^>= 0.4.4"
+          "polysemy-plugin"
         ];
       };
 
@@ -124,9 +128,9 @@
         enable = true;
         dependencies = [
           config.packages.polysemy-log.dep.minor
-          "di-polysemy ^>= 0.2"
-          "polysemy-conc >= 0.12 && < 0.14"
-          "polysemy-time ^>= 0.6"
+          "di-polysemy"
+          "polysemy-conc"
+          "polysemy-time"
           "stm"
         ];
       };
@@ -136,9 +140,9 @@
         dependencies = [
           "polysemy-log"
           "polysemy-log-di"
-          "polysemy-test >= 0.6 && < 0.10"
+          "polysemy-test"
           "stm"
-          "tasty ^>= 1.4"
+          "tasty"
         ];
       };
 
