@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -60,6 +60,7 @@ library
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -82,13 +83,13 @@ library
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      ansi-terminal >=0.10.3 && <0.12
+      ansi-terminal
     , async
-    , base ==4.*
-    , incipit-core >=0.4 && <0.6
-    , polysemy ==1.9.*
-    , polysemy-conc >=0.12 && <0.14
-    , polysemy-time ==0.6.*
+    , base
+    , incipit-core
+    , polysemy
+    , polysemy-conc
+    , polysemy-time
     , stm
     , time
   mixins:
@@ -124,6 +125,7 @@ test-suite polysemy-log-test
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -146,15 +148,15 @@ test-suite polysemy-log-test
       NoFieldSelectors
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , incipit-core >=0.4 && <0.6
-    , polysemy ==1.9.*
-    , polysemy-conc >=0.12 && <0.14
+      base
+    , incipit-core
+    , polysemy
+    , polysemy-conc
     , polysemy-log
-    , polysemy-plugin >=0.4.4 && <0.5
-    , polysemy-test >=0.6 && <0.10
-    , polysemy-time ==0.6.*
-    , tasty ==1.4.*
+    , polysemy-plugin
+    , polysemy-test
+    , polysemy-time
+    , tasty
     , time
   mixins:
       base hiding (Prelude)
@@ -182,6 +184,7 @@ benchmark space
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -204,12 +207,12 @@ benchmark space
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , incipit-core >=0.4 && <0.6
-    , polysemy ==1.9.*
+      base
+    , incipit-core
+    , polysemy
     , polysemy-conc
     , polysemy-log
-    , polysemy-plugin >=0.4.4 && <0.5
+    , polysemy-plugin
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
