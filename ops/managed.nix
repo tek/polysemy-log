@@ -3,94 +3,108 @@
     polysemy-log = {
       ansi-terminal = {
         lower = "1.1";
-        upper = null;
+        upper = "1.1";
       };
       async = {
         lower = "2.2.4";
-        upper = null;
+        upper = "2.3";
       };
       base = {
         lower = "4.17.2.1";
-        upper = null;
+        upper = "4.20";
       };
       incipit-core = {
         lower = "0.6.0.0";
-        upper = null;
+        upper = "0.7";
       };
       polysemy = {
         lower = "1.9.0.0";
-        upper = null;
+        upper = "1.10";
       };
       polysemy-conc = {
         lower = "0.14.0.0";
-        upper = null;
+        upper = "0.15";
       };
       polysemy-plugin = {
         lower = "0.4.4.0";
-        upper = null;
+        upper = "0.5";
       };
       polysemy-test = {
         lower = "0.7.0.0";
-        upper = null;
+        upper = "0.11";
       };
       polysemy-time = {
         lower = "0.7.0.0";
-        upper = null;
+        upper = "0.8";
       };
       stm = {
         lower = "2.5.1.0";
-        upper = null;
+        upper = "2.6";
       };
       tasty = {
         lower = "1.4.2";
-        upper = null;
+        upper = "1.5";
       };
       time = {
         lower = "1.12.2";
-        upper = null;
+        upper = "1.13";
       };
     };
     polysemy-log-di = {
       base = {
         lower = "4.17.2.1";
-        upper = null;
+        upper = "4.20";
       };
       di-polysemy = {
         lower = "0.2.0.0";
-        upper = null;
+        upper = "0.3";
       };
       incipit-core = {
         lower = "0.6.0.0";
-        upper = null;
+        upper = "0.7";
       };
       polysemy = {
         lower = "1.9.0.0";
-        upper = null;
+        upper = "1.10";
       };
       polysemy-conc = {
         lower = "0.14.0.0";
-        upper = null;
+        upper = "0.15";
       };
       polysemy-test = {
         lower = "0.7.0.0";
-        upper = null;
+        upper = "0.11";
       };
       polysemy-time = {
         lower = "0.7.0.0";
-        upper = null;
+        upper = "0.8";
       };
       stm = {
         lower = "2.5.1.0";
-        upper = null;
+        upper = "2.6";
       };
       tasty = {
         lower = "1.4.2";
-        upper = null;
+        upper = "1.5";
       };
     };
   };
   versions = {
-    latest = {};
+    latest = {
+      ansi-terminal = "1.0.2";
+      async = "2.2.5";
+      base = "4.19.1.0";
+      di-polysemy = "0.2.0.0";
+      incipit-core = "0.6.0.0";
+      polysemy = "1.9.1.3";
+      polysemy-conc = "0.14.0.0";
+      polysemy-plugin = "0.4.5.2";
+      polysemy-test = "0.10.0.0";
+      polysemy-time = "0.7.0.0";
+      stm = "2.5.2.1";
+      tasty = "1.4.3";
+      time = "1.12.2";
+    };
     lower = {
       ansi-terminal = "1.1";
       async = "2.2.4";
@@ -125,6 +139,32 @@
     };
   };
   overrides = {
+    latest = {
+      incipit-base = {
+        version = "0.6.0.0";
+        hash = "1hck35yfy0dcgimgnd90w02zvv7x7k456bljrbx2mwxalnhav9gf";
+      };
+      incipit-core = {
+        version = "0.6.0.0";
+        hash = "0gmngb4pinkpbsnclrgs6x016ffnls1g4xzz0hdzg2rpyl63d5ph";
+      };
+      polysemy-conc = {
+        version = "0.14.0.0";
+        hash = "04z9pjcic50w3sih4slfx4x1cfx1r9hfa45gbwiy6v63pg3jc7pq";
+      };
+      polysemy-resume = {
+        version = "0.9.0.0";
+        hash = "1achlwdkycbgjlcdkq641r481m1bl9rb7fklbwfb9nnb6xmqyzms";
+      };
+      polysemy-test = {
+        version = "0.10.0.0";
+        hash = "0vdsid9xg41szx4g37lmg44h31q7j9ll805rgfrpr1ylf4f3x1hp";
+      };
+      polysemy-time = {
+        version = "0.7.0.0";
+        hash = "0imvjiybxrsggh72pfkd226pvzhz5hg1zvxyd72b91a3xz1vynmq";
+      };
+    };
     lower = {
       aeson = {
         version = "2.1.2.1";
