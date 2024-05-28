@@ -83,15 +83,15 @@ library
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      ansi-terminal
-    , async
-    , base
-    , incipit-core
-    , polysemy
-    , polysemy-conc
-    , polysemy-time
-    , stm
-    , time
+      ansi-terminal >=0.9
+    , async >=2.2.4
+    , base >=4.17.2.1
+    , incipit-core >=0.4.1.0
+    , polysemy >=1.7.0.0
+    , polysemy-conc >=0.11.1.0
+    , polysemy-time >=0.6.0.0
+    , stm >=2.5.1.0
+    , time >=1.12.2
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -148,16 +148,16 @@ test-suite polysemy-log-test
       NoFieldSelectors
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base
-    , incipit-core
-    , polysemy
-    , polysemy-conc
+      base >=4.17.2.1
+    , incipit-core >=0.4.1.0
+    , polysemy >=1.7.0.0
+    , polysemy-conc >=0.11.1.0
     , polysemy-log
-    , polysemy-plugin
-    , polysemy-test
-    , polysemy-time
-    , tasty
-    , time
+    , polysemy-plugin >=0.4.4.0
+    , polysemy-test >=0.6.0.0
+    , polysemy-time >=0.6.0.0
+    , tasty >=1.4.2
+    , time >=1.12.2
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -207,12 +207,12 @@ benchmark space
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base
-    , incipit-core
-    , polysemy
-    , polysemy-conc
+      base >=4.17.2.1
+    , incipit-core >=0.4.1.0
+    , polysemy >=1.7.0.0
+    , polysemy-conc >=0.11.1.0
     , polysemy-log
-    , polysemy-plugin
+    , polysemy-plugin >=0.4.4.0
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
