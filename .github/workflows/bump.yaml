@@ -22,7 +22,7 @@ jobs:
         name: tek
         signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
     - id: bounds
-      run: nix run .#bump -- --output=ga-pr
+      run: nix run .#bump -- --output=ga-pr --build-timeout=3600
     - name: pr
       if: steps.bounds.outputs.commit-message
       uses: peter-evans/create-pull-request@v5

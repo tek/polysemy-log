@@ -26,11 +26,6 @@
 
     inherit overrides;
 
-    envs.lower.overrides = {notest, ...}: {
-      polysemy-conc = notest;
-      polysemy-process = notest;
-    };
-
     cabal = {
       license = "BSD-2-Clause-Patent";
       license-file = "LICENSE";
