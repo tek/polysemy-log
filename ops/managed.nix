@@ -97,7 +97,7 @@
       di-polysemy = "0.2.0.0";
       incipit-core = "0.6.0.0";
       polysemy = "1.9.1.3";
-      polysemy-conc = "0.14.0.0";
+      polysemy-conc = "0.14.1.0";
       polysemy-plugin = "0.4.5.2";
       polysemy-test = "0.10.0.0";
       polysemy-time = "0.7.0.0";
@@ -149,8 +149,8 @@
         hash = "0gmngb4pinkpbsnclrgs6x016ffnls1g4xzz0hdzg2rpyl63d5ph";
       };
       polysemy-conc = {
-        version = "0.14.0.0";
-        hash = "04z9pjcic50w3sih4slfx4x1cfx1r9hfa45gbwiy6v63pg3jc7pq";
+        version = "0.14.1.0";
+        hash = "0lzgw6dqhw0dv00bn9aasys2v8iddxyck5vmpglrp92chba55jxv";
       };
       polysemy-resume = {
         version = "0.9.0.0";

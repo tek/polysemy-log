@@ -52,8 +52,8 @@ mkDerivation {
 ;
   polysemy-conc = {
   meta = {
-    sha256 = "04z9pjcic50w3sih4slfx4x1cfx1r9hfa45gbwiy6v63pg3jc7pq";
-    ver = "0.14.0.0";
+    sha256 = "0lzgw6dqhw0dv00bn9aasys2v8iddxyck5vmpglrp92chba55jxv";
+    ver = "0.14.1.0";
   };
   drv = { mkDerivation, async, base, hedgehog, incipit-core, lib, polysemy
 , polysemy-plugin, polysemy-resume, polysemy-test, polysemy-time
@@ -61,15 +61,15 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "polysemy-conc";
-  version = "0.14.0.0";
-  src = /nix/store/9fg8k5bs0n777v5fgxsw5jxqcidhhcf7-source;
+  version = "0.14.1.0";
+  src = /nix/store/xi7sav0g2qpr85z5k0ds7k7f5w5b16gj-source;
   libraryHaskellDepends = [
     async base incipit-core polysemy polysemy-resume polysemy-time stm
     stm-chans torsor unagi-chan
   ];
   testHaskellDepends = [
     async base hedgehog incipit-core polysemy polysemy-plugin
-    polysemy-test polysemy-time tasty tasty-hedgehog time
+    polysemy-test polysemy-time tasty tasty-hedgehog time torsor
   ];
   homepage = "https://github.com/tek/polysemy-conc#readme";
   description = "Polysemy effects for concurrency";
