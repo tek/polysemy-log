@@ -83,7 +83,7 @@ library
       NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      ansi-terminal >=0.9 && <1.2
+      ansi-terminal >=1.0 && <1.2
     , async >=2.2.4 && <2.3
     , base >=4.17.2.1 && <4.21
     , incipit-core >=0.4.1.0 && <0.7

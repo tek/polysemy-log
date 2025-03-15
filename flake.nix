@@ -5,7 +5,6 @@
 
   outputs = { hix, ... }: hix.lib.pro ({config, ...}: {
     ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
-    compat.versions = ["ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
     gen-overrides.enable = true;
