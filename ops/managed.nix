@@ -50,6 +50,52 @@
         upper = "1.13";
       };
     };
+    polysemy-log-co = {
+      base = {
+        lower = "4.17.2.1";
+        upper = "4.21";
+      };
+      co-log = {
+        lower = null;
+        upper = "0.7";
+      };
+      co-log-concurrent = {
+        lower = null;
+        upper = "0.6";
+      };
+      co-log-polysemy = {
+        lower = null;
+        upper = "0.1";
+      };
+      incipit-core = {
+        lower = "0.4.1.0";
+        upper = "0.7";
+      };
+      polysemy = {
+        lower = "1.7.0.0";
+        upper = "1.10";
+      };
+      polysemy-conc = {
+        lower = "0.11.1.0";
+        upper = "0.15";
+      };
+      polysemy-test = {
+        lower = "0.6.0.0";
+        upper = "0.11";
+      };
+      polysemy-time = {
+        lower = "0.6.0.0";
+        upper = "0.8";
+      };
+      stm = {
+        lower = "2.5.1.0";
+        upper = "2.6";
+      };
+      tasty = {
+        lower = "1.4.2";
+        upper = "1.6";
+      };
+    };
     polysemy-log-di = {
       base = {
         lower = "4.17.2.1";
@@ -94,6 +140,9 @@
       ansi-terminal = "1.1.2";
       async = "2.2.5";
       base = "4.20.0.0";
+      co-log = "0.6.1.2";
+      co-log-concurrent = "0.5.1.0";
+      co-log-polysemy = "0.0.1.6";
       di-polysemy = "0.2.0.0";
       incipit-core = "0.6.1.0";
       polysemy = "1.9.2.0";
@@ -151,6 +200,14 @@
       cabal-doctest = {
         version = "1.0.11";
         hash = "152rqpicqpvigjpy4rf1kjlwny1c7ys1r0r123wdjafvv1igflii";
+      };
+      co-log = {
+        version = "0.6.1.2";
+        hash = "1q8d7ggwgpgqpkb6k0g967ld2sx8q3ad44iiv3f15rzqk7zwmnnx";
+      };
+      co-log-polysemy = {
+        version = "0.0.1.6";
+        hash = "1rkzc02qv1nj1af1vjp4a8b16dpr3vc6wlwd03pw9xx23syjb6lq";
       };
       concurrent-output = {
         version = "1.10.21";

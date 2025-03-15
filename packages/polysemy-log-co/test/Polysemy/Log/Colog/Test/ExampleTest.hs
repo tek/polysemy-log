@@ -35,4 +35,4 @@ main :: IO ()
 main =
   runM do
     interpretLogStdout progSimple
-    runLogAction @IO (contramap message logTextStdout) $ interpretDataLogColog @Message progData
+    runLogAction @IO @Message (contramap (.message) logTextStdout) $ interpretDataLogColog @Message progData

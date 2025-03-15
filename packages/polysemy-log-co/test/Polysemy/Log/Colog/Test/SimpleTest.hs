@@ -5,12 +5,11 @@ import Polysemy.Time (interpretTimeGhc)
 
 import Polysemy.Log.Colog.Atomic (interpretCologAtomic)
 import Polysemy.Log.Colog.Colog (interpretLogColog)
+import Polysemy.Log.Data.LogEntry (LogEntry (..))
+import Polysemy.Log.Data.LogMessage (LogMessage (LogMessage))
+import qualified Polysemy.Log.Data.Severity as Severity
 import qualified Polysemy.Log.Effect.Log as Log
 import Polysemy.Log.Effect.Log (Log)
-import qualified Polysemy.Log.Data.LogEntry as LogEntry (LogEntry(..))
-import Polysemy.Log.Data.LogEntry (LogEntry)
-import Polysemy.Log.Data.LogMessage (LogMessage(LogMessage))
-import qualified Polysemy.Log.Data.Severity as Severity
 
 prog ::
   Members [Log, AtomicState [LogEntry LogMessage]] r =>
@@ -28,4 +27,4 @@ test_simpleColog :: UnitTest
 test_simpleColog =
   runTestAuto do
     msgs <- interpretCologAtomic @(LogEntry LogMessage) (interpretTimeGhc (interpretLogColog prog))
-    assertEq @_ @IO target (LogEntry.message <$> msgs)
+    assertEq @_ @IO target ((.message) <$> msgs)

@@ -69,40 +69,40 @@
 
     };
 
-    # packages.polysemy-log-co = {
-    #   src = ./packages/polysemy-log-co;
+    packages.polysemy-log-co = {
+      src = ./packages/polysemy-log-co;
 
-    #   cabal.meta.synopsis = "Colog adapters for polysemy-log";
+      cabal.meta.synopsis = "Colog adapters for polysemy-log";
 
-    #   library = {
-    #     enable = true;
-    #     dependencies = [
-    #       "co-log ^>= 0.5"
-    #       "co-log-concurrent ^>= 0.5"
-    #       "co-log-polysemy ^>= 0.0.1.3"
-    #       "polysemy-conc >= 0.12 && < 0.14"
-    #       "polysemy-time ^>= 0.6"
-    #       config.packages.polysemy-log.dep.minor
-    #       "stm"
-    #     ];
-    #   };
+      library = {
+        enable = true;
+        dependencies = [
+          "co-log ^>= 0.5"
+          "co-log-concurrent ^>= 0.5"
+          "co-log-polysemy ^>= 0.0.1.3"
+          "polysemy-conc >= 0.12 && < 0.14"
+          "polysemy-time ^>= 0.6"
+          config.packages.polysemy-log.dep.minor
+          "stm"
+        ];
+      };
 
-    #   test = {
-    #     enable = true;
-    #     dependencies = [
-    #       "co-log"
-    #       "co-log-concurrent"
-    #       "co-log-polysemy"
-    #       "polysemy-log"
-    #       "polysemy-log-co"
-    #       "polysemy-test >= 0.6 && < 0.10"
-    #       "polysemy-time ^>= 0.6"
-    #       "stm"
-    #       "tasty ^>= 1.4"
-    #     ];
-    #   };
+      test = {
+        enable = true;
+        dependencies = [
+          "co-log"
+          "co-log-concurrent"
+          "co-log-polysemy"
+          "polysemy-log"
+          "polysemy-log-co"
+          "polysemy-test >= 0.6 && < 0.10"
+          "polysemy-time ^>= 0.6"
+          "stm"
+          "tasty ^>= 1.4"
+        ];
+      };
 
-    # };
+    };
 
     packages.polysemy-log-di = {
       src = ./packages/polysemy-log-di;
@@ -139,6 +139,8 @@
       envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
         bytebuild = jailbreak;
         chronos = jailbreak;
+        co-log = jailbreak;
+        co-log-concurrent = jailbreak;
         incipit-base = jailbreak;
         incipit-core = jailbreak;
         polysemy-conc = jailbreak;
@@ -151,11 +153,29 @@
 
     overrides = {jailbreak, unbreak, hackage, ...}: {
       polysemy-test = unbreak;
+      co-log-concurrent = jailbreak;
+    };
+
+    envs.latest.overrides = {jailbreak, ...}: {
+      bytebuild = jailbreak;
+      chronos = jailbreak;
+      incipit-base = jailbreak;
+      incipit-core = jailbreak;
+      polysemy-conc = jailbreak;
+      polysemy-resume = jailbreak;
+      polysemy-test = jailbreak;
+      polysemy-time = jailbreak;
+      co-log-concurrent = jailbreak;
+    };
+
+    envs.ghc94.overrides = {hackage, jailbreak, ...}: {
+      co-log = hackage "0.6.1.2" "1q8d7ggwgpgqpkb6k0g967ld2sx8q3ad44iiv3f15rzqk7zwmnnx";
     };
 
     envs.ghc910.overrides = {hackage, jailbreak, ...}: {
       bytebuild = jailbreak;
       chronos = jailbreak;
+      co-log = jailbreak;
       incipit-base = jailbreak;
       incipit-core = jailbreak;
       polysemy-conc = jailbreak;
