@@ -1,29 +1,14 @@
 {
   description = "Polysemy Effects for Logging";
 
-  inputs = {
-    hix.url = "git+https://git.tryp.io/tek/hix";
-  };
+  inputs.hix.url = "git+https://git.tryp.io/tek/hix";
 
-  outputs = { hix, ... }: hix.lib.pro ({config, ...}: let
-    overrides = {jailbreak, unbreak, ...}: {
-      polysemy-test = jailbreak unbreak;
-      polysemy-conc = jailbreak;
-    };
-  in {
-    ghcVersions = ["ghc94" "ghc96" "ghc98"];
+  outputs = { hix, ... }: hix.lib.pro ({config, ...}: {
+    ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
     compat.versions = ["ghc96"];
     hackage.versionFile = "ops/version.nix";
     main = "polysemy-log";
     gen-overrides.enable = true;
-    managed = {
-      enable = true;
-      lower.enable = true;
-      envs.solverOverrides = overrides;
-      latest.compiler = "ghc98";
-    };
-
-    inherit overrides;
 
     cabal = {
       license = "BSD-2-Clause-Patent";
@@ -146,6 +131,37 @@
         ];
       };
 
+    };
+
+    managed = {
+      enable = true;
+      lower.enable = true;
+      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
+        bytebuild = jailbreak;
+        chronos = jailbreak;
+        incipit-base = jailbreak;
+        incipit-core = jailbreak;
+        polysemy-conc = jailbreak;
+        polysemy-resume = jailbreak;
+        polysemy-test = jailbreak unbreak;
+        polysemy-time = jailbreak;
+      };
+      latest.compiler = "ghc910";
+    };
+
+    overrides = {jailbreak, unbreak, hackage, ...}: {
+      polysemy-test = unbreak;
+    };
+
+    envs.ghc910.overrides = {hackage, jailbreak, ...}: {
+      bytebuild = jailbreak;
+      chronos = jailbreak;
+      incipit-base = jailbreak;
+      incipit-core = jailbreak;
+      polysemy-conc = jailbreak;
+      polysemy-resume = jailbreak;
+      polysemy-test = jailbreak;
+      polysemy-time = jailbreak;
     };
 
   });
