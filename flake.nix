@@ -58,11 +58,11 @@
       library = {
         enable = true;
         dependencies = [
-          "co-log ^>= 0.5"
-          "co-log-concurrent ^>= 0.5"
-          "co-log-polysemy ^>= 0.0.1.3"
-          "polysemy-conc >= 0.12 && < 0.14"
-          "polysemy-time ^>= 0.6"
+          "co-log"
+          "co-log-concurrent"
+          "co-log-polysemy"
+          "polysemy-conc"
+          "polysemy-time"
           config.packages.polysemy-log.dep.minor
           "stm"
         ];
@@ -76,10 +76,10 @@
           "co-log-polysemy"
           "polysemy-log"
           "polysemy-log-co"
-          "polysemy-test >= 0.6 && < 0.10"
-          "polysemy-time ^>= 0.6"
+          "polysemy-test"
+          "polysemy-time"
           "stm"
-          "tasty ^>= 1.4"
+          "tasty"
         ];
       };
 
