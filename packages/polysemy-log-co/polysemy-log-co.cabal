@@ -72,14 +72,14 @@ library
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
       base >=4.17.2.1 && <4.21
-    , co-log >=0.6.0.0 && <0.7
+    , co-log >=0.6.0.0 && <0.8
     , co-log-concurrent >=0.5.1.0 && <0.6
     , co-log-polysemy >=0.0.1.3 && <0.1
     , incipit-core >=0.4.1.0 && <0.7
-    , polysemy >=1.7.0.0 && <1.10
+    , polysemy >=1.6.0.0 && <1.10
     , polysemy-conc >=0.11.1.0 && <0.15
-    , polysemy-log >=0.11.1.0 && <0.12
-    , polysemy-time >=0.6.0.0 && <0.8
+    , polysemy-log >=0.8.0.0 && <0.12
+    , polysemy-time >=0.5.1.0 && <0.8
     , stm >=2.5.1.0 && <2.6
   mixins:
       base hiding (Prelude)
@@ -135,17 +135,17 @@ test-suite polysemy-log-co-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
       base >=4.17.2.1 && <4.21
-    , co-log >=0.6.0.0 && <0.7
+    , co-log >=0.6.0.0 && <0.8
     , co-log-concurrent >=0.5.1.0 && <0.6
     , co-log-polysemy >=0.0.1.3 && <0.1
     , incipit-core >=0.4.1.0 && <0.7
-    , polysemy >=1.7.0.0 && <1.10
-    , polysemy-log
+    , polysemy >=1.6.0.0 && <1.10
+    , polysemy-log >=0.8.0.0 && <0.12
     , polysemy-log-co
     , polysemy-test >=0.6.0.0 && <0.11
-    , polysemy-time >=0.6.0.0 && <0.8
+    , polysemy-time >=0.5.1.0 && <0.8
     , stm >=2.5.1.0 && <2.6
-    , tasty >=1.4.2 && <1.6
+    , tasty >=1.2.2 && <1.6
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)

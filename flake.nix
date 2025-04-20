@@ -9,24 +9,6 @@
     main = "polysemy-log";
     gen-overrides.enable = true;
 
-    cabal = {
-      license = "BSD-2-Clause-Patent";
-      license-file = "LICENSE";
-      author = "Torsten Schmits";
-      dependencies = ["polysemy"];
-      prelude = {
-        enable = true;
-        package = "incipit-core";
-        module = "IncipitCore";
-      };
-      meta = {
-        maintainer = "hackage@tryp.io";
-        category = "Logging";
-        github = "tek/polysemy-log";
-        extra-source-files = ["readme.md" "changelog.md"];
-      };
-    };
-
     packages.polysemy-log = {
       src = ./packages/polysemy-log;
 
@@ -132,38 +114,33 @@
 
     };
 
+    cabal = {
+      license = "BSD-2-Clause-Patent";
+      license-file = "LICENSE";
+      author = "Torsten Schmits";
+      dependencies = ["polysemy"];
+      prelude = {
+        enable = true;
+        package = "incipit-core";
+        module = "IncipitCore";
+      };
+      meta = {
+        maintainer = "hackage@tryp.io";
+        category = "Logging";
+        github = "tek/polysemy-log";
+        extra-source-files = ["readme.md" "changelog.md"];
+      };
+    };
+
     managed = {
       enable = true;
       lower.enable = true;
-      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
-        bytebuild = jailbreak;
-        chronos = jailbreak;
-        co-log = jailbreak;
-        co-log-concurrent = jailbreak;
-        incipit-base = jailbreak;
-        incipit-core = jailbreak;
-        polysemy-conc = jailbreak;
-        polysemy-resume = jailbreak;
-        polysemy-test = jailbreak unbreak;
-        polysemy-time = jailbreak;
-      };
       latest.compiler = "ghc910";
+      sets = "each";
     };
 
     overrides = {jailbreak, unbreak, hackage, ...}: {
       polysemy-test = unbreak;
-      co-log-concurrent = jailbreak;
-    };
-
-    envs.latest.overrides = {jailbreak, ...}: {
-      bytebuild = jailbreak;
-      chronos = jailbreak;
-      incipit-base = jailbreak;
-      incipit-core = jailbreak;
-      polysemy-conc = jailbreak;
-      polysemy-resume = jailbreak;
-      polysemy-test = jailbreak;
-      polysemy-time = jailbreak;
       co-log-concurrent = jailbreak;
     };
 
