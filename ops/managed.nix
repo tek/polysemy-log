@@ -173,7 +173,7 @@
     latest-polysemy-log-co = {
       base = "4.20.0.0";
       co-log = "0.7.0.0";
-      co-log-concurrent = "0.5.1.0";
+      co-log-concurrent = "0.5.1.1";
       co-log-polysemy = "0.0.1.6";
       incipit-core = "0.6.1.1";
       polysemy = "1.9.2.0";
@@ -369,10 +369,9 @@
         repo = "hackage.haskell.org";
       };
       co-log-concurrent = {
-        version = "0.5.1.0";
-        hash = "0a4sxabpvg1wfdm05pxj0vxhh2hqypjhw3l20np903dqw960vh1m";
+        version = "0.5.1.1";
+        hash = "0srrcshzj5fizpnxshpkjkmz1g3zzz1aix5ypi8gg7jsd63b0m6c";
         repo = "hackage.haskell.org";
-        revision = true;
       };
       co-log-polysemy = {
         version = "0.0.1.6";

@@ -478,15 +478,15 @@ mkDerivation {
 ;
   co-log-concurrent = {
   meta = {
-    sha256 = "0a4sxabpvg1wfdm05pxj0vxhh2hqypjhw3l20np903dqw960vh1m";
+    sha256 = "0srrcshzj5fizpnxshpkjkmz1g3zzz1aix5ypi8gg7jsd63b0m6c";
     url = "https://hackage.haskell.org";
-    ver = "0.5.1.0";
+    ver = "0.5.1.1";
   };
   drv = { mkDerivation, base, co-log-core, lib, stm }:
 mkDerivation {
   pname = "co-log-concurrent";
-  version = "0.5.1.0";
-  src = /nix/store/4vfv9ip3g76p8lry97rkgiz9qlwchfwp-source;
+  version = "0.5.1.1";
+  src = /nix/store/czc2sfj3wqxi5jbrca0p49507bkwfg6r-source;
   libraryHaskellDepends = [ base co-log-core stm ];
   homepage = "https://github.com/qnikst/co-log-concurrent/";
   description = "Asynchronous backend for co-log library";
