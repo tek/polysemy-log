@@ -157,7 +157,7 @@
   };
   versions = {
     latest-polysemy-log = {
-      ansi-terminal = "1.1.2";
+      ansi-terminal = "1.1.3";
       async = "2.2.5";
       base = "4.20.0.0";
       incipit-core = "0.6.1.1";
@@ -282,13 +282,13 @@
   overrides = {
     latest-polysemy-log = {
       ansi-terminal = {
-        version = "1.1.2";
-        hash = "1jpim6z8a074h427ah2yqbkm0krcy9yq28276fcdrxm6ji8pa302";
+        version = "1.1.3";
+        hash = "1jxj5ribqn0szh6jr9s7sd09hr2b7229s5rbvj7b553cxpybj0i3";
         repo = "hackage.haskell.org";
       };
       ansi-terminal-types = {
-        version = "1.1";
-        hash = "06q2ygb33a3kv8z0xk75dyc2a32si82yc8126dz97xq03pinym8h";
+        version = "1.1.3";
+        hash = "1g32sxpwf8wnjj455wlif1yi8qajassgywlip5a925k0wbz78nz1";
         repo = "hackage.haskell.org";
       };
       cabal-doctest = {
