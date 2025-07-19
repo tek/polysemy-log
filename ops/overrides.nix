@@ -46,15 +46,15 @@ hls = {
 latest-polysemy-log = {
   ansi-terminal = {
   meta = {
-    sha256 = "1jpim6z8a074h427ah2yqbkm0krcy9yq28276fcdrxm6ji8pa302";
+    sha256 = "1jxj5ribqn0szh6jr9s7sd09hr2b7229s5rbvj7b553cxpybj0i3";
     url = "https://hackage.haskell.org";
-    ver = "1.1.2";
+    ver = "1.1.3";
   };
   drv = { mkDerivation, ansi-terminal-types, base, colour, lib }:
 mkDerivation {
   pname = "ansi-terminal";
-  version = "1.1.2";
-  src = /nix/store/i6vw5gbg444japsaj6r702xaxbw46jai-source;
+  version = "1.1.3";
+  src = /nix/store/4jrqq521hjf334hq0z2crr2h3g7vj6f3-source;
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [ ansi-terminal-types base colour ];
@@ -67,15 +67,15 @@ mkDerivation {
 ;
   ansi-terminal-types = {
   meta = {
-    sha256 = "06q2ygb33a3kv8z0xk75dyc2a32si82yc8126dz97xq03pinym8h";
+    sha256 = "1g32sxpwf8wnjj455wlif1yi8qajassgywlip5a925k0wbz78nz1";
     url = "https://hackage.haskell.org";
-    ver = "1.1";
+    ver = "1.1.3";
   };
   drv = { mkDerivation, base, colour, lib }:
 mkDerivation {
   pname = "ansi-terminal-types";
-  version = "1.1";
-  src = /nix/store/kvxk9kvdlq99ar4jrrxs9dnqm3s5kbc9-source;
+  version = "1.1.3";
+  src = /nix/store/fkqcp9681b0mx9i93ijdg2xk0aqf6zfd-source;
   libraryHaskellDepends = [ base colour ];
   homepage = "https://github.com/UnkindPartition/ansi-terminal";
   description = "Types and functions used to represent SGR aspects";
