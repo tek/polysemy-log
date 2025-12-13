@@ -157,7 +157,7 @@
   };
   versions = {
     latest-polysemy-log = {
-      ansi-terminal = "1.1.3";
+      ansi-terminal = "1.1.4";
       async = "2.2.5";
       base = "4.20.0.0";
       incipit-core = "0.6.1.1";
@@ -282,8 +282,8 @@
   overrides = {
     latest-polysemy-log = {
       ansi-terminal = {
-        version = "1.1.3";
-        hash = "1jxj5ribqn0szh6jr9s7sd09hr2b7229s5rbvj7b553cxpybj0i3";
+        version = "1.1.4";
+        hash = "05rmd7zskb5nl7nif7fldyxxcq72dw2v6m1xsd6p3kvmy40bllip";
         repo = "hackage.haskell.org";
       };
       ansi-terminal-types = {
