@@ -46,15 +46,15 @@ hls = {
 latest-polysemy-log = {
   ansi-terminal = {
   meta = {
-    sha256 = "05rmd7zskb5nl7nif7fldyxxcq72dw2v6m1xsd6p3kvmy40bllip";
+    sha256 = "0km29930kkfc4958a9if4pz3ylqfw1l4055pnm6lvrskk3w4my58";
     url = "https://hackage.haskell.org";
-    ver = "1.1.4";
+    ver = "1.1.5";
   };
   drv = { mkDerivation, ansi-terminal-types, base, colour, lib }:
 mkDerivation {
   pname = "ansi-terminal";
-  version = "1.1.4";
-  src = /nix/store/jmfv40z77br6qhbaibg6pim5j84rbmrb-source;
+  version = "1.1.5";
+  src = /nix/store/llp43fhsfv6ncglpwl10rnp7h8dxc2dw-source;
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [ ansi-terminal-types base colour ];
