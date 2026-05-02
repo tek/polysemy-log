@@ -15,7 +15,7 @@
       };
       incipit-core = {
         lower = "0.4.1.0";
-        upper = "0.7";
+        upper = "0.8";
       };
       polysemy = {
         lower = "1.7.0.0";
@@ -23,7 +23,7 @@
       };
       polysemy-conc = {
         lower = "0.11.1.0";
-        upper = "0.15";
+        upper = "0.16";
       };
       polysemy-log = {
         lower = null;
@@ -35,7 +35,7 @@
       };
       polysemy-test = {
         lower = "0.6.0.0";
-        upper = "0.11";
+        upper = "0.12";
       };
       polysemy-time = {
         lower = "0.6.0.0";
@@ -73,7 +73,7 @@
       };
       incipit-core = {
         lower = "0.4.1.0";
-        upper = "0.7";
+        upper = "0.8";
       };
       polysemy = {
         lower = "1.6.0.0";
@@ -81,7 +81,7 @@
       };
       polysemy-conc = {
         lower = "0.11.1.0";
-        upper = "0.15";
+        upper = "0.16";
       };
       polysemy-log = {
         lower = "0.8.0.0";
@@ -93,7 +93,7 @@
       };
       polysemy-test = {
         lower = "0.6.0.0";
-        upper = "0.11";
+        upper = "0.12";
       };
       polysemy-time = {
         lower = "0.5.1.0";
@@ -119,7 +119,7 @@
       };
       incipit-core = {
         lower = "0.4.1.0";
-        upper = "0.7";
+        upper = "0.8";
       };
       polysemy = {
         lower = "1.6.0.0";
@@ -127,7 +127,7 @@
       };
       polysemy-conc = {
         lower = "0.11.1.0";
-        upper = "0.15";
+        upper = "0.16";
       };
       polysemy-log = {
         lower = "0.8.0.0";
@@ -139,7 +139,7 @@
       };
       polysemy-test = {
         lower = "0.6.0.0";
-        upper = "0.11";
+        upper = "0.12";
       };
       polysemy-time = {
         lower = "0.5.1.0";
@@ -160,12 +160,12 @@
       ansi-terminal = "1.1.5";
       async = "2.2.6";
       base = "4.20.0.0";
-      incipit-core = "0.6.1.1";
+      incipit-core = "0.7.0.1";
       polysemy = "1.9.2.0";
-      polysemy-conc = "0.14.1.1";
+      polysemy-conc = "0.15.0.0";
       polysemy-plugin = "0.4.5.3";
-      polysemy-test = "0.10.0.1";
-      polysemy-time = "0.7.0.1";
+      polysemy-test = "0.11.0.1";
+      polysemy-time = "0.7.0.2";
       stm = "2.5.3.1";
       tasty = "1.5.4";
       time = "1.12.2";
@@ -175,24 +175,24 @@
       co-log = "0.7.0.0";
       co-log-concurrent = "0.5.1.1";
       co-log-polysemy = "0.0.1.6";
-      incipit-core = "0.6.1.1";
+      incipit-core = "0.7.0.1";
       polysemy = "1.9.2.0";
-      polysemy-conc = "0.14.1.1";
+      polysemy-conc = "0.15.0.0";
       polysemy-log = "0.11.1.0";
-      polysemy-test = "0.10.0.1";
-      polysemy-time = "0.7.0.1";
+      polysemy-test = "0.11.0.1";
+      polysemy-time = "0.7.0.2";
       stm = "2.5.3.1";
       tasty = "1.5.4";
     };
     latest-polysemy-log-di = {
       base = "4.20.0.0";
       di-polysemy = "0.2.0.0";
-      incipit-core = "0.6.1.1";
+      incipit-core = "0.7.0.1";
       polysemy = "1.9.2.0";
-      polysemy-conc = "0.14.1.1";
+      polysemy-conc = "0.15.0.0";
       polysemy-log = "0.11.1.0";
-      polysemy-test = "0.10.0.1";
-      polysemy-time = "0.7.0.1";
+      polysemy-test = "0.11.0.1";
+      polysemy-time = "0.7.0.2";
       stm = "2.5.3.1";
       tasty = "1.5.4";
     };
@@ -281,6 +281,11 @@
   };
   overrides = {
     latest-polysemy-log = {
+      aeson = {
+        version = "2.2.4.1";
+        hash = "1hf13pxldfyv49c4518s44zfspg6r54wylimca7kp59lhh5w099j";
+        repo = "hackage.haskell.org";
+      };
       ansi-terminal = {
         version = "1.1.5";
         hash = "0km29930kkfc4958a9if4pz3ylqfw1l4055pnm6lvrskk3w4my58";
@@ -317,8 +322,13 @@
         repo = "hackage.haskell.org";
       };
       incipit-core = {
-        version = "0.6.1.1";
-        hash = "0qpw07f8ip6h7srqkbzfxyz1z36n75irhc6465s9xvrii1840b2k";
+        version = "0.7.0.1";
+        hash = "1bnaqzdc1vs9vcdlbaljdwv586syam3ahppqq9lwmg2jcvqp2zqr";
+        repo = "hackage.haskell.org";
+      };
+      indexed-traversable-instances = {
+        version = "0.1.2.1";
+        hash = "1issj9yfpxnshm6k7xq3wmmgrhn87cb0jalp0d1ls3zqx0qjrr03";
         repo = "hackage.haskell.org";
       };
       lifted-async = {
@@ -347,8 +357,8 @@
         repo = "hackage.haskell.org";
       };
       polysemy-conc = {
-        version = "0.14.1.1";
-        hash = "1xli6ja9f7qx2k9956lw4h9y5ywdglhgw769afxw9d4w9avclx28";
+        version = "0.15.0.0";
+        hash = "00ds083rpahv3q5n355hcbgv1ba7l121bpj642pkc7z0lpciq0z5";
         repo = "hackage.haskell.org";
       };
       polysemy-plugin = {
@@ -362,18 +372,28 @@
         repo = "hackage.haskell.org";
       };
       polysemy-test = {
-        version = "0.10.0.1";
-        hash = "1sp9iag1brknmdy0qvmgnmynwc4gbg1jy21w584x1m2hpqi25p6j";
+        version = "0.11.0.1";
+        hash = "0faajcwslgkjigakimz5sxvcd92p8vdzafway8js8622jmprjqjb";
         repo = "hackage.haskell.org";
       };
       polysemy-time = {
-        version = "0.7.0.1";
-        hash = "0cw39gvmr9rgh3hc0gd55wimm4lxzw9nyrczixk42nw170bpls40";
+        version = "0.7.0.2";
+        hash = "1g536vx6yflx86yb7l8ld47byasj2dx8qsy32ji5dk7qi059mnwg";
         repo = "hackage.haskell.org";
       };
       prettyprinter-ansi-terminal = {
         version = "1.1.3";
         hash = "09m8knzfvms12576pp2nrdn7j0wikylwjfr9r3z4swgipz1r3nki";
+        repo = "hackage.haskell.org";
+      };
+      semialign = {
+        version = "1.3.1.1";
+        hash = "17sfq3kzzdh28vin3kxw6l73jnrawf45cb4rhkcvajhsa9wkwsgv";
+        repo = "hackage.haskell.org";
+      };
+      semigroupoids = {
+        version = "6.0.2";
+        hash = "0nc2c573inxnp4nz3pbahb66ca9750zdgashwnak7kxyrq7d763l";
         repo = "hackage.haskell.org";
       };
       tasty = {
@@ -384,6 +404,16 @@
       tasty-hedgehog = {
         version = "1.4.0.2";
         hash = "04kg2qdnsqzzmj3xggy2jcgidlp21lsjkz4sfnbq7b1yhrv2vbbc";
+        repo = "hackage.haskell.org";
+      };
+      unordered-containers = {
+        version = "0.2.21";
+        hash = "0na84q5vxxww3pmz72ihpx4j7dhk71z28r55i7j0pq7mj27jasb0";
+        repo = "hackage.haskell.org";
+      };
+      witherable = {
+        version = "0.5";
+        hash = "0xm77dqyfm0zh0xvnh1srwxrkn4sl7m126lqhbzc4q9f6lziwzdx";
         repo = "hackage.haskell.org";
       };
     };
@@ -409,13 +439,13 @@
         repo = "hackage.haskell.org";
       };
       incipit-core = {
-        version = "0.6.1.1";
-        hash = "0qpw07f8ip6h7srqkbzfxyz1z36n75irhc6465s9xvrii1840b2k";
+        version = "0.7.0.1";
+        hash = "1bnaqzdc1vs9vcdlbaljdwv586syam3ahppqq9lwmg2jcvqp2zqr";
         repo = "hackage.haskell.org";
       };
       polysemy-conc = {
-        version = "0.14.1.1";
-        hash = "1xli6ja9f7qx2k9956lw4h9y5ywdglhgw769afxw9d4w9avclx28";
+        version = "0.15.0.0";
+        hash = "00ds083rpahv3q5n355hcbgv1ba7l121bpj642pkc7z0lpciq0z5";
         repo = "hackage.haskell.org";
       };
       polysemy-log = {
@@ -429,13 +459,13 @@
         repo = "hackage.haskell.org";
       };
       polysemy-test = {
-        version = "0.10.0.1";
-        hash = "1sp9iag1brknmdy0qvmgnmynwc4gbg1jy21w584x1m2hpqi25p6j";
+        version = "0.11.0.1";
+        hash = "0faajcwslgkjigakimz5sxvcd92p8vdzafway8js8622jmprjqjb";
         repo = "hackage.haskell.org";
       };
       polysemy-time = {
-        version = "0.7.0.1";
-        hash = "0cw39gvmr9rgh3hc0gd55wimm4lxzw9nyrczixk42nw170bpls40";
+        version = "0.7.0.2";
+        hash = "1g536vx6yflx86yb7l8ld47byasj2dx8qsy32ji5dk7qi059mnwg";
         repo = "hackage.haskell.org";
       };
       tasty = {
@@ -456,13 +486,13 @@
         repo = "hackage.haskell.org";
       };
       incipit-core = {
-        version = "0.6.1.1";
-        hash = "0qpw07f8ip6h7srqkbzfxyz1z36n75irhc6465s9xvrii1840b2k";
+        version = "0.7.0.1";
+        hash = "1bnaqzdc1vs9vcdlbaljdwv586syam3ahppqq9lwmg2jcvqp2zqr";
         repo = "hackage.haskell.org";
       };
       polysemy-conc = {
-        version = "0.14.1.1";
-        hash = "1xli6ja9f7qx2k9956lw4h9y5ywdglhgw769afxw9d4w9avclx28";
+        version = "0.15.0.0";
+        hash = "00ds083rpahv3q5n355hcbgv1ba7l121bpj642pkc7z0lpciq0z5";
         repo = "hackage.haskell.org";
       };
       polysemy-log = {
@@ -476,13 +506,13 @@
         repo = "hackage.haskell.org";
       };
       polysemy-test = {
-        version = "0.10.0.1";
-        hash = "1sp9iag1brknmdy0qvmgnmynwc4gbg1jy21w584x1m2hpqi25p6j";
+        version = "0.11.0.1";
+        hash = "0faajcwslgkjigakimz5sxvcd92p8vdzafway8js8622jmprjqjb";
         repo = "hackage.haskell.org";
       };
       polysemy-time = {
-        version = "0.7.0.1";
-        hash = "0cw39gvmr9rgh3hc0gd55wimm4lxzw9nyrczixk42nw170bpls40";
+        version = "0.7.0.2";
+        hash = "1g536vx6yflx86yb7l8ld47byasj2dx8qsy32ji5dk7qi059mnwg";
         repo = "hackage.haskell.org";
       };
       tasty = {
