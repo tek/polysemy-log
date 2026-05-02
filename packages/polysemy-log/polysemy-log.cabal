@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.36.1.
+-- This file has been generated from package.yaml by hpack version 0.38.2.
 --
 -- see: https://github.com/sol/hpack
 
@@ -62,8 +62,10 @@ library
       LiberalTypeSynonyms
       MonadComprehensions
       MultiWayIf
+      NoFieldSelectors
       OverloadedLabels
       OverloadedLists
+      OverloadedRecordDot
       OverloadedStrings
       PackageImports
       PartialTypeSignatures
@@ -79,19 +81,17 @@ library
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-      OverloadedRecordDot
-      NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      ansi-terminal >=0.9 && <1.2
+      ansi-terminal ==1.1.*
     , async >=2.2.4 && <2.3
-    , base >=4.17.2.1 && <4.21
-    , incipit-core >=0.4.1.0 && <0.8
-    , polysemy >=1.7.0.0 && <1.10
-    , polysemy-conc >=0.11.1.0 && <0.16
+    , base >=4.17.2.1 && <4.22
+    , incipit-core >=0.6.1.1 && <0.8
+    , polysemy >=1.9.0.0 && <1.10
+    , polysemy-conc >=0.15.0.0 && <0.16
     , polysemy-time >=0.6.0.0 && <0.8
     , stm >=2.5.1.0 && <2.6
-    , time >=1.12.2 && <1.13
+    , time >=1.12.2 && <1.15
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -127,8 +127,10 @@ test-suite polysemy-log-test
       LiberalTypeSynonyms
       MonadComprehensions
       MultiWayIf
+      NoFieldSelectors
       OverloadedLabels
       OverloadedLists
+      OverloadedRecordDot
       OverloadedStrings
       PackageImports
       PartialTypeSignatures
@@ -144,20 +146,18 @@ test-suite polysemy-log-test
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-      OverloadedRecordDot
-      NoFieldSelectors
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base >=4.17.2.1 && <4.21
-    , incipit-core >=0.4.1.0 && <0.8
-    , polysemy >=1.7.0.0 && <1.10
-    , polysemy-conc >=0.11.1.0 && <0.16
+      base >=4.17.2.1 && <4.22
+    , incipit-core >=0.6.1.1 && <0.8
+    , polysemy >=1.9.0.0 && <1.10
+    , polysemy-conc >=0.15.0.0 && <0.16
     , polysemy-log
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , polysemy-test >=0.6.0.0 && <0.12
+    , polysemy-test >=0.10.0.1 && <0.12
     , polysemy-time >=0.6.0.0 && <0.8
-    , tasty >=1.2.2 && <1.6
-    , time >=1.12.2 && <1.13
+    , tasty >=1.5.2 && <1.6
+    , time >=1.12.2 && <1.15
   mixins:
       base hiding (Prelude)
     , incipit-core (IncipitCore as Prelude)
@@ -186,8 +186,10 @@ benchmark space
       LiberalTypeSynonyms
       MonadComprehensions
       MultiWayIf
+      NoFieldSelectors
       OverloadedLabels
       OverloadedLists
+      OverloadedRecordDot
       OverloadedStrings
       PackageImports
       PartialTypeSignatures
@@ -203,14 +205,12 @@ benchmark space
       UndecidableInstances
       UnicodeSyntax
       ViewPatterns
-      OverloadedRecordDot
-      NoFieldSelectors
   ghc-options: -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base >=4.17.2.1 && <4.21
-    , incipit-core >=0.4.1.0 && <0.8
-    , polysemy >=1.7.0.0 && <1.10
-    , polysemy-conc >=0.11.1.0 && <0.16
+      base >=4.17.2.1 && <4.22
+    , incipit-core >=0.6.1.1 && <0.8
+    , polysemy >=1.9.0.0 && <1.10
+    , polysemy-conc >=0.15.0.0 && <0.16
     , polysemy-log
     , polysemy-plugin >=0.4.4.0 && <0.5
   mixins:
