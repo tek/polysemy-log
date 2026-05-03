@@ -79,7 +79,7 @@ library
     , polysemy >=1.6.0.0 && <1.10
     , polysemy-conc >=0.11.1.0 && <0.16
     , polysemy-log >=0.7.2.0 && <0.12
-    , polysemy-time >=0.6.0.0 && <0.8
+    , polysemy-time >=0.5.1.0 && <0.8
     , stm >=2.5.1.0 && <2.6
   mixins:
       base hiding (Prelude)
@@ -143,7 +143,7 @@ test-suite polysemy-log-co-test
     , polysemy-log >=0.7.2.0 && <0.12
     , polysemy-log-co
     , polysemy-test >=0.10.0.1 && <0.12
-    , polysemy-time >=0.6.0.0 && <0.8
+    , polysemy-time >=0.5.1.0 && <0.8
     , stm >=2.5.1.0 && <2.6
     , tasty >=1.5.2 && <1.6
   mixins:
