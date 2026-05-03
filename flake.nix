@@ -5,7 +5,6 @@
 
   outputs = { hix, ... }: hix.lib.pro ({config, ...}: {
     ghcVersions = ["ghc98" "ghc910" "ghc912"];
-    release.versionFile = "ops/version.nix";
     main = "polysemy-log";
     gen-overrides.enable = true;
 
