@@ -96,7 +96,7 @@
         upper = "0.12";
       };
       polysemy-time = {
-        lower = "0.6.0.0";
+        lower = "0.5.1.0";
         upper = "0.8";
       };
       stm = {
@@ -220,7 +220,7 @@
       polysemy-conc = "0.11.1.0";
       polysemy-log = "0.7.2.0";
       polysemy-test = "0.10.0.1";
-      polysemy-time = "0.6.0.0";
+      polysemy-time = "0.5.1.0";
       stm = "2.5.1.0";
       tasty = "1.5.2";
     };
@@ -960,8 +960,8 @@
         repo = "hackage.haskell.org";
       };
       polysemy-time = {
-        version = "0.6.0.0";
-        hash = "1ay0ym01wznk98km2ksw8slj52gc7rav6n16z4sndzsw7cdwdq2y";
+        version = "0.5.1.0";
+        hash = "0wm4yifj93j2csls66xxg189g3aimrixx8q4487pz1q84pk1cizd";
         repo = "hackage.haskell.org";
       };
       prettyprinter-ansi-terminal = {
