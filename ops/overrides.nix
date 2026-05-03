@@ -1864,19 +1864,19 @@ mkDerivation {
 ;
     polysemy-time = {
   meta = {
-    sha256 = "1ay0ym01wznk98km2ksw8slj52gc7rav6n16z4sndzsw7cdwdq2y";
+    sha256 = "0wm4yifj93j2csls66xxg189g3aimrixx8q4487pz1q84pk1cizd";
     url = "https://hackage.haskell.org";
-    ver = "0.6.0.0";
+    ver = "0.5.1.0";
   };
-  drv = { mkDerivation, aeson, base, incipit-core, lib, polysemy-test
+  drv = { mkDerivation, aeson, base, incipit-core, lib, polysemy-test, stm
 , tasty, template-haskell, time, torsor
 }:
 mkDerivation {
   pname = "polysemy-time";
-  version = "0.6.0.0";
-  src = /nix/store/cpli49vw3sc8vdh8vc747jvidvaag1d4-source;
+  version = "0.5.1.0";
+  src = /nix/store/is8ch0lnjkykvjqr6wny0dii6jyrl9vk-source;
   libraryHaskellDepends = [
-    aeson base incipit-core template-haskell time torsor
+    aeson base incipit-core stm template-haskell time torsor
   ];
   testHaskellDepends = [
     base incipit-core polysemy-test tasty time
@@ -2404,43 +2404,68 @@ mkDerivation {
 ;
   };
   lower-polysemy-log-co = {
+    QuickCheck = {
+  meta = {
+    sha256 = "18451rdmih1jkrsrckdcix71zqihc4h2caic7qzizxjg4hqpapji";
+    url = "https://hackage.haskell.org";
+    ver = "2.14.3";
+  };
+  drv = { mkDerivation, base, containers, deepseq, lib, process, random
+, splitmix, template-haskell, transformers
+}:
+mkDerivation {
+  pname = "QuickCheck";
+  version = "2.14.3";
+  src = /nix/store/kh42dp9c3b6mjrf9cpskg33vgxfr598p-source;
+  libraryHaskellDepends = [
+    base containers deepseq random splitmix template-haskell
+    transformers
+  ];
+  testHaskellDepends = [ base deepseq process ];
+  homepage = "https://github.com/nick8325/quickcheck";
+  description = "Automatic testing of Haskell programs";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     aeson = {
   meta = {
-    sha256 = "1hf13pxldfyv49c4518s44zfspg6r54wylimca7kp59lhh5w099j";
+    sha256 = "1f1f6h2r60ghz4p1ddi6wnq6z3i07j60sgm77hx2rvmncz4vizp0";
     url = "https://hackage.haskell.org";
-    ver = "2.2.4.1";
+    ver = "2.1.2.1";
   };
-  drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
-, bytestring, character-ps, containers, data-fix, deepseq, Diff
-, directory, dlist, exceptions, filepath, generic-deriving
-, generically, hashable, indexed-traversable, integer-conversion
-, integer-logarithms, lib, network-uri, nothunks, OneTuple
+  drv = { mkDerivation, attoparsec, base, base-compat
+, base-compat-batteries, base-orphans, base16-bytestring
+, bytestring, containers, data-fix, deepseq, Diff, directory, dlist
+, exceptions, filepath, generic-deriving, generically, ghc-prim
+, hashable, indexed-traversable, integer-logarithms, lib, OneTuple
 , primitive, QuickCheck, quickcheck-instances, scientific
 , semialign, strict, tagged, tasty, tasty-golden, tasty-hunit
-, tasty-quickcheck, template-haskell, text, text-iso8601
-, text-short, th-abstraction, these, time, time-compat
-, unordered-containers, uuid-types, vector, witherable
+, tasty-quickcheck, template-haskell, text, text-short
+, th-abstraction, these, time, time-compat, unordered-containers
+, uuid-types, vector, witherable
 }:
 mkDerivation {
   pname = "aeson";
-  version = "2.2.4.1";
-  src = /nix/store/nqg2r8cak468751py2zaz1ck629jcpfz-source;
+  version = "2.1.2.1";
+  src = /nix/store/hdckfxcpamn3qv2a0xn9pfzz64k0fpvp-source;
   libraryHaskellDepends = [
-    base bytestring character-ps containers data-fix deepseq dlist
-    exceptions hashable indexed-traversable integer-conversion
-    integer-logarithms network-uri OneTuple primitive QuickCheck
-    scientific semialign strict tagged template-haskell text
-    text-iso8601 text-short th-abstraction these time time-compat
-    unordered-containers uuid-types vector witherable
+    attoparsec base base-compat-batteries bytestring containers
+    data-fix deepseq dlist exceptions generically ghc-prim hashable
+    indexed-traversable OneTuple primitive QuickCheck scientific
+    semialign strict tagged template-haskell text text-short
+    th-abstraction these time time-compat unordered-containers
+    uuid-types vector witherable
   ];
   testHaskellDepends = [
-    base base-compat base-orphans base16-bytestring bytestring
-    containers data-fix Diff directory dlist filepath generic-deriving
-    generically hashable indexed-traversable integer-logarithms
-    network-uri nothunks OneTuple QuickCheck quickcheck-instances
-    scientific strict tagged tasty tasty-golden tasty-hunit
-    tasty-quickcheck text text-short these time time-compat
-    unordered-containers uuid-types vector
+    attoparsec base base-compat base-orphans base16-bytestring
+    bytestring containers data-fix Diff directory dlist filepath
+    generic-deriving generically ghc-prim hashable indexed-traversable
+    integer-logarithms OneTuple primitive QuickCheck
+    quickcheck-instances scientific strict tagged tasty tasty-golden
+    tasty-hunit tasty-quickcheck template-haskell text text-short these
+    time time-compat unordered-containers uuid-types vector
   ];
   homepage = "https://github.com/haskell/aeson";
   description = "Fast JSON parsing and encoding";
@@ -2489,6 +2514,51 @@ mkDerivation {
 ;
 }
 ;
+    async = {
+  meta = {
+    sha256 = "1731pcifiskq6g1b72p34phx85l65ax7mbjw11310b3zwzk0ldyn";
+    url = "https://hackage.haskell.org";
+    ver = "2.2.6";
+  };
+  drv = { mkDerivation, base, hashable, HUnit, lib, stm, test-framework
+, test-framework-hunit, unordered-containers
+}:
+mkDerivation {
+  pname = "async";
+  version = "2.2.6";
+  src = /nix/store/gqjb7z6xhgknsx70z3vqfndrrb5s0igk-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [ base hashable stm unordered-containers ];
+  testHaskellDepends = [
+    base HUnit stm test-framework test-framework-hunit
+  ];
+  homepage = "https://github.com/simonmar/async";
+  description = "Run IO operations asynchronously and wait for their results";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    atomic-primops = {
+  meta = {
+    sha256 = "1razf9zq71am8x1813rrq8m14z6lnrkaacw4zcr5rii6f1q1l6xh";
+    url = "https://hackage.haskell.org";
+    ver = "0.8.8";
+  };
+  drv = { mkDerivation, base, ghc-prim, lib, primitive }:
+mkDerivation {
+  pname = "atomic-primops";
+  version = "0.8.8";
+  src = /nix/store/yvyb2fz95y72a66y5jy1202a0z14cahv-source;
+  libraryHaskellDepends = [ base ghc-prim primitive ];
+  homepage = "https://github.com/rrnewton/haskell-lockfree/wiki";
+  description = "A safe approach to CAS and other atomic ops in Haskell";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     attoparsec = {
   meta = {
     sha256 = "0y9dph5axyvr1bfcvmz6qh50bjcp50m2ljra14960anc6g74a3c8";
@@ -2528,17 +2598,41 @@ mkDerivation {
 ;
     base-compat = {
   meta = {
-    sha256 = "1bmmqclp2cphxyk06sh453n271dxrlw22c1946qflhp5hz1g9rz5";
+    sha256 = "19pgyjgwx81vlyl8c0rlmfcympzy38bsmjq238dn8fv5b03jck4r";
     url = "https://hackage.haskell.org";
-    ver = "0.15.0";
+    ver = "0.13.1";
   };
-  drv = { mkDerivation, base, ghc-prim, lib }:
+  drv = { mkDerivation, base, ghc-prim, lib, unix }:
 mkDerivation {
   pname = "base-compat";
-  version = "0.15.0";
-  src = /nix/store/i5i5bkdgvzf77dbd9a2iaq2nclwnfgnz-source;
-  libraryHaskellDepends = [ base ghc-prim ];
+  version = "0.13.1";
+  src = /nix/store/qgi5ixllx7m87ayb7shqxcb88xvgl7nj-source;
+  libraryHaskellDepends = [ base ghc-prim unix ];
   description = "A compatibility layer for base";
+  license = lib.licenses.mit;
+}
+;
+}
+;
+    base-compat-batteries = {
+  meta = {
+    sha256 = "06fq90abnlqdsa7iqfmp1fndldmfdfjvx8n8s963nnvnmq6hxs4g";
+    url = "https://hackage.haskell.org";
+    ver = "0.13.1";
+  };
+  drv = { mkDerivation, base, base-compat, foldable1-classes-compat
+, ghc-prim, hspec, hspec-discover, lib, OneTuple, QuickCheck
+}:
+mkDerivation {
+  pname = "base-compat-batteries";
+  version = "0.13.1";
+  src = /nix/store/8mwq3g5hkgf2z8acw7g9zhzzlpcpxc2v-source;
+  libraryHaskellDepends = [
+    base base-compat foldable1-classes-compat ghc-prim OneTuple
+  ];
+  testHaskellDepends = [ base hspec QuickCheck ];
+  testToolDepends = [ hspec-discover ];
+  description = "base-compat with extra batteries";
   license = lib.licenses.mit;
 }
 ;
@@ -2823,11 +2917,59 @@ mkDerivation {
 ;
 }
 ;
+    constraints = {
+  meta = {
+    sha256 = "00cjd15kn30qgq541s0g3sd2lnvrdswx3bkafk0bmrg9b0kdb6hg";
+    url = "https://hackage.haskell.org";
+    ver = "0.14.4";
+  };
+  drv = { mkDerivation, base, binary, boring, deepseq, hashable, hspec
+, hspec-discover, lib, mtl, transformers
+}:
+mkDerivation {
+  pname = "constraints";
+  version = "0.14.4";
+  src = /nix/store/2k6n5ivkla205m35i77cdwf4dn9vdr2x-source;
+  libraryHaskellDepends = [
+    base binary boring deepseq hashable mtl transformers
+  ];
+  testHaskellDepends = [ base hspec ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "http://github.com/ekmett/constraints/";
+  description = "Constraint manipulation";
+  license = lib.licenses.bsd2;
+}
+;
+}
+;
+    constraints-extras = {
+  meta = {
+    sha256 = "150a742f67sjmaac4g40hzvkdnmnhsf2g49zn3jsh4p2brf9hvp5";
+    url = "https://hackage.haskell.org";
+    ver = "0.4.0.2";
+  };
+  drv = { mkDerivation, aeson, base, constraints, lib, template-haskell }:
+mkDerivation {
+  pname = "constraints-extras";
+  version = "0.4.0.2";
+  src = /nix/store/f3fi0bn3dphm25r85wrb3lwz1p55cgzv-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [ base constraints template-haskell ];
+  executableHaskellDepends = [ aeson base constraints ];
+  homepage = "https://github.com/obsidiansystems/constraints-extras";
+  description = "Utility package for constraints";
+  license = lib.licenses.bsd3;
+  mainProgram = "readme";
+}
+;
+}
+;
     contiguous = {
   meta = {
-    sha256 = "10s92va44wsyxpczxdrbki7a14xsmfxxgv5s71k0b1fa5ng58hf4";
+    sha256 = "1vkqnggzniw24241lrmww7bmpprcpn12z5rrskxpq33wmad3wvsz";
     url = "https://hackage.haskell.org";
-    ver = "0.6.5.0";
+    ver = "0.6.4.2";
   };
   drv = { mkDerivation, base, deepseq, lib, primitive, primitive-unlifted
 , QuickCheck, quickcheck-classes, quickcheck-instances, random
@@ -2835,8 +2977,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "contiguous";
-  version = "0.6.5.0";
-  src = /nix/store/ns87zrndr4dp9vv3dmsk4185x4g33f10-source;
+  version = "0.6.4.2";
+  src = /nix/store/r0sfq2rc2lnriiyskid97gl475dh8h0k-source;
   libraryHaskellDepends = [
     base deepseq primitive primitive-unlifted run-st
   ];
@@ -2848,6 +2990,67 @@ mkDerivation {
   homepage = "https://github.com/byteverse/contiguous";
   description = "Unified interface for primitive arrays";
   license = lib.licenses.bsd3;
+}
+;
+}
+;
+    data-fix = {
+  meta = {
+    sha256 = "0x8r2r8gmdvsclaszg90zn7gla6s8r6salbvgfsp0rscdjzj01ry";
+    url = "https://hackage.haskell.org";
+    ver = "0.3.4";
+  };
+  drv = { mkDerivation, base, deepseq, hashable, lib }:
+mkDerivation {
+  pname = "data-fix";
+  version = "0.3.4";
+  src = /nix/store/rk6gaw2jpjnd6hqhfwd1kr7c0pb5p370-source;
+  libraryHaskellDepends = [ base deepseq hashable ];
+  homepage = "https://github.com/spell-music/data-fix";
+  description = "Fixpoint data types";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    dependent-map = {
+  meta = {
+    sha256 = "0p1sh5a7r69insg6v48pc51j7zs4imfh3mvhxa09jry8xg9a1lwn";
+    url = "https://hackage.haskell.org";
+    ver = "0.4.0.1";
+  };
+  drv = { mkDerivation, base, constraints-extras, containers, dependent-sum
+, lib
+}:
+mkDerivation {
+  pname = "dependent-map";
+  version = "0.4.0.1";
+  src = /nix/store/5p6kjipmdfgidjv6d0jx4xnmg5c7gmib-source;
+  libraryHaskellDepends = [
+    base constraints-extras containers dependent-sum
+  ];
+  homepage = "https://github.com/obsidiansystems/dependent-map";
+  description = "Dependent finite maps (partial dependent products)";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    dependent-sum = {
+  meta = {
+    sha256 = "1m85k11y97y7v6705bb6f9kpg6bcbm521p1p1812v0ybzkr2mg80";
+    url = "https://hackage.haskell.org";
+    ver = "0.7.2.0";
+  };
+  drv = { mkDerivation, base, constraints-extras, lib, some }:
+mkDerivation {
+  pname = "dependent-sum";
+  version = "0.7.2.0";
+  src = /nix/store/379qmnvfshqscrbn5gbfdsarispbhb97-source;
+  libraryHaskellDepends = [ base constraints-extras some ];
+  homepage = "https://github.com/obsidiansystems/dependent-sum";
+  description = "Dependent sum type";
+  license = lib.licenses.publicDomain;
 }
 ;
 }
@@ -2892,6 +3095,37 @@ mkDerivation {
   homepage = "https://www.haskell.org/happy/";
   description = "Happy is a parser generator for Haskell implemented using this library";
   license = lib.licenses.bsd2;
+}
+;
+}
+;
+    hashable = {
+  meta = {
+    sha256 = "0a8jcfmak3b130x5xim4d6qsqmfp8779wvq5va9irncn6827ihzi";
+    url = "https://hackage.haskell.org";
+    ver = "1.4.4.0";
+  };
+  drv = { mkDerivation, base, bytestring, containers, deepseq, filepath
+, ghc-bignum, ghc-prim, HUnit, lib, os-string, QuickCheck, random
+, test-framework, test-framework-hunit, test-framework-quickcheck2
+, text, unix
+}:
+mkDerivation {
+  pname = "hashable";
+  version = "1.4.4.0";
+  src = /nix/store/84yi2sv3xcy5xkb55sqjrgyq2cgabiml-source;
+  libraryHaskellDepends = [
+    base bytestring containers deepseq filepath ghc-bignum ghc-prim
+    os-string text
+  ];
+  testHaskellDepends = [
+    base bytestring filepath ghc-prim HUnit os-string QuickCheck random
+    test-framework test-framework-hunit test-framework-quickcheck2 text
+    unix
+  ];
+  homepage = "http://github.com/haskell-unordered-containers/hashable";
+  description = "A class for types that can be converted to a hash value";
+  license = lib.licenses.bsd3;
 }
 ;
 }
@@ -3055,6 +3289,35 @@ mkDerivation {
 ;
 }
 ;
+    lifted-async = {
+  meta = {
+    sha256 = "0cgzs8sfr3l7ah5nnscpp50v5mmvc4hqf02zdi4h344dbbha10fy";
+    url = "https://hackage.haskell.org";
+    ver = "0.10.2.7";
+  };
+  drv = { mkDerivation, async, base, constraints, deepseq, HUnit, lib
+, lifted-base, monad-control, mtl, tasty, tasty-bench
+, tasty-expected-failure, tasty-hunit, tasty-th, transformers-base
+}:
+mkDerivation {
+  pname = "lifted-async";
+  version = "0.10.2.7";
+  src = /nix/store/7fr6j14aj5sb57yg621rc9vysc7d1qcz-source;
+  libraryHaskellDepends = [
+    async base constraints lifted-base monad-control transformers-base
+  ];
+  testHaskellDepends = [
+    async base HUnit lifted-base monad-control mtl tasty
+    tasty-expected-failure tasty-hunit tasty-th
+  ];
+  benchmarkHaskellDepends = [ async base deepseq tasty-bench ];
+  homepage = "https://github.com/maoe/lifted-async";
+  description = "Run lifted IO operations asynchronously and wait for their results";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     markdown-unlit = {
   meta = {
     sha256 = "1azz5kcgk2qi1z17q6iqbcd3fdwamwgllig1c20s4z5lzqwydhbp";
@@ -3187,30 +3450,36 @@ mkDerivation {
 ;
     polysemy = {
   meta = {
-    sha256 = "05mhzjz6hz0dnxsn3cc0l6yyj5ch35gn8xfnx0a1gn3q8yljfg2a";
+    sha256 = "15k51ysrfcbkww1562g8zvrlzymlk2rxhcsz9ipsb0q6h571qgvf";
     url = "https://hackage.haskell.org";
-    ver = "1.9.1.0";
+    ver = "1.6.0.0";
   };
   drv = { mkDerivation, async, base, Cabal, cabal-doctest, containers
-, doctest, first-class-families, hspec, hspec-discover
-, inspection-testing, lib, mtl, stm, syb, template-haskell
-, th-abstraction, transformers, type-errors, unagi-chan
+, criterion, doctest, first-class-families, free, freer-simple
+, hspec, hspec-discover, inspection-testing, lib, mtl, QuickCheck
+, stm, syb, template-haskell, th-abstraction, transformers
+, type-errors, unagi-chan
 }:
 mkDerivation {
   pname = "polysemy";
-  version = "1.9.1.0";
-  src = /nix/store/wi4h6ks79hii1j1am583a9ylanai1mbp-source;
+  version = "1.6.0.0";
+  src = /nix/store/kmala48rqnh42ls38mb9qfx49ssbi3js-source;
   setupHaskellDepends = [ base Cabal cabal-doctest ];
   libraryHaskellDepends = [
-    async base containers first-class-families mtl stm syb
+    async base containers first-class-families mtl QuickCheck stm syb
     template-haskell th-abstraction transformers type-errors unagi-chan
   ];
   testHaskellDepends = [
     async base containers doctest first-class-families hspec
-    hspec-discover inspection-testing mtl stm syb template-haskell
+    inspection-testing mtl QuickCheck stm syb template-haskell
     th-abstraction transformers type-errors unagi-chan
   ];
   testToolDepends = [ hspec-discover ];
+  benchmarkHaskellDepends = [
+    async base containers criterion first-class-families free
+    freer-simple mtl QuickCheck stm syb template-haskell th-abstraction
+    transformers type-errors unagi-chan
+  ];
   homepage = "https://github.com/polysemy-research/polysemy#readme";
   description = "Higher-order, low-boilerplate free monads";
   license = lib.licenses.bsd3;
@@ -3220,9 +3489,9 @@ mkDerivation {
 ;
     polysemy-conc = {
   meta = {
-    sha256 = "0cm2hkr58fhxr2w5pmq01m66qmd1yfzikjx5v7c0xsk8mdjv9f6g";
+    sha256 = "12w102jpdyrfjqz10bg8k0dyczvvii3x1v02vqd8is26qbfm20q0";
     url = "https://hackage.haskell.org";
-    ver = "0.12.1.0";
+    ver = "0.11.1.0";
   };
   drv = { mkDerivation, async, base, containers, hedgehog, incipit-core
 , lib, polysemy, polysemy-plugin, polysemy-resume, polysemy-test
@@ -3231,8 +3500,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "polysemy-conc";
-  version = "0.12.1.0";
-  src = /nix/store/kyhxk82vfxhna8yb3gdwd6nj16s40w21-source;
+  version = "0.11.1.0";
+  src = /nix/store/sjrm830lqxpsg3h5cb5rw6dl5zpfb5pl-source;
   libraryHaskellDepends = [
     async base containers incipit-core polysemy polysemy-resume
     polysemy-time stm stm-chans torsor unagi-chan unix
@@ -3242,7 +3511,7 @@ mkDerivation {
     polysemy-resume polysemy-test polysemy-time stm tasty
     tasty-hedgehog time unix
   ];
-  homepage = "https://git.tryp.io/tek/polysemy-conc";
+  homepage = "https://github.com/tek/polysemy-conc#readme";
   description = "Polysemy effects for concurrency";
   license = "BSD-2-Clause-Patent";
 }
@@ -3283,22 +3552,24 @@ mkDerivation {
 ;
     polysemy-resume = {
   meta = {
-    sha256 = "1b9agh2qd0nrbd7cc5iabkzjb7g9lnzzy3pprvn33hr54va9p928";
+    sha256 = "1yavr2h31ffxj861vscm2hddrwi977ddx0sn0hh47zn78pqafz77";
     url = "https://hackage.haskell.org";
-    ver = "0.7.0.0";
+    ver = "0.5.0.0";
   };
-  drv = { mkDerivation, base, incipit-core, lib, polysemy, polysemy-plugin
-, polysemy-test, stm, tasty, transformers
+  drv = { mkDerivation, base, hedgehog, incipit-core, lib, polysemy
+, polysemy-plugin, polysemy-test, stm, tasty, tasty-hedgehog, text
+, transformers
 }:
 mkDerivation {
   pname = "polysemy-resume";
-  version = "0.7.0.0";
-  src = /nix/store/2l5708xrry0mnv5znidx9affjinmpryq-source;
+  version = "0.5.0.0";
+  src = /nix/store/dwf1hw9hfvcj71g0gjk0pr9v6kd3n8gw-source;
   libraryHaskellDepends = [
     base incipit-core polysemy transformers
   ];
   testHaskellDepends = [
-    base incipit-core polysemy polysemy-plugin polysemy-test stm tasty
+    base hedgehog incipit-core polysemy polysemy-plugin polysemy-test
+    stm tasty tasty-hedgehog text
   ];
   homepage = "https://github.com/tek/polysemy-resume#readme";
   description = "Polysemy error tracking";
@@ -3388,6 +3659,38 @@ mkDerivation {
 ;
 }
 ;
+    primitive = {
+  meta = {
+    sha256 = "0y8yw8fnfh4dg6yjny2y8b4pmvvhhr7611j2z7i1dnl8w8cvbmb3";
+    url = "https://hackage.haskell.org";
+    ver = "0.8.0.0";
+  };
+  drv = { mkDerivation, base, base-orphans, deepseq, ghc-prim, lib
+, QuickCheck, quickcheck-classes-base, tagged, tasty, tasty-bench
+, tasty-quickcheck, template-haskell, transformers
+, transformers-compat
+}:
+mkDerivation {
+  pname = "primitive";
+  version = "0.8.0.0";
+  src = /nix/store/31b36j6yiacsg41qbg42kdlrxzgsgpp0-source;
+  libraryHaskellDepends = [
+    base deepseq template-haskell transformers
+  ];
+  testHaskellDepends = [
+    base base-orphans ghc-prim QuickCheck quickcheck-classes-base
+    tagged tasty tasty-quickcheck transformers transformers-compat
+  ];
+  benchmarkHaskellDepends = [
+    base deepseq tasty-bench transformers
+  ];
+  homepage = "https://github.com/haskell/primitive";
+  description = "Primitive memory-related operations";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     primitive-addr = {
   meta = {
     sha256 = "0b01fgjlh380sax6n20sjlw8lfalirhjxaf1iv2qgifzv2sc0xwk";
@@ -3453,6 +3756,30 @@ mkDerivation {
 ;
 }
 ;
+    resourcet = {
+  meta = {
+    sha256 = "0ffmm850z3n95vyj33gfqk606kfn6d50b9bnylqn8y4zrcv5yjmk";
+    url = "https://hackage.haskell.org";
+    ver = "1.3.0";
+  };
+  drv = { mkDerivation, base, containers, exceptions, hspec, lib, mtl
+, primitive, transformers, unliftio-core
+}:
+mkDerivation {
+  pname = "resourcet";
+  version = "1.3.0";
+  src = /nix/store/1ik3lcb99cfv7glky0aqy67z856rrllw-source;
+  libraryHaskellDepends = [
+    base containers exceptions mtl primitive transformers unliftio-core
+  ];
+  testHaskellDepends = [ base exceptions hspec transformers ];
+  homepage = "http://github.com/snoyberg/conduit";
+  description = "Deterministic allocation and freeing of scarce resources";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     run-st = {
   meta = {
     sha256 = "1x5brxdbncfgzvdl8k6h00zpzzv319j7iw3k5lgrimhdm0jz2vz7";
@@ -3487,6 +3814,37 @@ mkDerivation {
   testHaskellDepends = [ base deepseq QuickCheck ];
   homepage = "https://github.com/ndmitchell/safe#readme";
   description = "Library of safe (exception free) functions";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    scientific = {
+  meta = {
+    sha256 = "09iwj0snmx7vj7x03l4vdcn76zylcgxd9pyz0yxkydgfnn3lvc08";
+    url = "https://hackage.haskell.org";
+    ver = "0.3.7.0";
+  };
+  drv = { mkDerivation, base, binary, bytestring, containers, criterion
+, deepseq, hashable, integer-logarithms, lib, primitive, QuickCheck
+, smallcheck, tasty, tasty-hunit, tasty-quickcheck
+, tasty-smallcheck, template-haskell, text
+}:
+mkDerivation {
+  pname = "scientific";
+  version = "0.3.7.0";
+  src = /nix/store/w1dja7k810rw0zjrx9r91il6im2gq4iv-source;
+  libraryHaskellDepends = [
+    base binary bytestring containers deepseq hashable
+    integer-logarithms primitive template-haskell text
+  ];
+  testHaskellDepends = [
+    base binary bytestring QuickCheck smallcheck tasty tasty-hunit
+    tasty-quickcheck tasty-smallcheck text
+  ];
+  benchmarkHaskellDepends = [ base criterion ];
+  homepage = "https://github.com/basvandijk/scientific";
+  description = "Numbers represented using scientific notation";
   license = lib.licenses.bsd3;
 }
 ;
@@ -3545,6 +3903,30 @@ mkDerivation {
 ;
 }
 ;
+    strict = {
+  meta = {
+    sha256 = "02iyvrr7nd7fnivz78lzdchy8zw1cghqj1qx2yzbbb9869h1mny7";
+    url = "https://hackage.haskell.org";
+    ver = "0.5";
+  };
+  drv = { mkDerivation, assoc, base, binary, bytestring, deepseq, ghc-prim
+, hashable, lib, text, these, transformers
+}:
+mkDerivation {
+  pname = "strict";
+  version = "0.5";
+  src = /nix/store/21ahwfbr944xz0c7cs47f6z86p78plps-source;
+  libraryHaskellDepends = [
+    assoc base binary bytestring deepseq ghc-prim hashable text these
+    transformers
+  ];
+  homepage = "https://github.com/haskell-strict/strict";
+  description = "Strict data types and String IO";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     tasty = {
   meta = {
     sha256 = "1jqrcmibqv03109qc6lhi2jnip4mxygcd0j4j0g1n0q0akcplica";
@@ -3595,9 +3977,9 @@ mkDerivation {
 ;
     text-short = {
   meta = {
-    sha256 = "08rwbc2zcvbvswvy0kp14jg2wq08ls6m6grywp0srjipavzx11s3";
+    sha256 = "1yzyzklry9cdc12283b0zf0kpa8nb7gixmdaf3l8x7388zpxhhay";
     url = "https://hackage.haskell.org";
-    ver = "0.1.6";
+    ver = "0.1.6.1";
   };
   drv = { mkDerivation, base, binary, bytestring, deepseq, ghc-prim
 , hashable, lib, tasty, tasty-hunit, tasty-quickcheck
@@ -3605,15 +3987,14 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "text-short";
-  version = "0.1.6";
-  src = /nix/store/szwhvms3jqw03gz4ydrwilgah3vshhh1-source;
+  version = "0.1.6.1";
+  src = /nix/store/bf8cszj81rj7svdscshl17z7mnr8zrdk-source;
   libraryHaskellDepends = [
     base binary bytestring deepseq ghc-prim hashable template-haskell
     text
   ];
   testHaskellDepends = [
-    base binary bytestring tasty tasty-hunit tasty-quickcheck
-    template-haskell text
+    base binary bytestring tasty tasty-hunit tasty-quickcheck text
   ];
   description = "Memory-efficient representation of Unicode text strings";
   license = lib.licenses.bsd3;
@@ -3623,16 +4004,16 @@ mkDerivation {
 ;
     th-abstraction = {
   meta = {
-    sha256 = "0dkilfrvk8zdn3gvyfv5zgjbwqhdf1yg90fk4byka0ib43kgkyvf";
+    sha256 = "19nh7a9b4yif6sijp6xns6xlxcr1mcyrqx3cfbp5bdm7mkbda7a9";
     url = "https://hackage.haskell.org";
-    ver = "0.5.0.0";
+    ver = "0.4.5.0";
   };
   drv = { mkDerivation, base, containers, ghc-prim, lib, template-haskell
 }:
 mkDerivation {
   pname = "th-abstraction";
-  version = "0.5.0.0";
-  src = /nix/store/2vqd74h0m054ngrfxigpx3hjyzv72724-source;
+  version = "0.4.5.0";
+  src = /nix/store/60fdh9cnrz0zzin9ali21npxs10n3f51-source;
   libraryHaskellDepends = [
     base containers ghc-prim template-haskell
   ];
@@ -3670,17 +4051,21 @@ mkDerivation {
 ;
     th-lift = {
   meta = {
-    sha256 = "1grxjbssc0m4r5qqz9zrxy0wzxhbdwdn8ihlmsjmdgizdn7isx0a";
+    sha256 = "0rp32lkvx22alxc7c1mxgf224jyanfy93ry70zwdn6zzj50mnbhc";
     url = "https://hackage.haskell.org";
-    ver = "0.8.7";
+    ver = "0.8.4";
   };
-  drv = { mkDerivation, base, lib, template-haskell, th-abstraction }:
+  drv = { mkDerivation, base, ghc-prim, lib, template-haskell
+, th-abstraction
+}:
 mkDerivation {
   pname = "th-lift";
-  version = "0.8.7";
-  src = /nix/store/s8qc2wsymq8gnlipnnrm0f4jixx2xhk6-source;
-  libraryHaskellDepends = [ base template-haskell th-abstraction ];
-  testHaskellDepends = [ base template-haskell ];
+  version = "0.8.4";
+  src = /nix/store/ywmlr7kmk4b49ph3kqcrg562xx2nvv5v-source;
+  libraryHaskellDepends = [
+    base ghc-prim template-haskell th-abstraction
+  ];
+  testHaskellDepends = [ base ghc-prim template-haskell ];
   homepage = "http://github.com/RyanGlScott/th-lift";
   description = "Derive Template Haskell's Lift class for datatypes";
   license = lib.licenses.bsd3;
@@ -3738,6 +4123,57 @@ mkDerivation {
 ;
 }
 ;
+    these = {
+  meta = {
+    sha256 = "0jqchlmycfcvkff48shhkswansnzrw57q8945m483mrd59zpg27k";
+    url = "https://hackage.haskell.org";
+    ver = "1.2.1";
+  };
+  drv = { mkDerivation, assoc, base, binary, deepseq
+, foldable1-classes-compat, hashable, lib
+}:
+mkDerivation {
+  pname = "these";
+  version = "1.2.1";
+  src = /nix/store/aaw05vz42pjyhry145973mssbqw1n5i9-source;
+  libraryHaskellDepends = [
+    assoc base binary deepseq foldable1-classes-compat hashable
+  ];
+  homepage = "https://github.com/haskellari/these";
+  description = "An either-or-both data type";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    time-compat = {
+  meta = {
+    sha256 = "02yq6qc9fbawpxkypaf4nm9vidfv5vvgidxyj4r3dxa4lb29jd2p";
+    url = "https://hackage.haskell.org";
+    ver = "1.9.9";
+  };
+  drv = { mkDerivation, base, base-orphans, deepseq, hashable, HUnit, lib
+, QuickCheck, random, tasty, tasty-hunit, tasty-quickcheck
+, template-haskell, time
+}:
+mkDerivation {
+  pname = "time-compat";
+  version = "1.9.9";
+  src = /nix/store/5d4j6ha2hgp5qfaw2li1gwh8wbn8y7xq-source;
+  libraryHaskellDepends = [
+    base base-orphans deepseq hashable template-haskell time
+  ];
+  testHaskellDepends = [
+    base deepseq hashable HUnit QuickCheck random tasty tasty-hunit
+    tasty-quickcheck template-haskell
+  ];
+  homepage = "https://github.com/haskellari/time-compat";
+  description = "Compatibility package for time";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     tuples = {
   meta = {
     sha256 = "1cn7cjrsigimwmxnw1jm1fvaw5r9k4dia9jwwbc0yx7wc9rj8gyx";
@@ -3784,6 +4220,30 @@ mkDerivation {
   ];
   homepage = "https://github.com/isovector/type-errors#readme";
   description = "Tools for writing better type errors";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    unagi-chan = {
+  meta = {
+    sha256 = "1glfzdm732p0zbwq6vg0syw4cg7f72k1982rc6ha8wyr46czdlmm";
+    url = "https://hackage.haskell.org";
+    ver = "0.4.1.4";
+  };
+  drv = { mkDerivation, async, atomic-primops, base, containers, criterion
+, ghc-prim, lib, primitive
+}:
+mkDerivation {
+  pname = "unagi-chan";
+  version = "0.4.1.4";
+  src = /nix/store/2p0881jypzjz8p12jq75cn3ynmns8rxr-source;
+  libraryHaskellDepends = [ atomic-primops base ghc-prim primitive ];
+  testHaskellDepends = [
+    atomic-primops base containers ghc-prim primitive
+  ];
+  benchmarkHaskellDepends = [ async base criterion ];
+  description = "Fast concurrent queues with a Chan-like API, and more";
   license = lib.licenses.bsd3;
 }
 ;
@@ -3839,6 +4299,67 @@ mkDerivation {
 ;
 }
 ;
+    uuid-types = {
+  meta = {
+    sha256 = "1jrid43smmfcchrfwpzkxil16a4c5016y4b49yjka0sildj1lprg";
+    url = "https://hackage.haskell.org";
+    ver = "1.0.6.1";
+  };
+  drv = { mkDerivation, base, binary, bytestring, deepseq, hashable, lib
+, QuickCheck, random, tasty, tasty-hunit, tasty-quickcheck
+, template-haskell, text
+}:
+mkDerivation {
+  pname = "uuid-types";
+  version = "1.0.6.1";
+  src = /nix/store/d7pn428v517nab28kznyyr4ccypibj48-source;
+  libraryHaskellDepends = [
+    base binary bytestring deepseq hashable random template-haskell
+    text
+  ];
+  testHaskellDepends = [
+    base binary bytestring QuickCheck tasty tasty-hunit
+    tasty-quickcheck
+  ];
+  homepage = "https://github.com/haskell-hvr/uuid";
+  description = "Type definitions for Universally Unique Identifiers";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+    vector = {
+  meta = {
+    sha256 = "0mgc7ikhdgqwsj5skdxsf6v3a1iqkiiysqj94qnbg40ff8nbai4x";
+    url = "https://hackage.haskell.org";
+    ver = "0.13.2.0";
+  };
+  drv = { mkDerivation, base, base-orphans, deepseq, doctest, lib
+, primitive, QuickCheck, random, tasty, tasty-bench, tasty-hunit
+, tasty-inspection-testing, tasty-quickcheck, template-haskell
+, transformers, vector-stream
+}:
+mkDerivation {
+  pname = "vector";
+  version = "0.13.2.0";
+  src = /nix/store/b8qdb5sk1v1vp84rjv25n82721pdgixh-source;
+  libraryHaskellDepends = [
+    base deepseq primitive random tasty vector-stream
+  ];
+  testHaskellDepends = [
+    base base-orphans doctest primitive QuickCheck random tasty
+    tasty-hunit tasty-inspection-testing tasty-quickcheck
+    template-haskell transformers
+  ];
+  benchmarkHaskellDepends = [ base random tasty tasty-bench ];
+  doHaddock = false;
+  homepage = "https://github.com/haskell/vector";
+  description = "Efficient Arrays";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
     wide-word = {
   meta = {
     sha256 = "0f7i617wrbjmxx8nqmgd0af4vgsprkg8ng7xh3lpw2d4qnkgdq4i";
@@ -3866,9 +4387,9 @@ mkDerivation {
 ;
     witherable = {
   meta = {
-    sha256 = "0xm77dqyfm0zh0xvnh1srwxrkn4sl7m126lqhbzc4q9f6lziwzdx";
+    sha256 = "1ga4al351kwcfvsdr1ngyzj4aypvl46w357jflmgxacad8iqx4ik";
     url = "https://hackage.haskell.org";
-    ver = "0.5";
+    ver = "0.4.2";
   };
   drv = { mkDerivation, base, base-orphans, containers, hashable
 , indexed-traversable, indexed-traversable-instances, lib
@@ -3877,8 +4398,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "witherable";
-  version = "0.5";
-  src = /nix/store/gz5hm6n4glpkkrhb8n86y8xpqa8xakf8-source;
+  version = "0.4.2";
+  src = /nix/store/khn670w6drfhl6sgppi35rwi3ql27mrg-source;
   libraryHaskellDepends = [
     base base-orphans containers hashable indexed-traversable
     indexed-traversable-instances transformers unordered-containers
