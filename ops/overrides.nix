@@ -3608,19 +3608,19 @@ mkDerivation {
 ;
     polysemy-time = {
   meta = {
-    sha256 = "1ay0ym01wznk98km2ksw8slj52gc7rav6n16z4sndzsw7cdwdq2y";
+    sha256 = "0wm4yifj93j2csls66xxg189g3aimrixx8q4487pz1q84pk1cizd";
     url = "https://hackage.haskell.org";
-    ver = "0.6.0.0";
+    ver = "0.5.1.0";
   };
-  drv = { mkDerivation, aeson, base, incipit-core, lib, polysemy-test
+  drv = { mkDerivation, aeson, base, incipit-core, lib, polysemy-test, stm
 , tasty, template-haskell, time, torsor
 }:
 mkDerivation {
   pname = "polysemy-time";
-  version = "0.6.0.0";
-  src = /nix/store/cpli49vw3sc8vdh8vc747jvidvaag1d4-source;
+  version = "0.5.1.0";
+  src = /nix/store/is8ch0lnjkykvjqr6wny0dii6jyrl9vk-source;
   libraryHaskellDepends = [
-    aeson base incipit-core template-haskell time torsor
+    aeson base incipit-core stm template-haskell time torsor
   ];
   testHaskellDepends = [
     base incipit-core polysemy-test tasty time
