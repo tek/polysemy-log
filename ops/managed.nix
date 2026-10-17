@@ -163,7 +163,7 @@
       incipit-core = "0.7.0.2";
       polysemy = "1.9.2.0";
       polysemy-conc = "0.15.0.0";
-      polysemy-plugin = "0.4.5.3";
+      polysemy-plugin = "0.4.6.0";
       polysemy-test = "0.11.0.1";
       polysemy-time = "0.7.0.2";
       stm = "2.5.3.1";
@@ -352,8 +352,8 @@
         repo = "hackage.haskell.org";
       };
       polysemy-plugin = {
-        version = "0.4.5.3";
-        hash = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
+        version = "0.4.6.0";
+        hash = "178ixfs2awk6h635janfw5qln2fgdm325ggqp866zj5qabm6brd8";
         repo = "hackage.haskell.org";
       };
       polysemy-resume = {
