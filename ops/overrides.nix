@@ -691,6 +691,60 @@ mkDerivation {
 ;
   };
   latest-polysemy-log-co = {
+    co-log = {
+  meta = {
+    sha256 = "06xdkcq98livjys359k9kxxjwcfhifjh50drsswwxya808k3prqy";
+    url = "https://hackage.haskell.org";
+    ver = "0.7.0.1";
+  };
+  drv = { mkDerivation, ansi-terminal, base, bytestring, co-log-core
+, containers, contravariant, dependent-map, dependent-sum
+, directory, doctest, exceptions, filepath, Glob, hedgehog, lib
+, mtl, text, time, transformers, unliftio-core, vector
+}:
+mkDerivation {
+  pname = "co-log";
+  version = "0.7.0.1";
+  src = /nix/store/0hz7h9sjr8naxlcmjbw4179xpnxcfk3a-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [
+    ansi-terminal base bytestring co-log-core containers contravariant
+    dependent-map dependent-sum directory exceptions filepath mtl text
+    time transformers unliftio-core vector
+  ];
+  executableHaskellDepends = [ base bytestring dependent-map mtl ];
+  testHaskellDepends = [ base co-log-core doctest Glob hedgehog ];
+  homepage = "https://github.com/co-log/co-log";
+  description = "Composable Contravariant Comonadic Logging Library";
+  license = lib.licenses.mpl20;
+}
+;
+}
+;
+    co-log-polysemy = {
+  meta = {
+    sha256 = "1hznhkhn3vgn7j46fdln12z7m73gjx8zbl9kd33zflnvx95a6ddk";
+    url = "https://hackage.haskell.org";
+    ver = "0.0.1.7";
+  };
+  drv = { mkDerivation, base, co-log-core, lib, polysemy }:
+mkDerivation {
+  pname = "co-log-polysemy";
+  version = "0.0.1.7";
+  src = /nix/store/jvylglw54r444lqirchyr930hskdaw39-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [ base co-log-core polysemy ];
+  executableHaskellDepends = [ base co-log-core polysemy ];
+  homepage = "https://github.com/co-log/co-log-polysemy";
+  description = "Composable Contravariant Comonadic Logging Library";
+  license = lib.licenses.mpl20;
+  mainProgram = "play-colog-poly";
+}
+;
+}
+;
     incipit-core = {
   meta = {
     sha256 = "0izgrcc75icfv9hncrcp5dwc40ydjvc3p2xi10n221nkan6wq6hc";
