@@ -172,9 +172,9 @@
     };
     latest-polysemy-log-co = {
       base = "4.21.0.0";
-      co-log = "0.7.0.0";
+      co-log = "0.7.0.1";
       co-log-concurrent = "0.5.1.1";
-      co-log-polysemy = "0.0.1.6";
+      co-log-polysemy = "0.0.1.7";
       incipit-core = "0.7.0.2";
       polysemy = "1.9.2.0";
       polysemy-conc = "0.15.0.0";
@@ -408,6 +408,16 @@
       };
     };
     latest-polysemy-log-co = {
+      co-log = {
+        version = "0.7.0.1";
+        hash = "06xdkcq98livjys359k9kxxjwcfhifjh50drsswwxya808k3prqy";
+        repo = "hackage.haskell.org";
+      };
+      co-log-polysemy = {
+        version = "0.0.1.7";
+        hash = "1hznhkhn3vgn7j46fdln12z7m73gjx8zbl9kd33zflnvx95a6ddk";
+        repo = "hackage.haskell.org";
+      };
       incipit-core = {
         version = "0.7.0.2";
         hash = "0izgrcc75icfv9hncrcp5dwc40ydjvc3p2xi10n221nkan6wq6hc";
